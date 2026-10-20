@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760">
+  <defs>
+    <linearGradient id="bgDark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B132B"/>
+      <stop offset="100%" stop-color="#1C2541"/>
+    </linearGradient>
+    <linearGradient id="blueWrap" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0052D4"/>
+      <stop offset="55%" stop-color="#0038A8"/>
+      <stop offset="100%" stop-color="#081F5C"/>
+    </linearGradient>
+    <linearGradient id="cyanNeon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00F2FE"/>
+      <stop offset="100%" stop-color="#4FACFE"/>
+    </linearGradient>
+    <linearGradient id="truckBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="75%" stop-color="#F1F5F9"/>
+      <stop offset="100%" stop-color="#CBD5E1"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="760" fill="url(#bgDark)"/>
+  <text x="50" y="52" font-family="Arial Black, Impact, sans-serif" font-size="26" fill="#FFFFFF" letter-spacing="1.5">BLUEGRASS SIGN GROUP — COMMERCIAL FLEET PARTIAL WRAP SYSTEM</text>
+  <text x="50" y="76" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#00F2FE" letter-spacing="2">DESIGN • MANUFACTURE • INSTALL • SERVICE | &quot;QUALITY CUSTOM ELECTRIC SIGNS&quot; | 270-445-0227</text>
+
+  <!-- DRIVER SIDE PROFILE FULL CREW CAB WHITE PICKUP TRUCK -->
+  <g transform="translate(55, 110)">
+    <!-- Shadow -->
+    <ellipse cx="545" cy="315" rx="495" ry="22" fill="#050914" opacity="0.7"/>
+    <!-- Truck Body Base Silhouette (White Crew Cab Pickup) -->
+    <path d="M 55,205 L 75,145 L 255,132 L 355,52 L 665,52 L 685,132 L 1035,132 L 1045,245 L 1015,265 L 935,265 C 925,195 815,195 805,265 L 305,265 C 295,195 185,195 175,265 L 70,265 L 48,242 Z" fill="url(#truckBody)" stroke="#94A3B8" stroke-width="2"/>
+
+    <!-- PARTIAL WRAP GRAPHIC (Diagonal Rear Cab + Bed Sweep transitioning cleanly to Factory White Front) -->
+    <clipPath id="truckClip">
+      <path d="M 55,205 L 75,145 L 255,132 L 355,52 L 665,52 L 685,132 L 1035,132 L 1045,245 L 1015,265 L 935,265 C 925,195 815,195 805,265 L 305,265 C 295,195 185,195 175,265 L 70,265 L 48,242 Z"/>
+    </clipPath>
+
+    <g clip-path="url(#truckClip)">
+      <!-- Charcoal Geometric Speed Base -->
+      <polygon points="410,275 560,45 1060,45 1060,275" fill="#0F172A"/>
+      <!-- Electric Blue Primary Wrap Polygon -->
+      <polygon points="475,275 615,45 1060,45 1060,275" fill="url(#blueWrap)"/>
+      <!-- Glowing Cyan Neon Accent Stripes -->
+      <polygon points="445,275 585,45 602,45 462,275" fill="url(#cyanNeon)"/>
+      <polygon points="395,275 430,215 840,215 815,255" fill="#00F2FE" opacity="0.9"/>
+      <!-- High-Voltage Amber / Yellow Electric Bolt Accent -->
+      <polygon points="520,275 655,45 665,45 530,275" fill="#FACC15"/>
+    </g>
+
+    <!-- Windows (Crew Cab) -->
+    <path d="M 368,66 L 508,66 L 508,128 L 298,128 Z" fill="#1E293B" stroke="#475569" stroke-width="2"/>
+    <path d="M 522,66 L 652,66 L 666,128 L 522,128 Z" fill="#1E293B" stroke="#475569" stroke-width="2"/>
+
+    <!-- Front Door Typography on Factory White Paint (Zero Overlap with Wrap Cutline) -->
+    <rect x="305" y="142" width="195" height="62" rx="6" fill="#081F5C" stroke="#00F2FE" stroke-width="2"/>
+    <text x="402" y="167" font-family="Arial Black, Impact, sans-serif" font-size="20" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">BLUEGRASS</text>
+    <text x="402" y="185" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="bold" fill="#00F2FE" text-anchor="middle" letter-spacing="3">SIGN GROUP</text>
+    <text x="402" y="198" font-family="Georgia, serif" font-style="italic" font-size="9.5" fill="#FACC15" text-anchor="middle">&quot;Quality Custom Electric Signs&quot;</text>
+
+    <!-- Rear Cab & Bed Wrap Graphics -->
+    <text x="775" y="166" font-family="Arial Black, Impact, sans-serif" font-size="27" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">BLUEGRASS SIGN GROUP</text>
+    <rect x="575" y="175" width="405" height="22" rx="4" fill="#061236" stroke="#00F2FE" stroke-width="1.2"/>
+    <text x="777" y="190" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="bold" fill="#00F2FE" text-anchor="middle" letter-spacing="2">DESIGN • MANUFACTURE • INSTALL • SERVICE</text>
+
+    <!-- High-Visibility Phone & Web on Lower Rear Panel -->
+    <text x="670" y="232" font-family="Arial Black, Impact, sans-serif" font-size="24" fill="#FACC15" text-anchor="middle" letter-spacing="1.5">270-445-0227</text>
+    <text x="670" y="250" font-family="Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">www.bluegrasssign.com</text>
+
+    <!-- Scannable QR Code Badge on Rear Quarter Panel -->
+    <rect x="955" y="146" width="58" height="58" rx="5" fill="#FFFFFF" stroke="#00F2FE" stroke-width="2"/>
+    <rect x="961" y="152" width="14" height="14" fill="#081F5C"/>
+    <rect x="993" y="152" width="14" height="14" fill="#081F5C"/>
+    <rect x="961" y="184" width="14" height="14" fill="#081F5C"/>
+    <rect x="979" y="168" width="10" height="10" fill="#0052D4"/>
+    <rect x="993" y="184" width="14" height="14" fill="#081F5C"/>
+
+    <!-- Wheels -->
+    <circle cx="240" cy="265" r="52" fill="#1E293B" stroke="#0F172A" stroke-width="6"/>
+    <circle cx="240" cy="265" r="28" fill="#CBD5E1" stroke="#475569" stroke-width="3"/>
+    <circle cx="870" cy="265" r="52" fill="#1E293B" stroke="#0F172A" stroke-width="6"/>
+    <circle cx="870" cy="265" r="28" fill="#CBD5E1" stroke="#475569" stroke-width="3"/>
+  </g>
+</svg>

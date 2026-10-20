@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="corkGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D8B384"/>
+      <stop offset="50%" stop-color="#C39766"/>
+      <stop offset="100%" stop-color="#A67A4B"/>
+    </linearGradient>
+    <linearGradient id="linenGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F5EFE6"/>
+      <stop offset="50%" stop-color="#E6DCCD"/>
+      <stop offset="100%" stop-color="#D0C2AE"/>
+    </linearGradient>
+    <linearGradient id="crepeGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3E352F"/>
+      <stop offset="50%" stop-color="#2B241F"/>
+      <stop offset="100%" stop-color="#1E1815"/>
+    </linearGradient>
+    <radialGradient id="copperPlug" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFE0B5"/>
+      <stop offset="35%" stop-color="#E08B52"/>
+      <stop offset="75%" stop-color="#B05923"/>
+      <stop offset="100%" stop-color="#5A2A0E"/>
+    </radialGradient>
+    <pattern id="waveTread" width="24" height="16" patternUnits="userSpaceOnUse">
+      <path d="M 0 8 Q 6 2, 12 8 T 24 8" fill="none" stroke="#54483F" stroke-width="2.2"/>
+      <path d="M 0 14 Q 6 8, 12 14 T 24 14" fill="none" stroke="#3B312B" stroke-width="1.5"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="800" fill="#F9F6F0"/>
+  <text x="50" y="55" font-family="Georgia, serif" font-size="28" font-weight="bold" fill="#1E292B" letter-spacing="2">TERRA MARE — MEDITERRANEAN EARTHING RESORT SANDAL</text>
+  <text x="50" y="82" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#6E655C" letter-spacing="1.5">TECHNICAL ORTHOGRAPHIC VIEWS &amp; 4-LAYER CONDUCTIVE ASSEMBLY SPECIFICATION (SCALE 1:1)</text>
+
+  <!-- 1. TOP ORTHOGRAPHIC VIEW -->
+  <g transform="translate(80, 130)">
+    <text x="115" y="0" font-family="Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#1E292B" text-anchor="middle" letter-spacing="1.5">01. TOP FOOTBED VIEW</text>
+    <!-- Outsole perimeter -->
+    <path d="M 115,25 C 175,25 205,75 200,155 C 196,225 180,285 182,355 C 184,425 190,485 170,535 C 152,575 135,585 115,585 C 95,585 78,575 60,535 C 40,485 46,425 48,355 C 50,285 34,225 30,155 C 25,75 55,25 115,25 Z" fill="url(#crepeGrad)" stroke="#1E1815" stroke-width="2"/>
+    <!-- Stitched Cork Footbed -->
+    <path d="M 115,34 C 169,34 196,80 191,155 C 187,223 172,283 174,353 C 176,421 181,480 163,527 C 147,565 132,575 115,575 C 98,575 83,565 67,527 C 49,480 54,421 56,353 C 58,283 43,223 39,155 C 34,80 61,34 115,34 Z" fill="url(#corkGrad)" stroke="#E6DCCD" stroke-width="2" stroke-dasharray="5,4"/>
+    <!-- Riva Decking Grooves + Silver Conductive Thread Lines -->
+    <line x1="85" y1="70" x2="85" y2="540" stroke="#9B6E40" stroke-width="1" opacity="0.6"/>
+    <line x1="115" y1="60" x2="115" y2="550" stroke="#D9E2EC" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <line x1="145" y1="70" x2="145" y2="540" stroke="#9B6E40" stroke-width="1" opacity="0.6"/>
+    <!-- 8mm Copper-Carbon Earthing Plug (1st Metatarsal Zone) -->
+    <circle cx="142" cy="175" r="16" fill="url(#copperPlug)" stroke="#F5EFE6" stroke-width="2"/>
+    <circle cx="142" cy="175" r="6" fill="#2B180A"/>
+    <!-- Secondary Earthing Contact (Heel Zone) -->
+    <circle cx="115" cy="495" r="13" fill="url(#copperPlug)" stroke="#F5EFE6" stroke-width="1.5"/>
+    <!-- Woven Sea-Linen Architectural Y-Strap -->
+    <path d="M 102,115 L 128,115 L 124,148 L 106,148 Z" fill="#B05923"/>
+    <path d="M 115,128 C 115,128 65,205 42,295 L 54,325 C 76,240 115,165 115,165 C 115,165 154,240 176,325 L 188,295 C 165,205 115,128 115,128 Z" fill="url(#linenGrad)" stroke="#B5A48B" stroke-width="2"/>
+    <text x="115" y="455" font-family="Georgia, serif" font-size="11" fill="#4A3520" text-anchor="middle" letter-spacing="2">TERRA MARE</text>
+  </g>
+
+  <!-- 2. BOTTOM OUTSOLE TREAD VIEW -->
+  <g transform="translate(360, 130)">
+    <text x="115" y="0" font-family="Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#1E292B" text-anchor="middle" letter-spacing="1.5">02. BOTTOM OUTSOLE TREAD</text>
+    <path d="M 115,25 C 175,25 205,75 200,155 C 196,225 180,285 182,355 C 184,425 190,485 170,535 C 152,575 135,585 115,585 C 95,585 78,575 60,535 C 40,485 46,425 48,355 C 50,285 34,225 30,155 C 25,75 55,25 115,25 Z" fill="url(#crepeGrad)" stroke="#1E1815" stroke-width="2"/>
+    <path d="M 115,38 C 166,38 192,82 188,155 C 184,222 170,282 172,353 C 174,420 178,478 160,524 C 145,560 130,570 115,570 C 100,570 85,560 70,524 C 52,478 56,420 58,353 C 60,282 46,222 42,155 C 38,82 64,38 115,38 Z" fill="url(#waveTread)" stroke="#54483F" stroke-width="1.5"/>
+    <!-- Mechanical Interlock Anchor Slots (Glue-Free) -->
+    <rect x="44" y="285" width="14" height="36" rx="4" fill="#B5A48B" stroke="#D8B384" stroke-width="1.5"/>
+    <rect x="172" y="285" width="14" height="36" rx="4" fill="#B5A48B" stroke="#D8B384" stroke-width="1.5"/>
+    <rect x="101" y="112" width="28" height="14" rx="4" fill="#B5A48B" stroke="#D8B384" stroke-width="1.5"/>
+    <!-- Flush Grounding Copper-Carbon Base Contact -->
+    <circle cx="88" cy="175" r="18" fill="url(#copperPlug)" stroke="#E08B52" stroke-width="2.5"/>
+    <circle cx="88" cy="175" r="8" fill="#1E1815"/>
+    <circle cx="115" cy="495" r="15" fill="url(#copperPlug)" stroke="#E08B52" stroke-width="2"/>
+  </g>
+
+  <!-- 3. LATERAL SIDE PROFILE & EXPLODED 4-LAYER ASSEMBLY -->
+  <g transform="translate(650, 140)">
+    <text x="240" y="-10" font-family="Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#1E292B" text-anchor="middle" letter-spacing="1.5">03. LATERAL PROFILE &amp; EXPLODED 4-LAYER EARTHING STACK</text>
+    <!-- Layer 1: Strap -->
+    <path d="M 110,95 C 145,35 235,40 285,110 L 265,125 C 225,65 155,60 128,108 Z" fill="url(#linenGrad)" stroke="#9B8970" stroke-width="2"/>
+    <text x="330" y="75" font-family="Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#1E292B">L1: Woven Recycled Sea-Linen Strap</text>
+    <text x="330" y="92" font-family="Helvetica, sans-serif" font-size="11" fill="#5A524A">Tubular organic cotton core • Zero-plastic feel</text>
+
+    <!-- Layer 2: Anatomical Cork-Algae Footbed -->
+    <path d="M 40,185 C 110,175 190,192 280,190 C 350,188 415,172 445,165 L 448,188 C 415,198 350,210 280,212 C 190,214 110,202 38,205 Z" fill="url(#corkGrad)" stroke="#8C6239" stroke-width="2"/>
+    <text x="40" y="158" font-family="Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#1E292B">L2: Anatomical Brushed Cork + Algae Bio-EVA Footbed</text>
+
+    <!-- Layer 3: Copper-Carbon Conductive Earthing Core Plug -->
+    <rect x="335" y="235" width="24" height="58" rx="4" fill="url(#copperPlug)" stroke="#5A2A0E" stroke-width="2"/>
+    <rect x="105" y="240" width="20" height="52" rx="4" fill="url(#copperPlug)" stroke="#5A2A0E" stroke-width="2"/>
+    <line x1="347" y1="185" x2="347" y2="355" stroke="#B05923" stroke-width="2" stroke-dasharray="4,4"/>
+    <text x="150" y="265" font-family="Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#B05923">L3: 8mm Copper-Carbon Earthing Core (&lt;10⁵ Ω)</text>
+    <text x="150" y="282" font-family="Helvetica, sans-serif" font-size="11" fill="#5A524A">Vertical skin-to-sand electron transfer conduit</text>
+
+    <!-- Layer 4: Natural Vulcanized Crepe Rubber Outsole -->
+    <path d="M 35,335 C 110,330 190,342 280,340 C 350,338 415,326 450,320 L 452,348 C 415,356 350,366 280,368 C 190,370 110,358 35,360 Z" fill="url(#crepeGrad)" stroke="#1E1815" stroke-width="2"/>
+    <text x="40" y="395" font-family="Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#1E292B">L4: Natural Vulcanized Crepe Rubber Outsole + Slot-Lock Welt</text>
+  </g>
+</svg>

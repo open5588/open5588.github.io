@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 220" width="860" height="220" fill="none">
+  <defs>
+    <linearGradient id="steelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="55%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+    <linearGradient id="safetyOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EA580C"/>
+      <stop offset="100%" stop-color="#F97316"/>
+    </linearGradient>
+    <linearGradient id="glassCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.35"/>
+    </linearGradient>
+    <pattern id="techGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#E2E8F0" stroke-width="0.75" stroke-opacity="0.45"/>
+    </pattern>
+  </defs>
+
+  <!-- Architectural Technical Frame Background -->
+  <rect x="4" y="4" width="852" height="212" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+  <rect x="12" y="12" width="196" height="196" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+  <rect x="12" y="12" width="196" height="196" rx="10" fill="url(#techGrid)"/>
+
+  <!-- Dimension Callout Lines inside Mark Frame -->
+  <line x1="26" y1="30" x2="26" y2="186" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3 2"/>
+  <line x1="22" y1="30" x2="30" y2="30" stroke="#94A3B8" stroke-width="1"/>
+  <line x1="22" y1="186" x2="30" y2="186" stroke="#94A3B8" stroke-width="1"/>
+  <text x="19" y="114" fill="#64748B" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="8" font-weight="600" transform="rotate(-90 19 114)">85° TILT</text>
+
+  <!-- Left & Right Glass Panels leaning on Type-A Frame (Iso-Geometric View) -->
+  <!-- Left Glass Sheet -->
+  <polygon points="48,168 88,42 98,45 58,171" fill="url(#glassCyan)" stroke="#0284C7" stroke-width="1.2"/>
+  <!-- Right Glass Sheet -->
+  <polygon points="172,168 132,42 122,45 162,171" fill="url(#glassCyan)" stroke="#0284C7" stroke-width="1.2"/>
+
+  <!-- Heavy-Duty Base Skids & Forklift Pockets (Stojak Typu A) -->
+  <rect x="38" y="170" width="144" height="14" rx="2.5" fill="url(#steelGrad)"/>
+  <!-- Forklift Pocket Cutouts -->
+  <rect x="52" y="173" width="26" height="8" rx="1.5" fill="#F8FAFC" stroke="#475569" stroke-width="1"/>
+  <rect x="142" y="173" width="26" height="8" rx="1.5" fill="#F8FAFC" stroke="#475569" stroke-width="1"/>
+
+  <!-- Outrigger Foot Pads -->
+  <rect x="34" y="184" width="24" height="5" rx="1.5" fill="#EA580C"/>
+  <rect x="162" y="184" width="24" height="5" rx="1.5" fill="#EA580C"/>
+
+  <!-- Structural Type-A Steel Frame (Main A-Pillar) -->
+  <path d="M58 170 L99 36 H121 L162 170 H144 L115 70 H105 L76 170 Z" fill="url(#steelGrad)"/>
+
+  <!-- Internal Diagonal Cross-Bracing & Horizontal Load Crossbar -->
+  <path d="M79 132 H141 L137 118 H83 Z" fill="url(#safetyOrange)"/>
+  <line x1="90" y1="118" x2="128" y2="82" stroke="#475569" stroke-width="4.5" stroke-linecap="round"/>
+  <line x1="130" y1="118" x2="92" y2="82" stroke="#475569" stroke-width="4.5" stroke-linecap="round"/>
+
+  <!-- Crane Lifting Lug (Top Eye) -->
+  <circle cx="110" cy="30" r="6" fill="none" stroke="#EA580C" stroke-width="3.5"/>
+
+  <!-- Technical Spec Corner Badge in Mark -->
+  <rect x="148" y="20" width="52" height="16" rx="3" fill="#0F172A"/>
+  <text x="174" y="31" text-anchor="middle" fill="#F8FAFC" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700">TYP-A/L</text>
+
+  <!-- WORDMARK & INDUSTRIAL TYPOGRAPHY -->
+  <!-- Brand Top Eyebrow -->
+  <rect x="236" y="34" width="10" height="10" rx="2" fill="#EA580C"/>
+  <text x="254" y="43" fill="#EA580C" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="800" letter-spacing="3.2">PRODUCENT KONSTRUKCJI STALOWYCH • EST. PL</text>
+
+  <!-- Main Industrial Wordmark: STACHURSKI -->
+  <text x="234" y="114" fill="#0F172A" font-family="'Inter', 'Arial Black', sans-serif" font-size="72" font-weight="900" letter-spacing="2.5">STACHURSKI</text>
+
+  <!-- Precision Divider Bar with Load Specs -->
+  <rect x="236" y="132" width="588" height="3" fill="#0F172A"/>
+  <rect x="236" y="132" width="148" height="3" fill="#EA580C"/>
+
+  <!-- Sub-headline Tagline -->
+  <text x="236" y="160" fill="#1E293B" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="16.5" font-weight="800" letter-spacing="3.6">SYSTEMY TRANSPORTOWE &amp; STOJAKI PRZEMYSŁOWE</text>
+
+  <!-- Bottom Technical Metadata Strip -->
+  <g font-family="'JetBrains Mono', 'Courier New', monospace" font-size="11" font-weight="600" fill="#64748B">
+    <rect x="236" y="174" width="166" height="24" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
+    <text x="248" y="190" fill="#0F172A">EN 1090-2 EXC2 CERT</text>
+
+    <rect x="412" y="174" width="184" height="24" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
+    <text x="424" y="190" fill="#0F172A">UDŹWIG: 1500–3500 KG</text>
+
+    <rect x="606" y="174" width="218" height="24" rx="4" fill="#FFF7ED" stroke="#FDBA74" stroke-width="1"/>
+    <text x="618" y="190" fill="#C2410C">WWW.STACHURSKI.COM.PL</text>
+  </g>
+</svg>

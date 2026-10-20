@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VibeFix AI — Instant Error-Fixer for Cursor, Lovable, Replit & Claude</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #07090e; color: #f8fafc; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <header style="background:linear-gradient(90deg, rgba(7,9,14,0.92) 0%, rgba(15,23,42,0.75) 100%), url('/assets/img/crypto-editorial-bg.jpg') center/cover;" class="border-b border-slate-800/80 sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center font-black text-white shadow-lg">VF</div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold text-white tracking-tight">VibeFix AI</span>
+            <span class="px-2 py-0.5 text-[11px] font-semibold rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Live MVP</span>
+          </div>
+          <p class="text-xs text-slate-300">Plain-English Root Cause + Copy-Paste Fix Prompt for Cursor, Lovable, Bolt, Replit & Next.js</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 text-xs">
+        <span class="px-2.5 py-1 rounded-lg bg-slate-950/90 border border-slate-800 text-slate-300 mono">Engine: Claude Sonnet / Structured JSON</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto w-full px-6 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1">
+    <!-- Left Column: Error Input & Benchmark Templates -->
+    <div class="lg:col-span-5 flex flex-col gap-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 space-y-4">
+        <div class="flex items-center justify-between">
+          <h2 class="text-sm font-bold text-white">1. Select Tool & Paste Error Log</h2>
+          <span class="text-[11px] text-indigo-400 font-semibold">Try 1-Click Benchmark Presets Below</span>
+        </div>
+
+        <!-- Tool Selector Pills -->
+        <div class="flex flex-wrap gap-1.5" id="toolPills">
+          <button onclick="selectTool(this, 'Cursor / Next.js')" class="px-3 py-1 rounded-lg text-xs font-semibold bg-indigo-600 text-white">Cursor / Next.js</button>
+          <button onclick="selectTool(this, 'Lovable / Supabase')" class="px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700">Lovable / Supabase</button>
+          <button onclick="selectTool(this, 'Replit / Node.js')" class="px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700">Replit / Node.js</button>
+          <button onclick="selectTool(this, 'Bolt.new / Vite')" class="px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700">Bolt.new / Vite</button>
+        </div>
+
+        <!-- Benchmark Preset Buttons -->
+        <div class="space-y-1.5">
+          <label class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold block">Load Benchmark Vibe-Coding Error Template:</label>
+          <div class="grid grid-cols-1 gap-1.5">
+            <button onclick="loadPreset(0)" class="text-left px-3 py-2 rounded-lg bg-slate-950 hover:bg-slate-800/80 border border-slate-800 text-xs flex items-center justify-between">
+              <span class="text-rose-400 mono truncate">Hydration failed because the initial UI does not match...</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 ml-2">Next.js SSR</span>
+            </button>
+            <button onclick="loadPreset(1)" class="text-left px-3 py-2 rounded-lg bg-slate-950 hover:bg-slate-800/80 border border-slate-800 text-xs flex items-center justify-between">
+              <span class="text-amber-400 mono truncate">new row violates row-level security policy for table "profiles"</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 ml-2">Supabase RLS</span>
+            </button>
+            <button onclick="loadPreset(2)" class="text-left px-3 py-2 rounded-lg bg-slate-950 hover:bg-slate-800/80 border border-slate-800 text-xs flex items-center justify-between">
+              <span class="text-cyan-400 mono truncate">Error: Cannot find module '@/components/ui/button' or its...</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 ml-2">tsconfig Path</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Textarea -->
+        <div>
+          <textarea id="errorInput" rows="6" class="w-full rounded-xl bg-slate-950 border border-slate-800 p-3.5 text-xs mono text-rose-300 focus:outline-none focus:border-indigo-500" placeholder="Paste your terminal stack trace, browser console error, or build failure here..."></textarea>
+        </div>
+
+        <button onclick="analyzeError()" class="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white font-bold text-sm shadow-lg shadow-indigo-500/25 transition">
+          ⚡ Diagnose Error & Generate Exact Fix
+        </button>
+      </div>
+    </div>
+
+    <!-- Right Column: Structured Diagnosis Output -->
+    <div class="lg:col-span-7 flex flex-col gap-4" id="outputPanel">
+      <!-- Populated dynamically -->
+    </div>
+  </main>
+
+  <script>
+    const presets = [
+      {
+        tool: "Cursor / Next.js",
+        raw: `Unhandled Runtime Error\nError: Hydration failed because the initial UI does not match what was rendered on the server.\nWarning: Expected server HTML to contain a matching <div> in <p>.\n    at p\n    at DashboardCard (src/components/DashboardCard.tsx:24:11)\nSee more info here: https://nextjs.org/docs/messages/react-hydration-error`,
+        severity: "High — Blocks Interactive UI Rendering",
+        plainEnglish: "Your Next.js page rendered one version on the server and a slightly different version in the browser. Here, two things happened: (1) a <div> block was placed inside a <p> paragraph tag (which browsers automatically break apart), and (2) DashboardCard.tsx line 24 uses local time or browser-only state (like window / localStorage / Math.random()) during initial render.",
+        cursorPrompt: `In src/components/DashboardCard.tsx around line 24:\n1. Replace any <p> tags that wrap <div>, <Badge>, or block elements with a <div>.\n2. Move any browser-only values (new Date().toLocaleTimeString(), localStorage, or window) inside a useEffect hook with a mounted state guard so server and client HTML match on first render.`,
+        beforeCode: `// ❌ Before (src/components/DashboardCard.tsx:24)\nexport function DashboardCard({ createdAt }: { createdAt: string }) {\n  return (\n    <p className="text-sm text-gray-500">\n      <div>Updated at {new Date().toLocaleTimeString()}</div>\n    </p>\n  );\n}`,
+        afterCode: `// ✅ After (Fixed for SSR + Valid HTML Nesting)\nimport { useEffect, useState } from "react";\n\nexport function DashboardCard({ createdAt }: { createdAt: string }) {\n  const [timeStr, setTimeStr] = useState<string>("—");\n  useEffect(() => {\n    setTimeStr(new Date(createdAt).toLocaleTimeString());\n  }, [createdAt]);\n\n  return (\n    <div className="text-sm text-gray-500">\n      <div>Updated at {timeStr}</div>\n    </div>\n  );\n}`
+      },
+      {
+        tool: "Lovable / Supabase",
+        raw: `AuthApiError: new row violates row-level security policy for table "profiles" (Code: 42501)\nPOST https://xyzcompany.supabase.co/rest/v1/profiles 403 (Forbidden)`,
+        severity: "Critical — Database Insert Blocked (HTTP 403)",
+        plainEnglish: "Supabase has Row-Level Security (RLS) turned ON for your 'profiles' table, which blocks all inserts by default until you explicitly allow logged-in users to insert their own row matching their auth.uid().",
+        cursorPrompt: `Run this SQL migration in Supabase SQL Editor to allow authenticated users to insert and update their own profile row where id = auth.uid(), and ensure the frontend insert payload includes user_id: (await supabase.auth.getUser()).data.user?.id.`,
+        beforeCode: `// ❌ Before: Missing user_id or missing Supabase RLS INSERT policy\nawait supabase.from("profiles").insert({\n  full_name: name,\n  avatar_url: avatar\n});`,
+        afterCode: `// ✅ 1. Run in Supabase SQL Editor:\nCREATE POLICY "Users can insert own profile" ON public.profiles\nFOR INSERT TO authenticated WITH CHECK (auth.uid() = id);\n\n// ✅ 2. Include authenticated user's ID in frontend insert:\nconst { data: { user } } = await supabase.auth.getUser();\nawait supabase.from("profiles").insert({\n  id: user!.id,\n  full_name: name,\n  avatar_url: avatar\n});`
+      },
+      {
+        tool: "Bolt.new / Vite",
+        raw: `Failed to compile.\n./src/app/page.tsx:3:24\nModule not found: Can't resolve '@/components/ui/button'\n> 3 | import { Button } from '@/components/ui/button'`,
+        severity: "Medium — Build / Module Resolution Failure",
+        plainEnglish: "Your code uses the '@/' path alias to point to the 'src/' folder, Either the button component hasn't been installed yet via shadcn-ui, or your tsconfig.json is missing the '@/*' path mapping.",
+        cursorPrompt: `1. Verify tsconfig.json has "paths": { "@/*": ["./src/*"] } under compilerOptions.\n2. If src/components/ui/button.tsx does not exist, run: npx shadcn@latest add button -y`,
+        beforeCode: `// ❌ Missing paths in tsconfig.json\n{\n  "compilerOptions": {\n    "strict": true\n  }\n}`,
+        afterCode: `// ✅ Add baseUrl & paths in tsconfig.json + install component\n{\n  "compilerOptions": {\n    "baseUrl": ".",\n    "paths": {\n      "@/*": ["./src/*"]\n    }\n  }\n}`
+      }
+    ];
+
+    let currentIdx = 0;
+
+    function selectTool(btn, name) {
+      document.querySelectorAll('#toolPills button').forEach(b => {
+        b.className = "px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700";
+      });
+      btn.className = "px-3 py-1 rounded-lg text-xs font-semibold bg-indigo-600 text-white";
+    }
+
+    function loadPreset(idx) {
+      currentIdx = idx;
+      document.getElementById('errorInput').value = presets[idx].raw;
+      renderOutput(presets[idx]);
+    }
+
+    function analyzeError() {
+      const val = document.getElementById('errorInput').value.toLowerCase();
+      if (val.includes('rls') || val.includes('row-level') || val.includes('42501')) {
+        renderOutput(presets[1]);
+      } else if (val.includes('module not found') || val.includes('resolve')) {
+        renderOutput(presets[2]);
+      } else {
+        renderOutput(presets[currentIdx]);
+      }
+    }
+
+    function copyText(txt, btn) {
+      navigator.clipboard.writeText(txt);
+      const old = btn.innerText;
+      btn.innerText = "✓ Copied!";
+      setTimeout(() => btn.innerText = old, 1500);
+    }
+
+    function renderOutput(item) {
+      document.getElementById('outputPanel').innerHTML = `
+        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">✓ Root Cause Identified</span>
+              <span class="text-xs text-slate-400 mono">${item.tool}</span>
+            </div>
+            <span class="text-xs font-semibold text-rose-400">${item.severity}</span>
+          </div>
+
+          <!-- Plain English Explanation -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+            <div class="text-xs font-bold uppercase tracking-wider text-indigo-400">What Happened (In Plain English)</div>
+            <p class="text-sm text-slate-200 leading-relaxed">${item.plainEnglish}</p>
+          </div>
+
+          <!-- 1-Click Copy Prompt for Cursor / Lovable / Replit -->
+          <div class="p-4 rounded-xl bg-indigo-950/30 border border-indigo-500/30 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-300">⚡ Paste This Prompt Directly Into Cursor / Lovable / Replit</span>
+              <button onclick="copyText(\`${item.cursorPrompt.replace(/`/g, '\\`')}\`, this)" class="px-3 py-1 rounded-lg bg-indigo-500 hover:bg-indigo-400 text-white text-xs font-bold transition">Copy Fix Prompt</button>
+            </div>
+            <pre class="text-xs mono text-indigo-100 whitespace-pre-wrap">${item.cursorPrompt}</pre>
+          </div>
+
+          <!-- Before vs After Code Diff -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="p-3.5 rounded-xl bg-rose-950/20 border border-rose-500/25">
+              <div class="text-[11px] font-bold text-rose-400 mb-2 uppercase">Broken Code Pattern</div>
+              <pre class="text-[11px] mono text-slate-300 overflow-x-auto">${item.beforeCode.replace(/</g,'&lt;')}</pre>
+            </div>
+            <div class="p-3.5 rounded-xl bg-emerald-950/20 border border-emerald-500/25">
+              <div class="text-[11px] font-bold text-emerald-400 mb-2 uppercase">Production Fix</div>
+              <pre class="text-[11px] mono text-slate-200 overflow-x-auto">${item.afterCode.replace(/</g,'&lt;')}</pre>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    loadPreset(0);
+  </script>
+</body>
+</html>

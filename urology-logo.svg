@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <!-- Pure Flat Solid Tones — Incorporating Kuwait Flag Colors (Green #007A3D, Red #CE1126, Black #111827, White #FFFFFF) + Urology Blue (#0284C7) -->
+  <rect width="800" height="500" fill="#F8FAFC" rx="18"/>
+  <g transform="translate(400, 210)">
+    <!-- Outer Academic Medical Octagon / Shield in Deep Clinical Black -->
+    <polygon points="0,-138 98,-98 138,0 98,98 0,138 -98,98 -138,0 -98,-98" fill="#111827"/>
+    <polygon points="0,-124 88,-88 124,0 88,88 0,124 -88,88 -124,0 -88,-88" fill="#FFFFFF"/>
+    <!-- Left Kidney / Reconstructive Arc in Kuwait Green (#007A3D) -->
+    <path d="M-24,-78 C-78,-78 -96,-28 -74,24 C-58,62 -28,78 -12,52 C-2,36 -18,14 -18,-8 C-18,-30 -2,-52 -24,-78 Z" fill="#007A3D"/>
+    <!-- Right Kidney / Female & Functional Arc in Kuwait Red (#CE1126) -->
+    <path d="M24,-78 C78,-78 96,-28 74,24 C58,62 28,78 12,52 C2,36 18,14 18,-8 C18,-30 2,-52 24,-78 Z" fill="#CE1126"/>
+    <!-- Center Urodynamic Flow + Neurourology Synapse Axis in Urology Blue (#0284C7) -->
+    <circle cx="0" cy="-56" r="12" fill="#0284C7"/>
+    <path d="M0,-38 L0,88 M-24,42 L0,68 L24,42" stroke="#0284C7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <!-- Neural Nodes -->
+    <circle cx="-26" cy="-12" r="6" fill="#111827"/>
+    <circle cx="26" cy="-12" r="6" fill="#111827"/>
+    <line x1="-26" y1="-12" x2="0" y2="8" stroke="#111827" stroke-width="4"/>
+    <line x1="26" y1="-12" x2="0" y2="8" stroke="#111827" stroke-width="4"/>
+    <!-- Typography Lockup -->
+    <text x="0" y="182" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="900" font-size="22" fill="#111827" letter-spacing="1.5">KUWAIT FELLOWSHIP IN FUNCTIONAL, FEMALE,</text>
+    <text x="0" y="210" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="900" font-size="22" fill="#0284C7" letter-spacing="1.5">NEURO- AND RECONSTRUCTIVE UROLOGY</text>
+  </g>
+</svg>

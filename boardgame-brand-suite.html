@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Board-Game Studio Brand & Debut Game Logo Suite — Contest #2793803</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1600px;
+    height: 1200px;
+    overflow: hidden;
+    background: #080C0B;
+    color: #F8FAFC;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    padding: 28px 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image:
+      radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(5, 150, 105, 0.12) 0%, transparent 45%);
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(16, 185, 129, 0.28);
+    padding-bottom: 14px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(16, 185, 129, 0.14);
+    border: 1px solid rgba(16, 185, 129, 0.45);
+    color: #34D399;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    padding: 5px 12px;
+    border-radius: 99px;
+    text-transform: uppercase;
+  }
+  .title-block h1 {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: -0.4px;
+    color: #FFFFFF;
+    margin-top: 4px;
+  }
+  .title-block p {
+    font-size: 12.5px;
+    color: #94A3B8;
+  }
+  .palette-strip {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .swatch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #0F1715;
+    border: 1px solid #1E2E29;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .swatch-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  /* Top Row: Studio Corporate Logo (Green/White/Black) + Debut Game Logo */
+  .top-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 370px;
+    gap: 18px;
+    height: 455px;
+  }
+  .panel {
+    background: #0D1412;
+    border: 1px solid rgba(16, 185, 129, 0.24);
+    border-radius: 16px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: #34D399;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding-bottom: 8px;
+  }
+  .panel-header span.sub {
+    color: #64748B;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+  }
+  .logo-stage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 8px 0;
+  }
+  .variant-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 175px;
+  }
+  .mini-card {
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .mini-card.light {
+    background: #FFFFFF;
+    color: #080C0B;
+  }
+  .mini-card.green {
+    background: #10B981;
+    color: #080C0B;
+  }
+  .mini-card.mono {
+    background: #141E1B;
+    color: #FFFFFF;
+  }
+  .mini-label {
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.75;
+  }
+  .spec-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #94A3B8;
+    background: rgba(0,0,0,0.35);
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  /* Bottom Row: 4 Unifying Visual System Applications */
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1.05fr 1fr 0.9fr;
+    gap: 18px;
+    height: 565px;
+  }
+  .box-3d-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .board-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .web-mockup {
+    background: #070A09;
+    border: 1px solid #1E2E29;
+    border-radius: 12px;
+    overflow: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+  }
+  .browser-bar {
+    background: #111917;
+    padding: 7px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid #1E2E29;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .url-pill {
+    margin-left: 8px;
+    background: #090E0C;
+    color: #64748B;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    flex: 1;
+  }
+</style>
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <div class="header">
+    <div class="title-block">
+      <div class="badge">● CONTEST #2793803 • PRODUCTION-READY TABLETOP BRAND & DEBUT GAME IDENTITY SUITE</div>
+      <h1>HEXFORGE TABLETOP STUDIO &amp; “HEXARCHY: SHARDS OF THE CROWN”</h1>
+      <p>Complete Studio Corporate Mark (Green / White / Black) + Standalone Debut Strategy Game Logo + Unifying Hex-Grid Visual System</p>
+    </div>
+    <div class="palette-strip">
+      <div class="swatch"><span class="swatch-dot" style="background:#10B981;"></span><div><strong style="color:#FFF;">STUDIO GREEN</strong><br>#10B981 • PMS 3395 C</div></div>
+      <div class="swatch"><span class="swatch-dot" style="background:#059669;"></span><div><strong style="color:#FFF;">DEEP EMERALD</strong><br>#059669 • PMS 340 C</div></div>
+      <div class="swatch"><span class="swatch-dot" style="background:#FFFFFF;"></span><div><strong style="color:#FFF;">PURE WHITE</strong><br>#FFFFFF • CMYK 0/0/0/0</div></div>
+      <div class="swatch"><span class="swatch-dot" style="background:#0B0F0E;"></span><div><strong style="color:#FFF;">OBSIDIAN BLACK</strong><br>#0B0F0E • K:98%</div></div>
+    </div>
+  </div>
+
+  <!-- TOP ROW: STUDIO LOGO + DEBUT GAME LOGO + GEOMETRIC CONSTRUCTION -->
+  <div class="top-grid">
+    <!-- Panel A: Company Logo (Green, White, Black) -->
+    <div class="panel">
+      <div class="panel-header">
+        <span>01 // STUDIO CORPORATE LOGO (GREEN • WHITE • BLACK)</span>
+        <span class="sub">D20 + HEX GRID + DICE PIPS</span>
+      </div>
+      <div class="logo-stage">
+        <svg width="265" height="310" viewBox="0 0 280 320">
+          <!-- Outer Hexagonal Play-Grid Shield -->
+          <polygon points="140,18 248,80 248,204 140,266 32,204 32,80" fill="#0B0F0E" stroke="#10B981" stroke-width="5"/>
+          <polygon points="140,34 234,88 234,196 140,250 46,196 46,88" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-opacity="0.4"/>
+          <!-- Isometric Cube / Polyhedral Dice Facets -->
+          <polygon points="140,48 220,94 140,142 60,94" fill="#10B981"/>
+          <polygon points="60,94 140,142 140,234 60,186" fill="#059669"/>
+          <polygon points="220,94 140,142 140,234 220,186" fill="#064E3B"/>
+          <!-- Crisp Black Grid & White Token Core -->
+          <path d="M140,48 L140,234 M60,94 L220,186 M60,186 L220,94" stroke="#0B0F0E" stroke-width="4.5"/>
+          <polygon points="140,98 178,120 178,164 140,186 102,164 102,120" fill="#FFFFFF" stroke="#0B0F0E" stroke-width="3"/>
+          <!-- Dice Pips (Triad Strategy Node) -->
+          <circle cx="140" cy="122" r="5.5" fill="#0B0F0E"/>
+          <circle cx="122" cy="152" r="5.5" fill="#0B0F0E"/>
+          <circle cx="158" cy="152" r="5.5" fill="#0B0F0E"/>
+          <circle cx="140" cy="142" r="4" fill="#10B981"/>
+          <!-- Wordmark -->
+          <text x="140" y="294" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="900" font-size="25" fill="#FFFFFF" letter-spacing="4.5">HEXFORGE</text>
+          <text x="140" y="313" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10.5" fill="#10B981" letter-spacing="5.5">BOARD GAME STUDIO</text>
+        </svg>
+        <div class="variant-col">
+          <div class="mini-card light">
+            <svg width="64" height="64" viewBox="0 0 100 100">
+              <polygon points="50,6 90,28 90,72 50,94 10,72 10,28" fill="#0B0F0E" stroke="#059669" stroke-width="4"/>
+              <polygon points="50,18 80,35 50,52 20,35" fill="#10B981"/>
+              <polygon points="20,35 50,52 50,84 20,67" fill="#059669"/>
+              <polygon points="50,34 66,43 66,61 50,70 34,61 34,43" fill="#FFFFFF"/>
+              <circle cx="50" cy="52" r="4" fill="#0B0F0E"/>
+            </svg>
+            <div class="mini-label">LIGHT BACKGROUND</div>
+          </div>
+          <div class="mini-card green">
+            <svg width="64" height="64" viewBox="0 0 100 100">
+              <polygon points="50,6 90,28 90,72 50,94 10,72 10,28" fill="#0B0F0E"/>
+              <polygon points="50,22 76,37 76,63 50,78 24,63 24,37" fill="#FFFFFF"/>
+              <circle cx="50" cy="42" r="4.5" fill="#0B0F0E"/>
+              <circle cx="41" cy="56" r="4.5" fill="#0B0F0E"/>
+              <circle cx="59" cy="56" r="4.5" fill="#0B0F0E"/>
+            </svg>
+            <div class="mini-label">EMERALD STAMP</div>
+          </div>
+          <div class="mini-card mono">
+            <svg width="64" height="64" viewBox="0 0 100 100">
+              <polygon points="50,8 88,30 88,70 50,92 12,70 12,30" fill="none" stroke="#FFFFFF" stroke-width="5"/>
+              <path d="M50,8 L50,92 M12,30 L88,70 M12,70 L88,30" stroke="#FFFFFF" stroke-width="3"/>
+              <polygon points="50,32 66,41 66,59 50,68 34,59 34,41" fill="#0B0F0E" stroke="#FFFFFF" stroke-width="4"/>
+            </svg>
+            <div class="mini-label">1-COLOR DIE-STAMP</div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-footer">
+        <span><strong>Palette:</strong> Strictly Green (#10B981), White (#FFF) &amp; Black (#0B0F0E)</span>
+        <span><strong>Motifs:</strong> Polyhedral D20 + Hex Tile + 3-Pip Token</span>
+      </div>
+    </div>
+
+    <!-- Panel B: Standalone First Game Logo -->
+    <div class="panel">
+      <div class="panel-header">
+        <span>02 // STANDALONE DEBUT GAME TITLE LOGO</span>
+        <span class="sub">“HEXARCHY: SHARDS OF THE CROWN”</span>
+      </div>
+      <div class="logo-stage" style="flex-direction:column; gap:6px;">
+        <svg width="460" height="315" viewBox="0 0 460 315">
+          <defs>
+            <linearGradient id="crestGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#34D399"/>
+              <stop offset="50%" stop-color="#10B981"/>
+              <stop offset="100%" stop-color="#065F46"/>
+            </linearGradient>
+            <linearGradient id="amberAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FDE68A"/>
+              <stop offset="50%" stop-color="#F59E0B"/>
+              <stop offset="100%" stop-color="#B45309"/>
+            </linearGradient>
+          </defs>
+          <!-- Background Hex Constellation -->
+          <g stroke="#10B981" stroke-opacity="0.2" fill="none" stroke-width="1.5">
+            <polygon points="90,70 120,52 150,70 150,105 120,122 90,105"/>
+            <polygon points="310,70 340,52 370,70 370,105 340,122 310,105"/>
+            <polygon points="60,130 90,112 120,130 120,165 90,182 60,165"/>
+            <polygon points="340,130 370,112 400,130 400,165 370,182 340,165"/>
+          </g>
+          <!-- Central Game Crest: Crowned Hexagonal Relic & Compass Blade -->
+          <polygon points="230,14 316,64 316,164 230,214 144,164 144,64" fill="#091310" stroke="url(#crestGlow)" stroke-width="4"/>
+          <polygon points="230,26 304,69 304,159 230,202 156,159 156,69" fill="#0F221C" stroke="url(#amberAccent)" stroke-width="1.5"/>
+          <!-- 6-Pointed Tactical Star / Play-Grid Spokes -->
+          <path d="M230,20 L248,92 L310,114 L248,136 L230,208 L212,136 L150,114 L212,92 Z" fill="url(#crestGlow)" opacity="0.9"/>
+          <!-- Inner Sovereign Crown Token -->
+          <polygon points="230,66 272,90 272,138 230,162 188,138 188,90" fill="#080C0B" stroke="#FFFFFF" stroke-width="2.5"/>
+          <path d="M203,130 L211,94 L230,112 L249,94 L257,130 Z" fill="url(#amberAccent)"/>
+          <circle cx="211" cy="87" r="3.5" fill="#FFFFFF"/>
+          <circle cx="230" cy="82" r="4.5" fill="#34D399"/>
+          <circle cx="249" cy="87" r="3.5" fill="#FFFFFF"/>
+          <!-- Custom Chiseled Game Title Banner -->
+          <rect x="35" y="192" width="390" height="64" rx="8" fill="#0B0F0E" stroke="url(#amberAccent)" stroke-width="2.5"/>
+          <rect x="41" y="198" width="378" height="52" rx="5" fill="#0D1915" stroke="#10B981" stroke-width="1"/>
+          <text x="230" y="236" text-anchor="middle" font-family="'Cinzel', serif" font-weight="900" font-size="38" fill="#FFFFFF" letter-spacing="5">HEXARCHY</text>
+          <!-- Subtitle Ribbon -->
+          <rect x="95" y="246" width="270" height="24" rx="4" fill="url(#amberAccent)"/>
+          <text x="230" y="262" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="900" font-size="11" fill="#080C0B" letter-spacing="3.5">SHARDS OF THE CROWN</text>
+          <text x="230" y="294" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="11" fill="#94A3B8" letter-spacing="2">A 1–4 PLAYER TACTICAL TERRITORY &amp; DICE-DRAFTING BOARD GAME</text>
+        </svg>
+      </div>
+      <div class="spec-footer">
+        <span><strong>Visual DNA:</strong> Shares 60° Isometric Hex Grid with Studio Mark</span>
+        <span><strong>Accent:</strong> Crown Gold (#F59E0B) + Studio Emerald</span>
+      </div>
+    </div>
+
+    <!-- Panel C: Unifying Visual Theme & Grid System -->
+    <div class="panel">
+      <div class="panel-header">
+        <span>03 // UNIFYING VISUAL SYSTEM</span>
+        <span class="sub">GRID &amp; TOKEN DNA</span>
+      </div>
+      <div style="display:flex; flex-direction:column; justify-content:space-between; flex:1; padding:8px 0;">
+        <svg width="328" height="220" viewBox="0 0 328 220">
+          <rect width="328" height="220" rx="10" fill="#070B0A" stroke="#1E2E29"/>
+          <!-- Construction Blueprint Grid -->
+          <g stroke="#10B981" stroke-opacity="0.28" stroke-width="1" fill="none">
+            <line x1="0" y1="110" x2="328" y2="110"/>
+            <line x1="164" y1="0" x2="164" y2="220"/>
+            <line x1="40" y1="38" x2="288" y2="182"/>
+            <line x1="40" y1="182" x2="288" y2="38"/>
+            <circle cx="164" cy="110" r="82" stroke-dasharray="4,4"/>
+            <circle cx="164" cy="110" r="52" stroke-dasharray="3,3"/>
+          </g>
+          <polygon points="164,28 235,69 235,151 164,192 93,151 93,69" fill="rgba(16,185,129,0.12)" stroke="#34D399" stroke-width="2"/>
+          <text x="14" y="24" font-family="'JetBrains Mono', monospace" font-size="10" fill="#34D399">60° ISOMETRIC AXIS</text>
+          <text x="230" y="24" font-family="'JetBrains Mono', monospace" font-size="10" fill="#F59E0B">R = 1.00X</text>
+          <text x="14" y="206" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94A3B8">CLEARSPACE = 0.25X HEX</text>
+        </svg>
+        <div style="background:#111B18; border:1px solid #1E2E29; border-radius:10px; padding:12px;">
+          <div style="font-size:11px; font-weight:800; color:#FFFFFF; margin-bottom:6px; letter-spacing:0.8px;">SHARED DESIGN ARCHITECTURE</div>
+          <div style="font-size:11.5px; color:#94A3B8; line-height:1.5;">
+            • <strong>60° Hexagonal Geometry:</strong> Connects the studio mark, board tiles, resource tokens, and UI frames.<br>
+            • <strong>High-Contrast Readability:</strong> Tested from 16px favicon &amp; box-spine icon to 36-inch convention banners.<br>
+            • <strong>Modular Border Frame:</strong> Chamfered emerald hex-corners unify box art, rulebook, web &amp; paid social ads.
+          </div>
+        </div>
+      </div>
+      <div class="spec-footer">
+        <span><strong>Deliverables:</strong> AI, EPS, SVG, PNG, PDF Guide</span>
+        <span><strong>Scale:</strong> 12mm Token → Retail Box</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM ROW: 4 APPLICATIONS (PACKAGING, GAME BOARD, WEBSITE, DIGITAL ADS) -->
+  <div class="bottom-grid">
+
+    <!-- App 1: Game Box Packaging -->
+    <div class="panel">
+      <div class="panel-header">
+        <span>A // RETAIL GAME BOX PACKAGING (FRONT + 3D SPINE)</span>
+        <span class="sub">295 × 295 × 70 MM</span>
+      </div>
+      <div class="box-3d-wrap">
+        <svg width="390" height="450" viewBox="0 0 390 450">
+          <!-- Drop Shadow -->
+          <ellipse cx="205" cy="422" rx="145" ry="16" fill="rgba(0,0,0,0.65)"/>
+          <!-- Left Spine of 3D Box -->
+          <polygon points="38,62 88,36 88,376 38,402" fill="#06100D" stroke="#10B981" stroke-width="1.5"/>
+          <!-- Spine Content -->
+          <polygon points="63,58 76,66 76,82 63,90 50,82 50,66" fill="#10B981"/>
+          <text x="63" y="225" text-anchor="middle" transform="rotate(-90 63 225)" font-family="'Cinzel', serif" font-weight="900" font-size="18" fill="#FFFFFF" letter-spacing="4">HEXARCHY</text>
+          <rect x="52" y="340" width="22" height="22" rx="4" fill="#0B0F0E" stroke="#34D399" stroke-width="1.5"/>
+          <text x="63" y="355" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="9" fill="#34D399">14+</text>
+
+          <!-- Main Front Face of 3D Box -->
+          <polygon points="88,36 356,60 356,400 88,376" fill="#0B1613" stroke="#10B981" stroke-width="2.5"/>
+          <!-- Decorative Emerald Hex Frame Inside Box Cover -->
+          <polygon points="100,50 344,72 344,386 100,364" fill="none" stroke="#34D399" stroke-width="1" stroke-opacity="0.45"/>
+          <!-- Background Isometric Terrain Artwork on Box Cover -->
+          <g transform="translate(222, 185)" opacity="0.95">
+            <!-- Glowing Hex Portal & Citadel -->
+            <circle cx="0" cy="0" r="88" fill="rgba(16,185,129,0.14)"/>
+            <polygon points="0,-78 68,-39 68,39 0,78 -68,39 -68,-39" fill="#0F2922" stroke="#10B981" stroke-width="2.5"/>
+            <!-- 3D Hex Pillars on Cover -->
+            <polygon points="-45,10 -15,-7 15,10 -15,27" fill="#34D399"/>
+            <polygon points="-45,10 -15,27 -15,65 -45,48" fill="#059669"/>
+            <polygon points="15,10 -15,27 -15,65 15,48" fill="#064E3B"/>
+
+            <polygon points="5,-25 35,-42 65,-25 35,-8" fill="#FDE68A"/>
+            <polygon points="5,-25 35,-8 35,45 5,28" fill="#F59E0B"/>
+            <polygon points="65,-25 35,-8 35,45 65,28" fill="#B45309"/>
+
+            <!-- Floating Crown Emblem -->
+            <polygon points="0,-64 28,-48 28,-16 0,0 -28,-16 -28,-48" fill="#080C0B" stroke="#F59E0B" stroke-width="2"/>
+            <path d="M-14,-24 L-9,-42 L0,-31 L9,-42 L14,-24 Z" fill="#F59E0B"/>
+          </g>
+
+          <!-- Game Logo Lockup on Box Cover -->
+          <g transform="translate(222, 300)">
+            <rect x="-112" y="-24" width="224" height="44" rx="6" fill="#080C0B" stroke="#F59E0B" stroke-width="2"/>
+            <text x="0" y="5" text-anchor="middle" font-family="'Cinzel', serif" font-weight="900" font-size="25" fill="#FFFFFF" letter-spacing="3.5">HEXARCHY</text>
+            <rect x="-78" y="14" width="156" height="16" rx="3" fill="#F59E0B"/>
+            <text x="0" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="900" font-size="8.5" fill="#080C0B" letter-spacing="2.2">SHARDS OF THE CROWN</text>
+          </g>
+
+          <!-- Bottom Studio Stamp & Player Specs on Box Cover -->
+          <g transform="translate(106, 344)">
+            <polygon points="14,0 26,7 26,21 14,28 2,21 2,7" fill="#10B981"/>
+            <text x="34" y="13" font-family="'Inter', sans-serif" font-weight="900" font-size="10" fill="#FFFFFF" letter-spacing="1.5">HEXFORGE</text>
+            <text x="34" y="24" font-family="'Inter', sans-serif" font-weight="600" font-size="8" fill="#34D399" letter-spacing="1">STUDIO</text>
+          </g>
+          <text x="334" y="372" text-anchor="end" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="9.5" fill="#94A3B8">1-4 PLAYERS • 60 MIN</text>
+        </svg>
+      </div>
+      <div class="spec-footer">
+        <span>Spot UV + Matte Linen Finish</span>
+        <span>Studio Corner Seal</span>
+      </div>
+    </div>
+
+    <!-- App 2: Tabletop Game Board & Custom Tokens -->
+    <div class="panel">
+      <div class="panel-header">
+        <span>B // TABLETOP PLAY-GRID BOARD &amp; TOKENS</span>
+        <span class="sub">MODULAR HEX MAP</span>
+      </div>
+      <div class="board-wrap">
+        <svg width="355" height="450" viewBox="0 0 355 450">
+          <!-- Board Outer Frame -->
+          <rect x="8" y="10" width="339" height="330" rx="14" fill="#070B0A" stroke="#10B981" stroke-width="2.5"/>
+          <rect x="16" y="18" width="323" height="314" rx="10" fill="#0B1311" stroke="#1E2E29" stroke-width="1"/>
+          <!-- Victory Point Track Perimeter -->
+          <text x="28" y="34" font-family="'JetBrains Mono', monospace" font-size="9" fill="#34D399">VP TRACK // 01 — 05 — 10 — 15 — 20 — 25</text>
+
+          <!-- 7-Hex Cluster Play Grid -->
+          <g transform="translate(177, 175)">
+            <!-- Center Capital Hex -->
+            <polygon points="0,-44 38,-22 38,22 0,44 -38,22 -38,-22" fill="#10B981" stroke="#FFFFFF" stroke-width="2.5"/>
+            <polygon points="0,-24 21,-12 21,12 0,24 -21,12 -21,-12" fill="#0B0F0E"/>
+            <circle cx="0" cy="0" r="6" fill="#F59E0B"/>
+            <!-- Top Hex -->
+            <g transform="translate(0, -82)">
+              <polygon points="0,-38 33,-19 33,19 0,38 -33,19 -33,-19" fill="#0F241D" stroke="#10B981" stroke-width="2"/>
+              <text x="0" y="4" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#34D399">+2 ORE</text>
+            </g>
+            <!-- Bottom Hex -->
+            <g transform="translate(0, 82)">
+              <polygon points="0,-38 33,-19 33,19 0,38 -33,19 -33,-19" fill="#0F241D" stroke="#10B981" stroke-width="2"/>
+              <text x="0" y="4" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#34D399">+3 MANA</text>
+            </g>
+            <!-- Top-Left Hex -->
+            <g transform="translate(-71, -41)">
+              <polygon points="0,-38 33,-19 33,19 0,38 -33,19 -33,-19" fill="#132A23" stroke="#34D399" stroke-width="2"/>
+              <circle cx="-8" cy="-5" r="4" fill="#FFFFFF"/>
+              <circle cx="8" cy="5" r="4" fill="#FFFFFF"/>
+            </g>
+            <!-- Top-Right Hex -->
+            <g transform="translate(71, -41)">
+              <polygon points="0,-38 33,-19 33,19 0,38 -33,19 -33,-19" fill="#132A23" stroke="#F59E0B" stroke-width="2"/>
+              <path d="M-10,8 L0,-10 L10,8 Z" fill="#F59E0B"/>
+            </g>
+            <!-- Bottom-Left Hex -->
+            <g transform="translate(-71, 41)">
+              <polygon points="0,-38 33,-19 33,19 0,38 -33,19 -33,-19" fill="#0F241D" stroke="#10B981" stroke-width="2"/>
+              <polygon points="0,-14 12,-7 12,7 0,14 -12,7 -12,-7" fill="#34D399"/>
+            </g>
+            <!-- Bottom-Right Hex -->
+            <g transform="translate(71, 41)">
+              <polygon points="0,-38 33,-19 33,19 0,38 -33,19 -33,-19" fill="#132A23" stroke="#10B981" stroke-width="2"/>
+              <circle cx="0" cy="-8" r="4" fill="#34D399"/>
+              <circle cx="-8" cy="6" r="4" fill="#34D399"/>
+              <circle cx="8" cy="6" r="4" fill="#34D399"/>
+            </g>
+          </g>
+
+          <!-- Physical Acrylic / Wood Game Tokens Row Below Board -->
+          <g transform="translate(18, 355)">
+            <rect x="0" y="0" width="319" height="82" rx="10" fill="#101A17" stroke="#1E2E29"/>
+            <text x="14" y="20" font-family="'Inter', sans-serif" font-weight="800" font-size="9.5" fill="#94A3B8" letter-spacing="1">CUSTOM DIE &amp; WOOD TOKEN COMPONENTS</text>
+            <!-- Token 1: Custom D6 -->
+            <rect x="18" y="28" width="44" height="44" rx="8" fill="#0B0F0E" stroke="#10B981" stroke-width="2"/>
+            <polygon points="40,36 52,43 52,57 40,64 28,57 28,43" fill="#10B981"/>
+            <circle cx="40" cy="50" r="3.5" fill="#FFFFFF"/>
+            <!-- Token 2: White Faction Token -->
+            <circle cx="102" cy="50" r="22" fill="#FFFFFF" stroke="#10B981" stroke-width="3"/>
+            <polygon points="102,35 115,42 115,58 102,65 89,58 89,42" fill="#0B0F0E"/>
+            <circle cx="102" cy="50" r="4" fill="#10B981"/>
+            <!-- Token 3: Gold Crown Shard -->
+            <polygon points="164,28 184,39 184,61 164,72 144,61 144,39" fill="#F59E0B" stroke="#FFFFFF" stroke-width="2"/>
+            <path d="M155,55 L158,43 L164,49 L170,43 L173,55 Z" fill="#080C0B"/>
+            <!-- Token 4: Card Back -->
+            <rect x="212" y="26" width="90" height="48" rx="6" fill="#0B0F0E" stroke="#34D399" stroke-width="1.5"/>
+            <text x="257" y="48" text-anchor="middle" font-family="'Cinzel', serif" font-weight="900" font-size="10" fill="#FFFFFF">HEXARCHY</text>
+            <text x="257" y="61" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="#10B981">ARTIFACT DECK</text>
+          </g>
+        </svg>
+      </div>
+      <div class="spec-footer">
+        <span>Double-Layer Recessed Hex Board</span>
+        <span>Silk-Screened Wood &amp; Resin Dice</span>
+      </div>
+    </div>
+
+    <!-- App 3: Website Graphics & Header UI -->
+    <div class="panel">
+      <div class="panel-header">
+        <span>C // STUDIO WEBSITE &amp; LAUNCH PORTAL</span>
+        <span class="sub">RESPONSIVE WEB SYSTEM</span>
+      </div>
+      <div class="web-mockup">
+        <div class="browser-bar">
+          <div class="dot" style="background:#EF4444;"></div>
+          <div class="dot" style="background:#F59E0B;"></div>
+          <div class="dot" style="background:#10B981;"></div>
+          <div class="url-pill">https://hexforgestudio.com/games/hexarchy</div>
+        </div>
+        <div style="padding:16px; display:flex; flex-direction:column; justify-content:space-between; flex:1; background:radial-gradient(circle at 80% 20%, rgba(16,185,129,0.2), transparent 55%), #080D0B;">
+          <!-- Site Nav -->
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #1A2924; padding-bottom:10px;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <svg width="24" height="24" viewBox="0 0 40 40">
+                <polygon points="20,2 36,11 36,29 20,38 4,29 4,11" fill="#10B981"/>
+                <polygon points="20,11 28,15 28,25 20,29 12,25 12,15" fill="#FFFFFF"/>
+              </svg>
+              <span style="font-weight:900; font-size:12px; letter-spacing:2px;">HEXFORGE</span>
+            </div>
+            <div style="display:flex; gap:12px; font-size:10px; color:#94A3B8; font-weight:600;">
+              <span style="color:#34D399;">GAMES</span>
+              <span>RULEBOOK</span>
+              <span>STORE</span>
+            </div>
+          </div>
+
+          <!-- Hero Content -->
+          <div style="margin:auto 0;">
+            <div style="display:inline-block; background:rgba(245,158,11,0.15); border:1px solid #F59E0B; color:#FDE68A; font-size:9px; font-weight:800; padding:3px 8px; border-radius:4px; letter-spacing:1.2px; margin-bottom:8px;">DEBUT STRATEGY RELEASE • Q4</div>
+            <div style="font-family:'Cinzel', serif; font-size:24px; font-weight:900; color:#FFFFFF; line-height:1.15; letter-spacing:1px;">CLAIM THE THRONE.<br><span style="color:#34D399;">COMMAND THE GRID.</span></div>
+            <p style="font-size:11px; color:#94A3B8; margin:10px 0 14px; line-height:1.45;">Draft polyhedral relic dice, fortify modular hex territories, and forge alliances in Hexforge Studio’s flagship tabletop experience.</p>
+            <div style="display:flex; gap:10px;">
+              <div style="background:#10B981; color:#080C0B; font-weight:800; font-size:10.5px; padding:8px 14px; border-radius:6px; letter-spacing:0.8px;">PRE-ORDER DELUXE BOX ($69)</div>
+              <div style="background:#111C18; border:1px solid #2D443C; color:#FFFFFF; font-weight:700; font-size:10.5px; padding:8px 12px; border-radius:6px;">DOWNLOAD PDF RULES</div>
+            </div>
+          </div>
+
+          <!-- Feature Strip -->
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; border-top:1px solid #1A2924; padding-top:12px;">
+            <div style="background:#0E1714; padding:8px; border-radius:6px; text-align:center;">
+              <div style="font-size:14px; font-weight:900; color:#34D399;">48</div>
+              <div style="font-size:8.5px; color:#94A3B8; font-weight:700;">HEX TILES</div>
+            </div>
+            <div style="background:#0E1714; padding:8px; border-radius:6px; text-align:center;">
+              <div style="font-size:14px; font-weight:900; color:#F59E0B;">24</div>
+              <div style="font-size:8.5px; color:#94A3B8; font-weight:700;">CUSTOM DICE</div>
+            </div>
+            <div style="background:#0E1714; padding:8px; border-radius:6px; text-align:center;">
+              <div style="font-size:14px; font-weight:900; color:#FFFFFF;">8.9★</div>
+              <div style="font-size:8.5px; color:#94A3B8; font-weight:700;">BGG RATING</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-footer">
+        <span>Hero Banner + UI Component Kit</span>
+        <span>SVG Sprite System</span>
+      </div>
+    </div>
+
+    <!-- App 4: Digital Ad Campaign Card -->
+    <div class="panel">
+      <div class="panel-header">
+        <span>D // DIGITAL &amp; SOCIAL AD SUITE</span>
+        <span class="sub">1080×1350 AD FORMAT</span>
+      </div>
+      <div style="flex:1; background:linear-gradient(160deg, #091713 0%, #050908 100%); border:1px solid #10B981; border-radius:12px; margin:10px 0; padding:16px; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden;">
+        <!-- Top Ad Bar -->
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:9.5px; font-weight:800; color:#34D399; letter-spacing:1.5px;">● HEXFORGE OFFICIAL</span>
+          <span style="background:#10B981; color:#080C0B; font-size:9px; font-weight:900; padding:2px 8px; border-radius:4px;">SPONSORED</span>
+        </div>
+
+        <!-- Center Visual -->
+        <div style="text-align:center; margin:8px 0;">
+          <svg width="160" height="160" viewBox="0 0 180 180">
+            <polygon points="90,10 160,50 160,130 90,170 20,130 20,50" fill="#0B1915" stroke="#10B981" stroke-width="3.5"/>
+            <polygon points="90,26 146,58 146,122 90,154 34,122 34,58" fill="none" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <path d="M90,22 L106,74 L154,90 L106,106 L90,158 L74,106 L26,90 L74,74 Z" fill="#10B981"/>
+            <polygon points="90,54 121,72 121,108 90,126 59,108 59,72" fill="#080C0B" stroke="#FFFFFF" stroke-width="2.5"/>
+            <path d="M73,100 L79,78 L90,89 L101,78 L107,100 Z" fill="#F59E0B"/>
+          </svg>
+          <div style="font-family:'Cinzel', serif; font-weight:900; font-size:22px; color:#FFFFFF; letter-spacing:2px; margin-top:4px;">HEXARCHY</div>
+          <div style="font-size:10px; font-weight:800; color:#F59E0B; letter-spacing:2.5px; margin-bottom:8px;">SHARDS OF THE CROWN</div>
+          <div style="font-size:11px; color:#CBD5E1; line-height:1.4; padding:0 8px;">Every roll reshapes the map. Will you forge the Crown or fracture the realm?</div>
+        </div>
+
+        <!-- Bottom CTA Banner -->
+        <div style="background:#10B981; color:#080C0B; border-radius:8px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <div style="font-size:9px; font-weight:800; letter-spacing:1px;">KICKSTARTER &amp; RETAIL EDITION</div>
+            <div style="font-size:13px; font-weight:900;">BACK NOW — INCLUDES METAL CROWN TOKEN</div>
+          </div>
+          <div style="background:#080C0B; color:#34D399; font-weight:900; font-size:11px; padding:6px 10px; border-radius:5px;">→</div>
+        </div>
+      </div>
+      <div class="spec-footer">
+        <span>Meta / BGG / Reddit Ad Templates</span>
+        <span>CTR-Optimized Contrast</span>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

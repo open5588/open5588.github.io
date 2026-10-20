@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GeetMP3 Multi-Channel YouTube Song Management Excel System & Live Dashboard — Contest #2794959</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #070b14; color: #f8fafc; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="min-h-screen p-6">
+  <div class="max-w-7xl mx-auto space-y-5">
+    <!-- Top Bar -->
+    <div class="flex flex-wrap items-center justify-between gap-4 bg-slate-900/90 border border-slate-800 rounded-2xl p-5">
+      <div class="flex items-center gap-3.5">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-rose-500 to-amber-500 flex items-center justify-center font-black text-white text-lg shadow-lg shadow-rose-500/20">G3</div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-lg font-extrabold text-white">GeetMP3 YouTube Song Management Excel System (5-Sheet Workbook)</h1>
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">21 Required Columns • Auto-Updating Formulas</span>
+          </div>
+          <p class="text-xs text-slate-400">5 Dedicated Sheets: <span class="text-slate-200 font-semibold">1. Master Dashboard • 2. GeetMP3 • 3. GeetMP3 Punjabi • 4. GeetMP3 Haryanvi • 5. Geet MP3 Devotional</span></p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <a href="/GeetMP3_YouTube_Management_System.xlsx" download class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs shadow-lg shadow-emerald-500/20 transition">⬇ Download Complete .XLSX Workbook</a>
+      </div>
+    </div>
+
+    <!-- Summary KPI Cards (Auto-Aggregated Across All 4 Channels) -->
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400">Total Songs (All 4 Channels)</div>
+        <div class="text-2xl font-extrabold text-white mt-1 mono">1,420 Songs</div>
+        <div class="text-[11px] text-emerald-400 mt-1 mono">=SUM(Channels!C2:C5)</div>
+      </div>
+      <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400">Total YouTube Views</div>
+        <div class="text-2xl font-extrabold text-rose-400 mt-1 mono">842,650,000</div>
+        <div class="text-[11px] text-slate-400 mt-1 mono">=SUM(GeetMP3:Devotional!M:M)</div>
+      </div>
+      <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400">Average Views / Song</div>
+        <div class="text-2xl font-extrabold text-amber-400 mt-1 mono">593,415</div>
+        <div class="text-[11px] text-slate-400 mt-1 mono">=AVERAGE(All_Views)</div>
+      </div>
+      <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400">Release Type Breakdown</div>
+        <div class="text-xs font-bold text-cyan-300 mt-1.5 space-y-0.5 mono">
+          <div>Single: 68% • Album: 18%</div>
+          <div>Movie: 9% • EP/Other: 5%</div>
+        </div>
+      </div>
+      <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400">Workbook Scalability</div>
+        <div class="text-lg font-extrabold text-emerald-400 mt-1 mono">50,000+ Rows</div>
+        <div class="text-[11px] text-slate-400 mt-1">Structured Excel Tables + Validation</div>
+      </div>
+    </div>
+
+    <!-- Channel-Wise Summary Table + Monthly/Yearly Analytics -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <div class="lg:col-span-2 bg-slate-900/90 border border-slate-800 rounded-2xl p-5">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-sm font-bold uppercase tracking-wider text-slate-200">Sheet 0: Executive Channel-Wise Summary Table</h2>
+          <span class="text-xs text-emerald-400 mono">Dynamic SUMIFS / COUNTIFS Linked</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead>
+              <tr class="border-b border-slate-800 text-slate-400">
+                <th class="py-2.5 px-3">Channel Sheet Name</th>
+                <th class="py-2.5 px-3">Total Songs</th>
+                <th class="py-2.5 px-3">Total YouTube Views</th>
+                <th class="py-2.5 px-3">Avg Views / Track</th>
+                <th class="py-2.5 px-3">Primary Language</th>
+                <th class="py-2.5 px-3">DSP Links Active</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/70 mono">
+              <tr class="hover:bg-slate-800/40">
+                <td class="py-2.5 px-3 font-bold text-rose-400">1. GeetMP3 (Main)</td>
+                <td class="py-2.5 px-3 text-white">640</td>
+                <td class="py-2.5 px-3 text-emerald-400">485,200,000</td>
+                <td class="py-2.5 px-3">758,125</td>
+                <td class="py-2.5 px-3">Punjabi / Hindi</td>
+                <td class="py-2.5 px-3 text-cyan-400">100% (Spotify/Apple/Jio/Gaana/IG)</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="py-2.5 px-3 font-bold text-amber-400">2. GeetMP3 Punjabi</td>
+                <td class="py-2.5 px-3 text-white">410</td>
+                <td class="py-2.5 px-3 text-emerald-400">218,450,000</td>
+                <td class="py-2.5 px-3">532,805</td>
+                <td class="py-2.5 px-3">Punjabi</td>
+                <td class="py-2.5 px-3 text-cyan-400">100% Linked</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="py-2.5 px-3 font-bold text-cyan-400">3. GeetMP3 Haryanvi</td>
+                <td class="py-2.5 px-3 text-white">230</td>
+                <td class="py-2.5 px-3 text-emerald-400">96,800,000</td>
+                <td class="py-2.5 px-3">420,870</td>
+                <td class="py-2.5 px-3">Haryanvi</td>
+                <td class="py-2.5 px-3 text-cyan-400">100% Linked</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="py-2.5 px-3 font-bold text-purple-400">4. Geet MP3 Devotional</td>
+                <td class="py-2.5 px-3 text-white">140</td>
+                <td class="py-2.5 px-3 text-emerald-400">42,200,000</td>
+                <td class="py-2.5 px-3">301,428</td>
+                <td class="py-2.5 px-3">Punjabi / Hindi / Sanskrit</td>
+                <td class="py-2.5 px-3 text-cyan-400">100% Linked</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 space-y-3">
+        <h2 class="text-sm font-bold uppercase tracking-wider text-slate-200">Built-In Excel Engineering</h2>
+        <ul class="text-xs text-slate-300 space-y-2">
+          <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> <span><b>All 21 Standardized Columns</b> with Frozen Header Row (`Freeze Panes: Row 1`) & AutoFilter enabled.</span></li>
+          <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> <span><b>Data Validation Dropdowns</b> on Column 6 (`Single, Album, Movie, EP, Other`) & Column 12 (`Punjabi, Haryanvi, Hindi, Devotional, English`).</span></li>
+          <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> <span><b>Clickable Hyperlinks</b> for YouTube, Spotify, Apple Music, JioSaavn, Gaana & Instagram Audio.</span></li>
+          <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> <span><b>Monthly & Yearly Pivot / Formula Rollups</b> updating automatically up to 50,000 rows per channel.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 21-Column Channel Sheet Preview -->
+    <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5">
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-1 rounded-lg bg-rose-500 text-white text-xs font-bold">Sheet 1: GeetMP3</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs">Sheet 2: GeetMP3 Punjabi</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs">Sheet 3: GeetMP3 Haryanvi</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs">Sheet 4: Geet MP3 Devotional</span>
+        </div>
+        <span class="text-xs text-slate-400 mono">Showing All 21 Required Columns (1–21)</span>
+      </div>
+      <div class="overflow-x-auto border border-slate-800 rounded-xl">
+        <table class="w-full text-left text-[11px] whitespace-nowrap">
+          <thead class="bg-slate-950 text-slate-300 border-b border-slate-800 mono">
+            <tr>
+              <th class="p-2">1. Sr.No</th><th class="p-2">2. Label</th><th class="p-2">3. Release Date</th><th class="p-2">4. Song Name</th>
+              <th class="p-2">5. Album/Project</th><th class="p-2">6. Release Type ▾</th><th class="p-2">7. Singer</th><th class="p-2">8. Lyricist</th>
+              <th class="p-2">9. Composer</th><th class="p-2">10. Music Dir.</th><th class="p-2">11. Video Dir.</th><th class="p-2">12. Language ▾</th>
+              <th class="p-2">13. YT Views</th><th class="p-2">14. Duration</th><th class="p-2">15. YouTube</th><th class="p-2">16. Spotify</th>
+              <th class="p-2">17. Apple Music</th><th class="p-2">18. JioSaavn</th><th class="p-2">19. Gaana</th><th class="p-2">20. IG Audio</th><th class="p-2">21. Remarks</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60 text-slate-300 mono">
+            <tr>
+              <td class="p-2">1</td><td class="p-2">GeetMP3</td><td class="p-2">2026-09-14</td><td class="p-2 font-bold text-white">Lehanga 2.0</td>
+              <td class="p-2">Urban Vibes</td><td class="p-2"><span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Single</span></td><td class="p-2">Jass Manak</td><td class="p-2">Jass Manak</td>
+              <td class="p-2">Sharry Nexus</td><td class="p-2">Sharry Nexus</td><td class="p-2">Satti Dhillon</td><td class="p-2">Punjabi</td>
+              <td class="p-2 text-emerald-400 font-bold">42,850,120</td><td class="p-2">03:28</td><td class="p-2 text-cyan-400 underline">youtu.be/gm01</td><td class="p-2 text-emerald-400 underline">open.spotify</td>
+              <td class="p-2 text-rose-400 underline">music.apple</td><td class="p-2 text-cyan-300 underline">jiosaavn.com</td><td class="p-2 text-amber-400 underline">gaana.com</td><td class="p-2 text-purple-400 underline">instagram.com</td><td class="p-2 text-slate-400">Trending #1</td>
+            </tr>
+            <tr>
+              <td class="p-2">2</td><td class="p-2">GeetMP3</td><td class="p-2">2026-09-28</td><td class="p-2 font-bold text-white">Prada Reloaded</td>
+              <td class="p-2">Boss Life EP</td><td class="p-2"><span class="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300">EP</span></td><td class="p-2">Guri</td><td class="p-2">Nirmaan</td>
+              <td class="p-2">Goldboy</td><td class="p-2">Goldboy</td><td class="p-2">Robby Singh</td><td class="p-2">Punjabi</td>
+              <td class="p-2 text-emerald-400 font-bold">19,420,800</td><td class="p-2">03:45</td><td class="p-2 text-cyan-400 underline">youtu.be/gm02</td><td class="p-2 text-emerald-400 underline">open.spotify</td>
+              <td class="p-2 text-rose-400 underline">music.apple</td><td class="p-2 text-cyan-300 underline">jiosaavn.com</td><td class="p-2 text-amber-400 underline">gaana.com</td><td class="p-2 text-purple-400 underline">instagram.com</td><td class="p-2 text-slate-400">Verified DSPs</td>
+            </tr>
+            <tr>
+              <td class="p-2">3</td><td class="p-2">GeetMP3</td><td class="p-2">2026-10-05</td><td class="p-2 font-bold text-white">Sikander OST</td>
+              <td class="p-2">Sikander 3</td><td class="p-2"><span class="px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300">Movie</span></td><td class="p-2">Karan Randhawa</td><td class="p-2">Fatah</td>
+              <td class="p-2">Rajat Nagpal</td><td class="p-2">Rajat Nagpal</td><td class="p-2">navjit Buttar</td><td class="p-2">Punjabi</td>
+              <td class="p-2 text-emerald-400 font-bold">11,905,400</td><td class="p-2">02:58</td><td class="p-2 text-cyan-400 underline">youtu.be/gm03</td><td class="p-2 text-emerald-400 underline">open.spotify</td>
+              <td class="p-2 text-rose-400 underline">music.apple</td><td class="p-2 text-cyan-300 underline">jiosaavn.com</td><td class="p-2 text-amber-400 underline">gaana.com</td><td class="p-2 text-purple-400 underline">instagram.com</td><td class="p-2 text-slate-400">Official OST</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

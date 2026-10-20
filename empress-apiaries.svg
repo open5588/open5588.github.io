@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="royalGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF08A"/>
+      <stop offset="45%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#926F1B"/>
+    </linearGradient>
+    <radialGradient id="velvetPlum" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#4A0E2E"/>
+      <stop offset="60%" stop-color="#2A0826"/>
+      <stop offset="100%" stop-color="#140414"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#velvetPlum)" rx="20"/>
+  <rect x="18" y="18" width="764" height="464" rx="14" fill="none" stroke="url(#royalGold)" stroke-width="2"/>
+  <!-- Center Royal Queen Bee + Crowned Botanical Filigree Crest -->
+  <g transform="translate(400, 195)">
+    <!-- Ornate Filigree Outer Mandala & Honeycomb Halo -->
+    <circle cx="0" cy="0" r="122" fill="none" stroke="url(#royalGold)" stroke-width="2"/>
+    <circle cx="0" cy="0" r="112" fill="none" stroke="url(#royalGold)" stroke-width="1" stroke-dasharray="4,4"/>
+    <!-- Sacred Honeycomb Hex Lattice -->
+    <polygon points="0,-92 80,-46 80,46 0,92 -80,46 -80,-46" fill="#23061F" stroke="url(#royalGold)" stroke-width="2.5"/>
+    <!-- Stylized Welsh Botanical Scrolls (Left & Right) -->
+    <path d="M-80,10 C-115,-10 -115,-55 -75,-75 C-95,-45 -85,-15 -60,0 Z" fill="url(#royalGold)"/>
+    <path d="M80,10 C115,-10 115,-55 75,-75 C95,-45 85,-15 60,0 Z" fill="url(#royalGold)"/>
+    <!-- Sovereign Empress Crown Above Bee -->
+    <path d="M-32,-46 L-22,-74 L0,-56 L22,-74 L32,-46 Z" fill="url(#royalGold)"/>
+    <circle cx="-22" cy="-80" r="4" fill="#FEF08A"/>
+    <circle cx="0" cy="-84" r="5" fill="#FEF08A"/>
+    <circle cx="22" cy="-80" r="4" fill="#FEF08A"/>
+    <!-- Regal Queen Bee Iconography -->
+    <ellipse cx="0" cy="6" rx="18" ry="28" fill="url(#royalGold)"/>
+    <path d="M-15,-2 L15,-2 M-17,8 L17,8 M-14,18 L14,18" stroke="#23061F" stroke-width="4"/>
+    <!-- Filigree Wings -->
+    <path d="M-12,-12 C-68,-44 -76,12 -18,12 Z" fill="none" stroke="url(#royalGold)" stroke-width="3"/>
+    <path d="M12,-12 C68,-44 76,12 18,12 Z" fill="none" stroke="url(#royalGold)" stroke-width="3"/>
+    <!-- Brand Typography -->
+    <text x="0" y="168" text-anchor="middle" font-family="'Cinzel', 'Georgia', serif" font-weight="700" font-size="36" fill="url(#royalGold)" letter-spacing="6">EMPRESS APIARIES</text>
+    <text x="0" y="196" text-anchor="middle" font-family="'Cormorant Garamond', 'Georgia', serif" font-style="italic" font-size="18" fill="#FDE68A" letter-spacing="3">Hand-Foraged Welsh Herbs &amp; Pure Beeswax Sensual Massage Balms</text>
+  </g>
+</svg>

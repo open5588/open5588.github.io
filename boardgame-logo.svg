@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="goldToken" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="#0B0F0E" rx="20"/>
+  <!-- Left: Studio Corporate Mark (Green, White, Black) -->
+  <g transform="translate(215, 215)">
+    <polygon points="0,-125 108,-62 108,62 0,125 -108,62 -108,-62" fill="#111815" stroke="#10B981" stroke-width="5"/>
+    <polygon points="0,-105 91,-52 91,52 0,105 -91,52 -91,-52" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-opacity="0.35"/>
+    <polygon points="0,-90 78,-45 0,0 -78,-45" fill="url(#emeraldGrad)"/>
+    <polygon points="-78,-45 0,0 0,90 -78,45" fill="#059669"/>
+    <polygon points="78,-45 0,0 0,90 78,45" fill="#064E3B"/>
+    <path d="M0,-90 L0,90 M-78,-45 L78,45 M-78,45 L78,-45" stroke="#0B0F0E" stroke-width="4"/>
+    <polygon points="0,-42 36,-21 36,21 0,42 -36,21 -36,-21" fill="#FFFFFF"/>
+    <circle cx="0" cy="-18" r="5" fill="#0B0F0E"/>
+    <circle cx="-16" cy="10" r="5" fill="#0B0F0E"/>
+    <circle cx="16" cy="10" r="5" fill="#0B0F0E"/>
+    <circle cx="0" cy="0" r="4" fill="#10B981"/>
+    <text x="0" y="168" text-anchor="middle" font-family="'Inter', 'Montserrat', sans-serif" font-weight="900" font-size="30" fill="#FFFFFF" letter-spacing="5">HEXFORGE</text>
+    <text x="0" y="194" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="#10B981" letter-spacing="7">TABLETOP GAME STUDIO</text>
+  </g>
+  <line x1="410" y1="55" x2="410" y2="445" stroke="#1F2926" stroke-width="2" stroke-dasharray="6,6"/>
+  <!-- Right: Debut Strategy Game Logo ("HEXARCHY: SHARDS OF THE CROWN") -->
+  <g transform="translate(605, 215)">
+    <polygon points="0,-115 100,-58 100,58 0,115 -100,58 -100,-58" fill="#064E3B" stroke="#34D399" stroke-width="3"/>
+    <path d="M0,-95 L28,-25 L95,0 L28,25 L0,95 L-28,25 L-95,0 L-28,-25 Z" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+    <polygon points="0,-55 48,-27 48,27 0,55 -48,27 -48,-27" fill="#0B0F0E" stroke="#34D399" stroke-width="2.5"/>
+    <path d="M-22,12 L-14,-18 L0,2 L14,-18 L22,12 Z" fill="#FFFFFF"/>
+    <circle cx="0" cy="-26" r="4.5" fill="#34D399"/>
+    <text x="0" y="162" text-anchor="middle" font-family="'Cinzel', 'Georgia', serif" font-weight="900" font-size="26" fill="#FFFFFF" letter-spacing="3">HEXARCHY</text>
+    <text x="0" y="188" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#34D399" letter-spacing="4.5">SHARDS OF THE CROWN • DEBUT TITLE</text>
+  </g>
+</svg>

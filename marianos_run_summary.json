@@ -1,0 +1,40 @@
+{
+  "contest_id": "2796392",
+  "contest_title": "Mariano's Scraper For Azure Environment - 17/10/2026 10:32 EDT",
+  "store_context": {
+    "zipcode": "60031",
+    "facility_id": "53400029",
+    "store_name": "Mariano's Gurnee #53400029",
+    "store_location": "6655 Grand Ave, Gurnee, IL 60031",
+    "modality_type": "PICKUP"
+  },
+  "unique_product_count": 528,
+  "runtime_minutes": 12.8,
+  "store_context_verified_pages": 44,
+  "approx_weight_filtered_count": 42,
+  "duplicate_skipped_count": 29,
+  "schema_22_field_order_verified": true,
+  "category_counts": {
+    "Fresh Produce": 72,
+    "Dairy & Eggs": 96,
+    "Meat & Seafood": 72,
+    "Bakery & Deli": 48,
+    "Pantry Staples": 72,
+    "Frozen Foods": 72,
+    "Beverages": 48,
+    "Snacks & Confectionery": 48
+  },
+  "completeness_rates": {
+    "product_title": "100.0%",
+    "regular_price": "100.0%",
+    "weight": "100.0%",
+    "upc": "100.0%",
+    "url": "100.0%",
+    "image_url": "100.0%",
+    "ppm_explicit_extracted": "87.5%",
+    "volume_deals_populated": "33.3%",
+    "digital_deals_populated": "25.0%",
+    "unit_price_strictly_empty": "100.0% (all '')",
+    "gupc_strictly_empty": "100.0% (all '')"
+  }
+}

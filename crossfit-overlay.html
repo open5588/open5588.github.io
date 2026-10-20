@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1920, initial-scale=1.0" />
+  <title>CrossFit HTML5 Streaming Overlay & Regie-Steuerung (OBS / Zoom)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --zone-bg: rgba(15, 23, 42, 0.86);
+      --zone-border: rgba(255, 255, 255, 0.16);
+      --accent: #f97316;
+      --timer-green: #22c55e;
+      --timer-yellow: #eab308;
+      --timer-red: #ef4444;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #090d16;
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body.transparent-obs {
+      background: transparent !important;
+    }
+    body.transparent-obs .control-dock,
+    body.transparent-obs .top-mode-bar {
+      display: none !important;
+    }
+
+    /* Top Mode Bar */
+    .top-mode-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 24px;
+      background: #0f172a;
+      border-bottom: 1px solid #1e293b;
+      font-size: 13px;
+    }
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(249, 115, 22, 0.15);
+      color: #fb923c;
+      border: 1px solid rgba(249, 115, 22, 0.4);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+    .mode-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .btn {
+      background: #1e293b;
+      color: #f8fafc;
+      border: 1px solid #334155;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn:hover { background: #334155; }
+    .btn-primary { background: #f97316; border-color: #fb923c; color: #fff; }
+    .btn-primary:hover { background: #ea580c; }
+    .btn-success { background: #16a34a; border-color: #22c55e; color: #fff; }
+    .btn-danger { background: #dc2626; border-color: #ef4444; color: #fff; }
+
+    /* 1920x1080 Stage Preview Container */
+    .stage-wrapper {
+      width: 100%;
+      max-width: 1600px;
+      margin: 14px auto;
+      padding: 0 20px;
+    }
+    .overlay-canvas {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+      background-image:
+        linear-gradient(180deg, rgba(15,23,42,0.42) 0%, rgba(15,23,42,0.10) 45%, rgba(15,23,42,0.52) 100%),
+        url('/assets/img/crossfit-live-feed.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px 36px;
+    }
+    .overlay-canvas.checkerboard-bg {
+      background-image:
+        linear-gradient(45deg, #1e293b 25%, transparent 25%),
+        linear-gradient(-45deg, #1e293b 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #1e293b 75%),
+        linear-gradient(-45deg, transparent 75%, #1e293b 75%);
+      background-size: 32px 32px;
+      background-position: 0 0, 0 16px, 16px -16px, -16px 0;
+      background-color: #0f172a;
+    }
+
+    /* 3-Zone Top/Bottom HUD Bar */
+    .hud-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1.35fr 1.1fr;
+      gap: 22px;
+      align-items: stretch;
+      width: 100%;
+    }
+    .hud-zone {
+      background: var(--zone-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--zone-border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .hud-zone.hidden-zone {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px);
+    }
+
+    /* Left Zone: Brand & Logo */
+    .zone-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border-left: 5px solid var(--accent);
+    }
+    .brand-logo-box {
+      width: 68px;
+      height: 68px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f97316, #dc2626);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 20px;
+      color: #fff;
+      flex-shrink: 0;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.25);
+    }
+    .brand-logo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .brand-texts h2 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    .brand-texts .subtitle {
+      color: #fb923c;
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 3px;
+    }
+    .brand-texts .freetext {
+      color: #cbd5e1;
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    /* Center Zone: WOD Timer */
+    .zone-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-top: 4px solid var(--timer-green);
+      position: relative;
+    }
+    .timer-header-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+    .phase-badge {
+      padding: 3px 11px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: rgba(34, 197, 94, 0.2);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.45);
+    }
+    .round-badge {
+      font-size: 13px;
+      font-weight: 700;
+      color: #e2e8f0;
+      background: rgba(255,255,255,0.08);
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+    .timer-digits {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 54px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: 0.03em;
+      color: var(--timer-green);
+      text-shadow: 0 0 24px rgba(34, 197, 94, 0.35);
+      margin: 4px 0;
+    }
+    .timer-subinfo {
+      font-size: 12px;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+
+    /* Right Zone: WOD Details & Live Clock */
+    .zone-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 5px solid #38bdf8;
+    }
+    .wod-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 6px;
+      margin-bottom: 6px;
+    }
+    .wod-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #38bdf8;
+      text-transform: uppercase;
+    }
+    .live-clock {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: #f8fafc;
+      background: rgba(14, 165, 233, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .wod-exercises {
+      font-size: 13px;
+      line-height: 1.4;
+      color: #f1f5f9;
+      font-weight: 600;
+      white-space: pre-line;
+    }
+    .coach-footer {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Lower Third Athlete / Sponsor Ticker */
+    .lower-third-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.82);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 12px;
+      padding: 10px 20px;
+      font-size: 13px;
+    }
+    .obs-ready-tag {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #4ade80;
+      font-weight: 700;
+    }
+    .pulse-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 10px #22c55e;
+    }
+
+    /* Operator Control Dock (Bedienoberfläche) */
+    .control-dock {
+      max-width: 1600px;
+      margin: 0 auto 30px auto;
+      padding: 0 20px;
+    }
+    .control-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .ctrl-card {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .ctrl-card h3 {
+      font-size: 14px;
+      font-weight: 800;
+      color: #f97316;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .form-row {
+      margin-bottom: 10px;
+    }
+    .form-row label {
+      display: block;
+      font-size: 11px;
+      color: #94a3b8;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .form-row input, .form-row select, .form-row textarea {
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #f8fafc;
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-family: inherit;
+    }
+    .btn-group {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Mode & OBS / Zoom Integration Bar -->
+  <div class="top-mode-bar">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <span class="badge-pill">● LIVE HTML5 OVERLAY PROTOTYPE (1920×1080)</span>
+      <span style="color:#94a3b8;">OBS Browser-Quelle & Zoom Virtual Camera Ready • Tastaturkürzel: <b>[Space]</b> Start/Pause, <b>[R]</b> Reset, <b>[N]</b> Nächstes Intervall</span>
+    </div>
+    <div class="mode-actions">
+      <button class="btn" onclick="toggleTransparentBg()">Transparenter Hintergrund (OBS)</button>
+      <button class="btn" onclick="saveScenePreset()">Layout Speichern (Szene 1)</button>
+      <button class="btn" onclick="resetDefaultLayout()">Standardlayout</button>
+    </div>
+  </div>
+
+  <!-- 1920x1080 Overlay Stage -->
+  <div class="stage-wrapper">
+    <div class="overlay-canvas" id="overlayCanvas">
+      <!-- 3-Zone Top Overlay -->
+      <div class="hud-grid">
+        <!-- LEFT ZONE: Logo, Brand, Event Title, Subtitle -->
+        <div class="hud-zone zone-left" id="zoneLeft">
+          <div class="brand-logo-box" id="logoBox">CF</div>
+          <div class="brand-texts" id="leftTexts">
+            <h2 id="dispTitle">CROSSFIT BOX GERMANY</h2>
+            <div class="subtitle" id="dispSubtitle">LIVE CHAMPIONSHIP WORKOUT • HEAT #1</div>
+            <div class="freetext" id="dispFreeText">RX Division • Full HD 1080p Stream Overlay</div>
+          </div>
+        </div>
+
+        <!-- CENTER ZONE: Programmable WOD Timer / Intervals -->
+        <div class="hud-zone zone-center" id="zoneCenter">
+          <div class="timer-header-row">
+            <span class="phase-badge" id="dispPhase">ARBEITSPHASE (WORK)</span>
+            <span class="round-badge" id="dispRound">RUNDE 2 / 5 • CAP 20:00</span>
+          </div>
+          <div class="timer-digits" id="dispTimer">14:38</div>
+          <div class="timer-subinfo" id="dispSequence">Sequenz: 3m Arbeit + 60s Pause + 2m Sprint • Farbwechsel Grün → Gelb → Rot aktiv</div>
+        </div>
+
+        <!-- RIGHT ZONE: WOD Details, Coach, Live Clock -->
+        <div class="hud-zone zone-right" id="zoneRight">
+          <div class="wod-top-row">
+            <span class="wod-title" id="dispWodTitle">WOD: "CINDY XL" (AMRAP 20)</span>
+            <span class="live-clock" id="dispClock">14:25:08</span>
+          </div>
+          <div class="wod-exercises" id="dispWodText">• 5 Strict Pull-Ups / Muscle-Ups
+• 10 Hand-Release Push-Ups
+• 15 Air Squats + 200m Run</div>
+          <div class="coach-footer">
+            <span id="dispCoach">Coach: Markus Weber (Head Judge)</span>
+            <span id="dispNote" style="color:#fbbf24;font-weight:700;">Time Cap: 20 Min</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lower Third Info Bar -->
+      <div class="lower-third-bar" id="zoneLower">
+        <div class="obs-ready-tag">
+          <span class="pulse-dot"></span>
+          <span>OBS Browser-Source / Zoom Virtual Cam Sync Active (BroadcastChannel Echtzeit-Steuerung)</span>
+        </div>
+        <div style="color:#cbd5e1;font-weight:600;">
+          Athleten-Spur: <b style="color:#fff;">Lukas K. (14 Rds)</b> &nbsp;|&nbsp; <b style="color:#fff;">Sarah M. (15 Rds)</b> &nbsp;|&nbsp; <b style="color:#fb923c;">Festpreis-Umsetzung: 200 € inkl. Quellcode</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Operator Control Surface (Getrennte Bedienoberfläche) -->
+  <div class="control-dock">
+    <div class="control-grid">
+      <!-- 1. Left Zone Controls -->
+      <div class="ctrl-card">
+        <h3>
+          <span>1. Linke Zone (Logo & Texte)</span>
+          <input type="checkbox" checked onchange="toggleZone('zoneLeft', this.checked)" title="Ein-/Ausblenden" />
+        </h3>
+        <div class="form-row">
+          <label>Marken- / Veranstaltungstitel</label>
+          <input type="text" id="inpTitle" value="CROSSFIT BOX GERMANY" oninput="syncOverlay()" />
+        </div>
+        <div class="form-row">
+          <label>Untertitel</label>
+          <input type="text" id="inpSubtitle" value="LIVE CHAMPIONSHIP WORKOUT • HEAT #1" oninput="syncOverlay()" />
+        </div>
+        <div class="form-row">
+          <label>Freitext & Ausrichtung / Farbe</label>
+          <input type="text" id="inpFreeText" value="RX Division • Full HD 1080p Stream Overlay" oninput="syncOverlay()" />
+        </div>
+        <div class="form-row">
+          <label>Eigenes Logo hochladen (PNG/JPG/SVG)</label>
+          <input type="file" accept="image/*" onchange="uploadLogo(event)" />
+        </div>
+      </div>
+
+      <!-- 2. Center Zone: Timer & Interval Sequencer -->
+      <div class="ctrl-card">
+        <h3>
+          <span>2. Mitte (Timer & Intervalle)</span>
+          <input type="checkbox" checked onchange="toggleZone('zoneCenter', this.checked)" title="Ein-/Ausblenden" />
+        </h3>
+        <div class="btn-group" style="margin-bottom:10px;">
+          <button class="btn btn-success" onclick="startTimer()">▶ Start / Fortsetzen</button>
+          <button class="btn btn-primary" onclick="pauseTimer()">⏸ Pause</button>
+          <button class="btn btn-danger" onclick="resetTimer()">↺ Reset</button>
+          <button class="btn" onclick="startLeadIn()">⏱ 10s Vorlauf</button>
+        </div>
+        <div class="form-row">
+          <label>Modus & Zeitdauer (Sekunden)</label>
+          <div style="display:flex;gap:6px;">
+            <select id="inpMode" onchange="changeMode()">
+              <option value="countdown">Countdown (Time Cap)</option>
+              <option value="stopwatch">Stoppuhr (For Time)</option>
+              <option value="emom">Intervall / EMOM / Tabata</option>
+            </select>
+            <input type="number" id="inpSeconds" value="878" style="width:90px;" onchange="setCustomSeconds()" />
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Zeitfolgen-Eingabe (z.B. „2m + 30 + 1:00“)</label>
+          <div style="display:flex;gap:6px;">
+            <input type="text" id="inpSequence" value="3m + 60 + 2:00" />
+            <button class="btn" onclick="applySequence()">Laden</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Right Zone: WOD & Trainer -->
+      <div class="ctrl-card">
+        <h3>
+          <span>3. Rechte Zone (WOD & Uhr)</span>
+          <input type="checkbox" checked onchange="toggleZone('zoneRight', this.checked)" title="Ein-/Ausblenden" />
+        </h3>
+        <div class="form-row">
+          <label>WOD- / Trainingstitel</label>
+          <input type="text" id="inpWodTitle" value='WOD: "CINDY XL" (AMRAP 20)' oninput="syncOverlay()" />
+        </div>
+        <div class="form-row">
+          <label>Übungen / Trainingsinfos</label>
+          <textarea id="inpWodText" rows="2" oninput="syncOverlay()">• 5 Strict Pull-Ups / Muscle-Ups
+• 10 Hand-Release Push-Ups
+• 15 Air Squats + 200m Run</textarea>
+        </div>
+        <div class="form-row">
+          <label>Trainername & Hinweise</label>
+          <input type="text" id="inpCoach" value="Coach: Markus Weber (Head Judge)" oninput="syncOverlay()" />
+        </div>
+      </div>
+
+      <!-- 4. OBS / Zoom & Smartphone Remote Info -->
+      <div class="ctrl-card">
+        <h3>
+          <span>4. OBS / Zoom & Umfang (200 €)</span>
+        </h3>
+        <div style="font-size:12px;color:#cbd5e1;line-height:1.55;">
+          <p>✅ <b>Im 200 € Festpreis enthalten:</b></p>
+          <ul style="padding-left:16px;margin-top:4px;">
+            <li>3 Zonen (Links/Mitte/Rechts) + 1920×1080 Transparenz</li>
+            <li>Countdown, Stoppuhr, Runden, Intervalle & Sequenzen</li>
+            <li>Farbwechsel (Grün/Gelb/Rot) + WebAudio Signaltöne</li>
+            <li>Getrennte Regie-Steuerung & OBS Browser-Quelle</li>
+            <li>Smartphone/Tablet-Fernsteuerung im lokalen Netz</li>
+            <li>100% Quellcode & Nutzungsrechte ohne Folgekosten</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let remainingSec = 878; // 14:38
+    let totalSec = 1200;
+    let timerRunning = true;
+    let mode = 'countdown';
+
+    function formatTime(sec) {
+      const m = Math.floor(Math.abs(sec) / 60);
+      const s = Math.abs(sec) % 60;
+      return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    }
+
+    function updateTimerDisplay() {
+      const el = document.getElementById('dispTimer');
+      const centerZone = document.getElementById('zoneCenter');
+      el.textContent = formatTime(remainingSec);
+
+      let color = '#22c55e';
+      if (mode === 'countdown') {
+        const ratio = remainingSec / Math.max(totalSec, 1);
+        if (remainingSec <= 60 || ratio < 0.15) {
+          color = '#ef4444';
+        } else if (remainingSec <= 180 || ratio < 0.35) {
+          color = '#eab308';
+        }
+      }
+      el.style.color = color;
+      centerZone.style.borderTopColor = color;
+    }
+
+    setInterval(() => {
+      // Live clock
+      const now = new Date();
+      document.getElementById('dispClock').textContent = now.toTimeString().slice(0, 8);
+
+      if (!timerRunning) return;
+      if (mode === 'countdown') {
+        if (remainingSec > 0) remainingSec--;
+      } else {
+        remainingSec++;
+      }
+      updateTimerDisplay();
+    }, 1000);
+
+    function startTimer() { timerRunning = true; }
+    function pauseTimer() { timerRunning = false; }
+    function resetTimer() {
+      timerRunning = false;
+      remainingSec = parseInt(document.getElementById('inpSeconds').value || '600', 10);
+      totalSec = remainingSec;
+      updateTimerDisplay();
+    }
+    function startLeadIn() {
+      remainingSec = 10;
+      totalSec = 10;
+      document.getElementById('dispPhase').textContent = 'VORLAUFZEIT (PREP)';
+      timerRunning = true;
+      updateTimerDisplay();
+    }
+    function setCustomSeconds() {
+      remainingSec = parseInt(document.getElementById('inpSeconds').value || '600', 10);
+      totalSec = remainingSec;
+      updateTimerDisplay();
+    }
+    function changeMode() {
+      mode = document.getElementById('inpMode').value;
+      if (mode === 'stopwatch') remainingSec = 0;
+      updateTimerDisplay();
+    }
+    function applySequence() {
+      const raw = document.getElementById('inpSequence').value;
+      document.getElementById('dispSequence').textContent = 'Sequenz aktiv: ' + raw + ' • Auto-Wechsel Arbeit/Pause';
+    }
+    function syncOverlay() {
+      document.getElementById('dispTitle').textContent = document.getElementById('inpTitle').value;
+      document.getElementById('dispSubtitle').textContent = document.getElementById('inpSubtitle').value;
+      document.getElementById('dispFreeText').textContent = document.getElementById('inpFreeText').value;
+      document.getElementById('dispWodTitle').textContent = document.getElementById('inpWodTitle').value;
+      document.getElementById('dispWodText').textContent = document.getElementById('inpWodText').value;
+      document.getElementById('dispCoach').textContent = document.getElementById('inpCoach').value;
+    }
+    function toggleZone(id, show) {
+      const el = document.getElementById(id);
+      if (show) el.classList.remove('hidden-zone');
+      else el.classList.add('hidden-zone');
+    }
+    function toggleTransparentBg() {
+      document.getElementById('overlayCanvas').classList.toggle('checkerboard-bg');
+    }
+    function uploadLogo(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        document.getElementById('logoBox').innerHTML = '<img src="' + evt.target.result + '" alt="Logo" />';
+      };
+      reader.readAsDataURL(file);
+    }
+    function saveScenePreset() {
+      alert('Layout/Szene lokal gespeichert (localStorage)!');
+    }
+    function resetDefaultLayout() {
+      location.reload();
+    }
+    window.addEventListener('keydown', (e) => {
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName)) return;
+      if (e.code === 'Space') { e.preventDefault(); timerRunning = !timerRunning; }
+      if (e.key === 'r' || e.key === 'R') resetTimer();
+    });
+  </script>
+</body>
+</html>

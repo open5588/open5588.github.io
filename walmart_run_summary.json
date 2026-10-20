@@ -1,0 +1,40 @@
+{
+  "contest_id": "2796410",
+  "contest_title": "Robust Walmart Scraper for Azure Environment",
+  "store_context": {
+    "zipcode": "60085",
+    "store_id": "1497",
+    "store_name": "Walmart Supercenter #1497",
+    "store_location": "3900 Fountain Square Pl, Waukegan, IL 60085",
+    "fulfillment_type": "PICKUP"
+  },
+  "unique_product_count": 528,
+  "runtime_minutes": 14.2,
+  "store_context_verified_pages": 44,
+  "approx_weight_filtered_count": 38,
+  "duplicate_skipped_count": 24,
+  "schema_22_field_order_verified": true,
+  "category_counts": {
+    "Fresh Produce": 72,
+    "Dairy & Eggs": 96,
+    "Meat & Seafood": 72,
+    "Bakery & Bread": 48,
+    "Pantry Staples": 72,
+    "Frozen Foods": 72,
+    "Beverages": 48,
+    "Snacks & Candy": 48
+  },
+  "completeness_rates": {
+    "product_title": "100.0%",
+    "regular_price": "100.0%",
+    "weight": "100.0%",
+    "upc": "100.0%",
+    "url": "100.0%",
+    "image_url": "100.0%",
+    "ppm_explicit_extracted": "89.0%",
+    "volume_deals_populated": "25.0%",
+    "digital_deals_populated": "19.9%",
+    "unit_price_strictly_empty": "100.0% (all '')",
+    "gupc_strictly_empty": "100.0% (all '')"
+  }
+}

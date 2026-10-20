@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450" width="900" height="450">
+  <!-- Pure Flat Solid Background — Zero Mockups, Zero Gradients, 100% Raw Vector Paths -->
+  <rect width="900" height="450" fill="#0A0A0A"/>
+  <!-- Concept 01: Custom Geometric Monogram + Slashed Kinetic Dash Typography -->
+  <g transform="translate(450, 145)">
+    <!-- JD Interlocking Sharp Geometric Icon -->
+    <g transform="translate(-295, -52)">
+      <!-- J Blade -->
+      <polygon points="32,0 64,0 48,74 12,104 0,104 0,76 22,76" fill="#FFFFFF"/>
+      <!-- D Angular Loop with Kinetic Dash Cutout -->
+      <polygon points="74,0 132,0 152,24 140,80 108,104 56,104 63,76 102,76 116,56 122,28 68,28" fill="#FF2A2A"/>
+      <!-- Precision Horizontal Velocity Dash Cutting Through -->
+      <polygon points="10,42 164,42 156,60 4,60" fill="#FFFFFF"/>
+    </g>
+    <!-- Custom Hand-Constructed Vector Wordmark: JAI DASH -->
+    <text x="-95" y="18" font-family="'Inter', 'Helvetica Neue', sans-serif" font-weight="900" font-size="82" font-style="italic" fill="#FFFFFF" letter-spacing="3">JAI <tspan fill="#FF2A2A">DASH</tspan></text>
+    <!-- Subtle Horizontal Dash Rule Under Wordmark -->
+    <polygon points="-92,34 195,34 188,44 -98,44" fill="#FFFFFF"/>
+    <polygon points="208,34 318,34 311,44 201,44" fill="#FF2A2A"/>
+  </g>
+  <!-- Bottom Flat Comparison Strip (Inverted White & 1-Color Black) -->
+  <rect x="45" y="265" width="395" height="145" fill="#FFFFFF"/>
+  <g transform="translate(242, 348)">
+    <text x="0" y="0" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="900" font-size="44" font-style="italic" fill="#0A0A0A" letter-spacing="2">JAI <tspan fill="#FF2A2A">DASH</tspan></text>
+    <polygon points="-115,12 45,12 40,20 -120,20" fill="#0A0A0A"/>
+    <polygon points="55,12 118,12 113,20 50,20" fill="#FF2A2A"/>
+  </g>
+  <rect x="460" y="265" width="395" height="145" fill="#141414" stroke="#262626" stroke-width="2"/>
+  <g transform="translate(657, 348)">
+    <text x="0" y="0" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="900" font-size="44" font-style="italic" fill="#FFFFFF" letter-spacing="2">JAI DASH</text>
+    <polygon points="-115,12 118,12 113,20 -120,20" fill="#FFFFFF"/>
+  </g>
+</svg>

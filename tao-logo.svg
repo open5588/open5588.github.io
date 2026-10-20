@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 480" width="850" height="480">
+  <!-- Shades-of-Grey Musculoskeletal Certification Redesign of Client's "TAO" Draft (Fracture in 'T' + Stabilization Brace/Splint + Hand/Brace in 'O') -->
+  <rect width="850" height="480" fill="#F8FAFC" rx="18"/>
+  <g transform="translate(425, 215)">
+    <!-- Subtle Outer Certification Seal Ring in Clinical Slate Grey -->
+    <rect x="-355" y="-155" width="710" height="310" rx="24" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="2"/>
+    <!-- LETTER 'T': Bone-Fracture Motif on Stem + Minimalist Orthopedic Fixation Splint Bar -->
+    <g transform="translate(-215, 0)">
+      <!-- Horizontal Top Condyle / Crossbar of T -->
+      <path d="M-78,-96 C-52,-102 52,-102 78,-96 L78,-66 C52,-70 -52,-70 -78,-66 Z" fill="#374151"/>
+      <!-- Upper Shaft of T Ending in Oblique/Comminuted Fracture Line -->
+      <path d="M-20,-68 L20,-68 L20,-14 L4,-2 L-6,-18 L-20,-6 Z" fill="#4B5563"/>
+      <!-- Butterfly Bone Fragment (From Client's X-Ray Attachment #2) -->
+      <polygon points="8,4 22,-8 25,22 10,14" fill="#9CA3AF"/>
+      <!-- Lower Shaft of T Resuming Below Fracture Line -->
+      <path d="M-20,6 L-6,-6 L6,12 L20,28 L20,96 L-20,96 Z" fill="#4B5563"/>
+      <!-- Clean Orthopedic Stabilization Splint / Fixation Plate Bridging the Fracture -->
+      <rect x="-34" y="-38" width="8" height="76" rx="4" fill="#111827"/>
+      <line x1="-26" y1="-24" x2="-12" y2="-24" stroke="#111827" stroke-width="3.5" stroke-linecap="round"/>
+      <line x1="-26" y1="22" x2="-12" y2="22" stroke="#111827" stroke-width="3.5" stroke-linecap="round"/>
+    </g>
+
+    <!-- LETTER 'A': Clean Architectural Alignment & Joint Stabilization Crossbar -->
+    <g transform="translate(-32, 0)">
+      <path d="M-16,-96 L16,-96 L82,96 L44,96 L28,46 L-28,46 L-44,96 L-82,96 Z M-18,16 L18,16 L0,-44 Z" fill="#4B5563"/>
+      <!-- Stabilization Alignment Bridge Across 'A' -->
+      <rect x="-42" y="18" width="84" height="12" rx="4" fill="#1F2937"/>
+    </g>
+
+    <!-- LETTER 'O': Framing the Minimalist Anatomical Extremity Hand + Wrist Stabilization Brace -->
+    <g transform="translate(185, 0)">
+      <circle cx="0" cy="0" r="102" fill="none" stroke="#4B5563" stroke-width="32"/>
+      <circle cx="0" cy="0" r="82" fill="none" stroke="#9CA3AF" stroke-width="1.5"/>
+      <!-- Minimalist Segmented Anatomical Hand & Wrist Brace Inside 'O' (Refined from Client's Sketch) -->
+      <g transform="translate(-4, 8) scale(0.86)">
+        <!-- Distal & Proximal Phalanges (Clean Minimalist Grey Capsules) -->
+        <!-- Little Finger -->
+        <rect x="-42" y="-50" width="8" height="22" rx="4" transform="rotate(-18 -38 -39)" fill="#6B7280"/>
+        <!-- Ring Finger -->
+        <rect x="-22" y="-66" width="9" height="30" rx="4.5" transform="rotate(-7 -17 -51)" fill="#6B7280"/>
+        <!-- Middle Finger -->
+        <rect x="-2" y="-72" width="10" height="34" rx="5" fill="#6B7280"/>
+        <!-- Index Finger -->
+        <rect x="18" y="-64" width="9" height="30" rx="4.5" transform="rotate(8 22 -49)" fill="#6B7280"/>
+        <!-- Thumb Phalanx -->
+        <rect x="44" y="-12" width="22" height="10" rx="5" transform="rotate(-32 55 -7)" fill="#6B7280"/>
+        <!-- Palm / Metacarpal Arch -->
+        <path d="M-34,-18 C-14,-24 14,-24 30,-18 L26,-2 L-30,2 Z" fill="#9CA3AF"/>
+        <!-- Orthopedic Wrist & Thumb Stabilization Brace / Splint (Dark Charcoal Grey #111827) -->
+        <path d="M-30,6 L26,-2 L36,4 C20,12 18,30 28,40 L6,44 L6,8 L0,8 L0,44 L-22,44 Z" fill="#111827"/>
+        <!-- Stabilization Wrist Strap -->
+        <rect x="-24" y="50" width="52" height="12" rx="3" fill="#1F2937"/>
+        <!-- Radius & Ulna Forearm Ends -->
+        <rect x="-20" y="66" width="16" height="10" rx="2" fill="#9CA3AF"/>
+        <rect x="4" y="66" width="16" height="10" rx="2" fill="#9CA3AF"/>
+      </g>
+    </g>
+
+    <!-- Subtitle Typography -->
+    <text x="0" y="198" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="14" fill="#1F2937" letter-spacing="5.5">MUSCULOSKELETAL &amp; EXTREMITY TRAUMA CERTIFICATION</text>
+  </g>
+</svg>

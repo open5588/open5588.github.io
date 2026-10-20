@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aroā Jun — Berries Honey Kombucha Flat Label Die-Line & 330ml Bottle Redesign (#2795524)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #F6F3EC;
+      color: #1F1A1C;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding: 26px;
+    }
+    .board {
+      max-width: 1520px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .header {
+      background: #2D121E;
+      color: #FDFBF7;
+      padding: 16px 26px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header h1 {
+      font-family: 'Fraunces', serif;
+      font-size: 18px;
+    }
+    .header span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      color: #FBBF24;
+    }
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.38fr 0.62fr;
+      gap: 22px;
+    }
+    /* FLAT PRINT-READY DIE-LINE SHEET */
+    .dieline-stage {
+      background: #FFFFFF;
+      border: 1px solid #E2DDD2;
+      border-radius: 16px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .stage-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #9D174D;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    /* Actual Flat Wrap-Around Label (Front + Story + Nutrition/Barcode) */
+    .flat-label-wrap {
+      border: 2px dashed #EC4899;
+      padding: 10px;
+      border-radius: 8px;
+      background: #FFFDF9;
+    }
+    .flat-label {
+      display: grid;
+      grid-template-columns: 0.9fr 1.25fr 0.95fr;
+      background: #FDFBF7;
+      border: 1px solid #E5DFD3;
+      min-height: 410px;
+      position: relative;
+      overflow: hidden;
+    }
+    .top-botanical-band {
+      grid-column: 1 / -1;
+      height: 10px;
+      background: linear-gradient(90deg, #831843 0%, #BE185D 50%, #D97706 100%);
+    }
+    .panel-left {
+      padding: 24px 20px;
+      border-right: 1px solid #EFECE4;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 11.5px;
+    }
+    .panel-center {
+      padding: 28px 26px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      background: radial-gradient(circle at 50% 35%, #FFF5F7 0%, #FDFBF7 72%);
+    }
+    .panel-right {
+      padding: 22px 20px;
+      border-left: 1px solid #EFECE4;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 11px;
+    }
+    .nz-pill {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #166534;
+      background: #DCFCE7;
+      padding: 4px 10px;
+      border-radius: 99px;
+    }
+    .brand-mark {
+      font-family: 'Fraunces', serif;
+      font-size: 42px;
+      font-weight: 700;
+      color: #2D121E;
+      line-height: 1;
+      margin-top: 6px;
+    }
+    .jun-explainer {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #B45309;
+      margin-top: 4px;
+    }
+    .flavour-badge {
+      background: #9D174D;
+      color: #FFFFFF;
+      padding: 10px 26px;
+      border-radius: 999px;
+      font-family: 'Fraunces', serif;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin: 12px 0 8px;
+      box-shadow: 0 6px 16px rgba(157, 23, 77, 0.18);
+    }
+    .nutri-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px;
+      margin-top: 6px;
+    }
+    .nutri-table th, .nutri-table td {
+      border-bottom: 1px solid #E5DFD3;
+      padding: 3px 0;
+      text-align: left;
+    }
+    .nutri-table td:last-child, .nutri-table th:last-child { text-align: right; }
+    /* RIGHT COLUMN: REALISTIC 330ML BOTTLE MOCKUP + FLAVOUR SYSTEM */
+    .bottle-card {
+      background: #FFFFFF;
+      border: 1px solid #E2DDD2;
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .bottle-img {
+      width: 100%;
+      height: 390px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid #E2DDD2;
+    }
+    .flavour-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .flavour-chip {
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="board">
+    <div class="header">
+      <h1>AROĀ JUN — 330ml Berries Honey Kombucha Flat Print Die-Line + Screw-Cap Bottle Mockup</h1>
+      <span>Contest #2795524 ($200 NZD Guaranteed) • Editable AI / Print PDF + Barcode • Made in New Zealand</span>
+    </div>
+
+    <div class="main-grid">
+      <!-- LEFT: FLAT PRINT-READY LABEL DESIGN (FRONT + LEFT STORY + RIGHT NUTRITION & BARCODE) -->
+      <div class="dieline-stage">
+        <div>
+          <div class="stage-label">01 / Actual Flat Print-Ready Wrap Label Design (195mm × 95mm Die-Line + 3mm Bleed — Berries Flavour)</div>
+          <div class="flat-label-wrap">
+            <div class="flat-label">
+              <div class="top-botanical-band"></div>
+
+              <!-- LEFT PANEL: WHAT IS JUN? & NZ CRAFT STORY -->
+              <div class="panel-left">
+                <div>
+                  <div style="font-family:'Fraunces',serif;font-size:15px;color:#831843;margin-bottom:6px;">
+                    The Champagne of Kombucha
+                  </div>
+                  <p style="color:#4B3F44;line-height:1.55;">
+                    Unlike standard kombucha made with cane sugar and black tea, <strong>Aroā Jun</strong> is traditionally cultured with <strong>organic green tea and raw New Zealand honey</strong> for a lighter, smoother, naturally effervescent taste.
+                  </p>
+                  <div style="margin-top:14px;padding:10px;background:#FDF2F8;border-radius:8px;border-left:3px solid #9D174D;">
+                    <strong style="color:#831843;display:block;margin-bottom:3px;">Why You'll Love It:</strong>
+                    • Live Probiotic Cultures<br/>
+                    • Raw NZ Bush Honey<br/>
+                    • Infused with Hawke's Bay Berries<br/>
+                    • 100% Natural • Gluten Free
+                  </div>
+                </div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#6B5E62;">
+                  KEEP REFRIGERATED (2°C–6°C)<br/>
+                  Crafted in Aotearoa New Zealand<br/>
+                  <strong>www.aroajun.co.nz</strong>
+                </div>
+              </div>
+
+              <!-- CENTER FRONT PANEL: HIGH SHELF-IMPACT HERO -->
+              <div class="panel-center">
+                <span class="nz-pill">★ Crafted in New Zealand ★</span>
+
+                <div>
+                  <div class="brand-mark">Aroā Jun</div>
+                  <div class="jun-explainer">HONEY KOMBUCHA</div>
+                  <div style="font-size:11.5px;color:#574B4F;margin-top:3px;">
+                    Brewed with Green Tea &amp; Raw NZ Honey
+                  </div>
+                </div>
+
+                <!-- Clean Vector Berry & Honey Botanical Illustration (No Cluttered Background) -->
+                <svg width="150" height="76" viewBox="0 0 160 80" fill="none">
+                  <!-- Green Tea Leaves -->
+                  <path d="M36 52C36 32 58 26 72 44C58 58 36 52 36 52Z" fill="#15803D" opacity="0.88"/>
+                  <path d="M124 52C124 32 102 26 88 44C102 58 124 52 124 52Z" fill="#166534" opacity="0.88"/>
+                  <!-- Golden Honeycomb Hexagon Accent -->
+                  <polygon points="80,10 93,18 93,33 80,41 67,33 67,18" stroke="#D97706" stroke-width="2.5" fill="#FEF3C7"/>
+                  <!-- Boysenberry / Raspberry Cluster -->
+                  <circle cx="72" cy="48" r="11" fill="#9D174D"/>
+                  <circle cx="88" cy="48" r="11" fill="#831843"/>
+                  <circle cx="80" cy="36" r="11" fill="#BE185D"/>
+                  <circle cx="77" cy="33" r="3" fill="#FBCFE8"/>
+                </svg>
+
+                <div>
+                  <div class="flavour-badge">BERRIES</div>
+                  <div style="font-size:11.5px;font-weight:600;color:#831843;">
+                    Refreshing Boysenberry, Blackcurrant &amp; Hibiscus
+                  </div>
+                </div>
+
+                <div style="width:100%;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:#2D121E;border-top:1px solid #E5DFD3;padding-top:10px;">
+                  <span>RAW &amp; SPARKLING</span>
+                  <span>330mL</span>
+                </div>
+              </div>
+
+              <!-- RIGHT PANEL: NUTRITION INFORMATION & PRINT BARCODE -->
+              <div class="panel-right">
+                <div>
+                  <strong style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#2D121E;">Nutrition Information</strong>
+                  <div style="font-size:9.5px;color:#6B5E62;">Servings per package: 1 | Serving size: 330mL</div>
+                  <table class="nutri-table">
+                    <thead>
+                      <tr><th>Avg Qty</th><th>Per Serving</th><th>Per 100mL</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Energy</td><td>165 kJ</td><td>50 kJ</td></tr>
+                      <tr><td>Protein</td><td>&lt; 0.5 g</td><td>&lt; 0.5 g</td></tr>
+                      <tr><td>Fat, Total</td><td>&lt; 0.1 g</td><td>&lt; 0.1 g</td></tr>
+                      <tr><td>Carbohydrate</td><td>8.9 g</td><td>2.7 g</td></tr>
+                      <tr><td>– Sugars</td><td>7.9 g</td><td>2.4 g</td></tr>
+                      <tr><td>Sodium</td><td>10 mg</td><td>3 mg</td></tr>
+                    </tbody>
+                  </table>
+                  <p style="font-size:9.5px;color:#4B3F44;margin-top:8px;line-height:1.45;">
+                    <strong>Ingredients:</strong> Filtered NZ Water, Jun Culture, Raw New Zealand Honey (4.5%), Organic Green Tea, NZ Boysenberry &amp; Blackcurrant Juice (3%), Hibiscus Flower.
+                  </p>
+                </div>
+
+                <!-- EAN-13 Print-Ready Vector Barcode -->
+                <div style="background:#FFFFFF;border:1px solid #E5DFD3;padding:8px;border-radius:6px;text-align:center;">
+                  <svg width="150" height="44" viewBox="0 0 160 44" fill="none">
+                    <rect x="10" y="2" width="2" height="34" fill="#000"/>
+                    <rect x="14" y="2" width="2" height="34" fill="#000"/>
+                    <rect x="20" y="2" width="4" height="30" fill="#000"/>
+                    <rect x="28" y="2" width="2" height="30" fill="#000"/>
+                    <rect x="34" y="2" width="6" height="30" fill="#000"/>
+                    <rect x="44" y="2" width="2" height="30" fill="#000"/>
+                    <rect x="50" y="2" width="4" height="30" fill="#000"/>
+                    <rect x="58" y="2" width="2" height="30" fill="#000"/>
+                    <rect x="64" y="2" width="4" height="30" fill="#000"/>
+                    <rect x="74" y="2" width="2" height="34" fill="#000"/>
+                    <rect x="78" y="2" width="2" height="34" fill="#000"/>
+                    <rect x="84" y="2" width="6" height="30" fill="#000"/>
+                    <rect x="94" y="2" width="2" height="30" fill="#000"/>
+                    <rect x="100" y="2" width="4" height="30" fill="#000"/>
+                    <rect x="108" y="2" width="2" height="30" fill="#000"/>
+                    <rect x="114" y="2" width="6" height="30" fill="#000"/>
+                    <rect x="124" y="2" width="2" height="30" fill="#000"/>
+                    <rect x="130" y="2" width="4" height="30" fill="#000"/>
+                    <rect x="138" y="2" width="2" height="34" fill="#000"/>
+                    <rect x="142" y="2" width="2" height="34" fill="#000"/>
+                    <text x="80" y="42" text-anchor="middle" fill="#000" font-family="JetBrains Mono" font-size="8.5">9 421904 852017</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;font-size:12.5px;color:#4B3F44;display:flex;justify-content:space-between;border-top:1px solid #E2DDD2;padding-top:12px;">
+          <span>✓ Removed 4 cluttered bottom icons &amp; heavy honey drips</span>
+          <span>✓ Clear "HONEY KOMBUCHA" &amp; "BERRIES" shelf hierarchy</span>
+          <span>✓ 100% Editable Adobe Illustrator (.AI) + Print PDF</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: 330ML SCREW-CAP GLASS BOTTLE MOCKUP & 3-FLAVOUR EXTENSION -->
+      <div class="bottle-card">
+        <div>
+          <div class="stage-label">02 / 330ml Screw-Cap Glass Bottle (No Neck Label)</div>
+          <img class="bottle-img" src="/assets/img/aroa-jun-bottle.jpg" alt="Aroā Jun 330ml Berries Honey Kombucha Bottle" />
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#2D121E;margin-top:12px;">
+            Unified 3-Flavour Color System (Instant Shelf Recognition):
+          </div>
+          <div class="flavour-strip">
+            <div class="flavour-chip" style="background:#9D174D;color:#fff;">
+              1. BERRIES<br/><span style="font-size:9.5px;opacity:0.85;">Ruby Boysenberry</span>
+            </div>
+            <div class="flavour-chip" style="background:#D97706;color:#fff;">
+              2. ORIGINAL<br/><span style="font-size:9.5px;opacity:0.85;">Golden Bush Honey</span>
+            </div>
+            <div class="flavour-chip" style="background:#15803D;color:#fff;">
+              3. GINGER<br/><span style="font-size:9.5px;opacity:0.85;">Zesty Root &amp; Green Tea</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

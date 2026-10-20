@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1920, initial-scale=1.0">
+<title>Mighty Shine Car Wash — 9:16 Portrait Tropical Resort Digital Menu Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,800&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  html, body {
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    background: #041929;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #FFFFFF;
+    -webkit-font-smoothing: antialiased;
+  }
+  .board {
+    position: relative;
+    width: 1080px;
+    height: 1920px;
+    background: linear-gradient(180deg, #072235 0%, #093852 28%, #062B42 68%, #041929 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 36px 26px 36px;
+  }
+
+  /* Header Sunset Canopy */
+  .header-canopy {
+    position: relative;
+    margin: 0 -36px;
+    height: 278px;
+    background: linear-gradient(135deg, #FF512F 0%, #FF8C24 48%, #FFD23F 100%);
+    border-bottom-left-radius: 54px;
+    border-bottom-right-radius: 54px;
+    box-shadow: 0 14px 32px rgba(0, 8, 20, 0.6);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 8px;
+    border-bottom: 5px solid #00F5D4;
+  }
+  .sun-orb {
+    position: absolute;
+    width: 310px;
+    height: 310px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #FFF8C9 0%, #FFC436 55%, rgba(255,81,47,0) 72%);
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+  .palm-svg {
+    position: absolute;
+    top: 0;
+    width: 1080px;
+    height: 278px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .header-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .welcome-pill {
+    background: rgba(5, 27, 44, 0.9);
+    color: #00F5D4;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 4.5px;
+    padding: 6px 26px;
+    border-radius: 999px;
+    border: 1.5px solid rgba(0, 245, 212, 0.6);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .brand-title {
+    font-family: 'Outfit', 'Montserrat', sans-serif;
+    font-size: 88px;
+    font-weight: 900;
+    line-height: 0.96;
+    letter-spacing: 2px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    text-shadow: 0 6px 0 #051B2C, 0 10px 24px rgba(0,0,0,0.65);
+    -webkit-text-stroke: 3px #051B2C;
+  }
+  .brand-sub {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 9px;
+    color: #FFF3A1;
+    text-shadow: 0 4px 0 #051B2C, 0 6px 14px rgba(0,0,0,0.6);
+    margin-top: 2px;
+    margin-bottom: 10px;
+  }
+  .tagline-bar {
+    background: #051B2C;
+    border: 2.5px solid #00F5D4;
+    border-radius: 999px;
+    padding: 7px 32px;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #FFFFFF;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+  }
+  .tagline-bar span {
+    color: #FFD166;
+  }
+
+  /* Ascending Hierarchy Tiers Container */
+  .tiers-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+    flex: 1;
+  }
+
+  .tier-card {
+    position: relative;
+    border-radius: 26px;
+    padding: 20px 26px;
+    display: grid;
+    grid-template-columns: 1fr 278px;
+    gap: 20px;
+    box-shadow: 0 12px 28px rgba(0, 8, 20, 0.55);
+  }
+
+  /* TIER 1: LARGEST HERO PANEL (468px tall) */
+  .tier-1 {
+    height: 468px;
+    background: linear-gradient(135deg, #0D5878 0%, #083B54 52%, #052335 100%);
+    border: 5px solid #FFD84D;
+    box-shadow: 0 0 0 3px #00F5D4, 0 16px 36px rgba(0, 8, 20, 0.7);
+    padding: 24px 26px 20px 26px;
+  }
+  .crown-badge {
+    position: absolute;
+    top: -19px;
+    left: 32px;
+    background: linear-gradient(90deg, #FFE07D 0%, #FFF8D6 50%, #F5B727 100%);
+    color: #041926;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    padding: 7px 26px;
+    border-radius: 999px;
+    box-shadow: 0 6px 16px rgba(255, 209, 102, 0.55);
+    text-transform: uppercase;
+  }
+
+  /* TIER 2: SECOND LARGEST PANEL (334px tall) */
+  .tier-2 {
+    height: 334px;
+    background: linear-gradient(135deg, #1E385B 0%, #10213A 100%);
+    border: 4px solid #FF9F43;
+    padding: 20px 26px 16px 26px;
+  }
+  .pop-badge {
+    position: absolute;
+    top: -16px;
+    left: 32px;
+    background: linear-gradient(90deg, #FF7B38 0%, #FFC145 100%);
+    color: #051B2C;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 1.8px;
+    padding: 5px 22px;
+    border-radius: 999px;
+    text-transform: uppercase;
+  }
+
+  /* TIER 3: MEDIUM PANEL (262px tall) */
+  .tier-3 {
+    height: 262px;
+    background: linear-gradient(135deg, #0C435D 0%, #072B3D 100%);
+    border: 3.5px solid #00E1D9;
+    padding: 18px 26px;
+  }
+
+  /* TIER 4: BASE COMPACT PANEL (190px tall) */
+  .tier-4 {
+    height: 190px;
+    background: linear-gradient(135deg, #0A3144 0%, #061E2C 100%);
+    border: 2.5px solid #48CAE4;
+    padding: 16px 26px;
+  }
+
+  /* Left Content Column */
+  .tier-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .tier-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .tier-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    color: #041926;
+    flex-shrink: 0;
+  }
+  .tier-1 .tier-num {
+    width: 66px;
+    height: 66px;
+    font-size: 38px;
+    background: linear-gradient(135deg, #FFE680, #F5B027);
+    box-shadow: 0 0 16px rgba(255, 216, 77, 0.6);
+  }
+  .tier-2 .tier-num {
+    width: 56px;
+    height: 56px;
+    font-size: 32px;
+    background: linear-gradient(135deg, #FFB84D, #FF7B38);
+  }
+  .tier-3 .tier-num {
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+    background: linear-gradient(135deg, #00F5D4, #00A8E8);
+  }
+  .tier-4 .tier-num {
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+    background: #48CAE4;
+  }
+
+  .tier-title-group h2 {
+    font-family: 'Outfit', 'Montserrat', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    line-height: 1.02;
+  }
+  .tier-1 .tier-title-group h2 { font-size: 44px; color: #FFFFFF; }
+  .tier-2 .tier-title-group h2 { font-size: 37px; color: #FFFFFF; }
+  .tier-3 .tier-title-group h2 { font-size: 33px; color: #FFFFFF; }
+  .tier-4 .tier-title-group h2 { font-size: 29px; color: #FFFFFF; }
+
+  .tier-subtitle {
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    margin-top: 4px;
+  }
+  .tier-1 .tier-subtitle { font-size: 19px; color: #00F5D4; }
+  .tier-2 .tier-subtitle { font-size: 17px; color: #FFB84D; }
+  .tier-3 .tier-subtitle { font-size: 16px; color: #00E1D9; }
+  .tier-4 .tier-subtitle { font-size: 15px; color: #90E0EF; }
+
+  /* Feature Grid inside Tiers */
+  .features-grid-6 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 11px;
+    margin-top: 8px;
+  }
+  .feature-pill-lg {
+    background: rgba(4, 25, 38, 0.78);
+    border: 2px solid rgba(0, 245, 212, 0.55);
+    border-radius: 14px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .feature-pill-lg.gold {
+    border-color: rgba(255, 216, 77, 0.75);
+  }
+  .feat-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: rgba(0, 245, 212, 0.16);
+  }
+  .feature-pill-lg.gold .feat-icon {
+    background: rgba(255, 216, 77, 0.18);
+  }
+  .feat-text strong {
+    display: block;
+    font-size: 18.5px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.15;
+  }
+  .feat-text span {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #9EECEF;
+  }
+  .feature-pill-lg.gold .feat-text span {
+    color: #FFE699;
+  }
+
+  .tier-bonus-strip {
+    background: rgba(0, 245, 212, 0.18);
+    border: 1.5px solid #00F5D4;
+    border-radius: 11px;
+    padding: 8px 16px;
+    font-size: 17px;
+    font-weight: 900;
+    color: #FFF8D6;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* Tier 2 & 3 Features */
+  .features-grid-compact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .feature-chip {
+    background: rgba(5, 24, 38, 0.72);
+    border: 1.8px solid rgba(255, 159, 67, 0.55);
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18.5px;
+    font-weight: 800;
+    color: #FFFFFF;
+  }
+  .tier-3 .feature-chip {
+    border-color: rgba(0, 225, 217, 0.5);
+    padding: 9px 14px;
+    font-size: 18px;
+  }
+  .tier-2-strip {
+    background: rgba(255, 159, 67, 0.18);
+    border: 1.5px solid rgba(255, 184, 77, 0.6);
+    border-radius: 10px;
+    padding: 7px 14px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #FFE0A3;
+    text-align: center;
+    letter-spacing: 0.8px;
+  }
+
+  /* Tier 4 Inline Features */
+  .features-row-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .feature-chip-sm {
+    background: rgba(5, 22, 34, 0.8);
+    border: 1.5px solid rgba(72, 202, 228, 0.55);
+    border-radius: 11px;
+    padding: 12px 10px;
+    text-align: center;
+    font-size: 17.5px;
+    font-weight: 800;
+    color: #FFFFFF;
+  }
+
+  /* Right Price Column */
+  .price-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .price-box {
+    background: #041622;
+    border-radius: 20px;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex: 1;
+  }
+  .tier-1 .price-box {
+    border: 3px solid #FFD84D;
+    box-shadow: inset 0 0 24px rgba(255, 216, 77, 0.12);
+  }
+  .tier-2 .price-box { border: 2.5px solid #FF9F43; }
+  .tier-3 .price-box { border: 2.5px solid #00E1D9; }
+  .tier-4 .price-box { border: 2px solid #48CAE4; }
+
+  .single-label {
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #FFE07D;
+  }
+  .tier-3 .single-label { color: #00E1D9; }
+  .tier-4 .single-label { color: #90E0EF; }
+
+  .price-amount {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    line-height: 0.95;
+    color: #FFFFFF;
+    margin: 4px 0 8px 0;
+  }
+  .tier-1 .price-amount { font-size: 86px; text-shadow: 0 4px 16px rgba(255, 216, 77, 0.4); }
+  .tier-2 .price-amount { font-size: 72px; }
+  .tier-3 .price-amount { font-size: 64px; }
+  .tier-4 .price-amount { font-size: 56px; margin: 2px 0 6px 0; }
+
+  .unlimited-pill {
+    width: 100%;
+    border-radius: 11px;
+    padding: 8px 10px;
+    font-size: 18.5px;
+    font-weight: 900;
+    color: #041926;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tier-1 .unlimited-pill {
+    background: linear-gradient(90deg, #FFE07D 0%, #FFF8D6 50%, #F5B727 100%);
+    font-size: 19.5px;
+    padding: 10px;
+  }
+  .tier-2 .unlimited-pill { background: linear-gradient(90deg, #FF8C3B, #FFC145); }
+  .tier-3 .unlimited-pill { background: linear-gradient(90deg, #00F5D4, #00BBF9); }
+  .tier-4 .unlimited-pill { background: #48CAE4; font-size: 17.5px; padding: 6px 10px; }
+
+  .vip-perk-box {
+    background: rgba(0, 245, 212, 0.12);
+    border: 2px solid #00F5D4;
+    border-radius: 16px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .vip-perk-box .perk-title {
+    font-size: 17px;
+    font-weight: 900;
+    color: #00F5D4;
+    letter-spacing: 1px;
+  }
+  .vip-perk-box .perk-sub {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: #FFE07D;
+    margin-top: 4px;
+    white-space: nowrap;
+  }
+
+  /* Bottom Unlimited Wash Club Banner */
+  .club-footer {
+    height: 196px;
+    margin-top: 18px;
+    border-radius: 26px;
+    padding: 5px;
+    background: linear-gradient(90deg, #00F5D4 0%, #00BBF9 50%, #FFD166 100%);
+    box-shadow: 0 12px 30px rgba(0, 8, 20, 0.65);
+  }
+  .club-footer-inner {
+    width: 100%;
+    height: 100%;
+    background: #041824;
+    border-radius: 22px;
+    padding: 18px 28px;
+    display: flex;
+    align-items: center;
+    gap: 26px;
+  }
+  .club-medallion {
+    width: 142px;
+    height: 142px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FF5E36 0%, #FF9429 50%, #FFD046 100%);
+    border: 4px solid #FFF8D6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 8px 20px rgba(255, 148, 41, 0.45);
+  }
+  .club-medallion span {
+    font-size: 19px;
+    font-weight: 900;
+    color: #041824;
+    letter-spacing: 1px;
+  }
+  .club-medallion strong {
+    font-family: 'Outfit', sans-serif;
+    font-size: 34px;
+    font-weight: 900;
+    color: #FFFFFF;
+    line-height: 1;
+    text-shadow: 0 3px 0 #041824;
+  }
+  .club-copy {
+    flex: 1;
+  }
+  .club-copy h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: #00F5D4;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .club-copy p {
+    font-size: 22px;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-top: 3px;
+  }
+  .club-perks-row {
+    display: flex;
+    gap: 22px;
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: 800;
+    color: #FFE07D;
+  }
+  .club-cta-strip {
+    margin-top: 10px;
+    background: #093046;
+    border: 1.5px solid rgba(0, 245, 212, 0.45);
+    border-radius: 10px;
+    padding: 6px 16px;
+    font-size: 16.5px;
+    font-weight: 800;
+    color: #FFFFFF;
+    letter-spacing: 1.4px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+  <div class="board">
+    <!-- TROPICAL RESORT SUNSET HEADER -->
+    <header class="header-canopy">
+      <div class="sun-orb"></div>
+      <svg class="palm-svg" viewBox="0 0 1080 278" fill="none">
+        <!-- Turquoise Ocean Wave Accents -->
+        <path d="M0,235 Q270,200 540,235 T1080,225 L1080,278 L0,278 Z" fill="#00D2C4" opacity="0.45"/>
+        <!-- Palm Silhouette Left -->
+        <g fill="#051B2C" opacity="0.88">
+          <path d="M35,278 Q68,180 128,92 L144,100 Q92,185 65,278 Z"/>
+          <path d="M132,96 Q55,62 0,102 Q62,96 132,96 Z"/>
+          <path d="M132,96 Q80,28 15,32 Q82,52 132,96 Z"/>
+          <path d="M132,96 Q158,18 238,30 Q178,56 132,96 Z"/>
+          <path d="M132,96 Q204,52 260,98 Q188,82 132,96 Z"/>
+          <!-- Palm Silhouette Right -->
+          <path d="M1045,278 Q1012,180 952,92 L936,100 Q988,185 1015,278 Z"/>
+          <path d="M948,96 Q1025,62 1080,102 Q1018,96 948,96 Z"/>
+          <path d="M948,96 Q1000,28 1065,32 Q998,52 948,96 Z"/>
+          <path d="M948,96 Q922,18 842,30 Q902,56 948,96 Z"/>
+          <path d="M948,96 Q876,52 820,98 Q892,82 948,96 Z"/>
+        </g>
+      </svg>
+      <div class="header-content">
+        <div class="welcome-pill">★ Welcome to Paradise ★</div>
+        <div class="brand-title">MIGHTY SHINE</div>
+        <div class="brand-sub">TROPICAL CAR WASH</div>
+        <div class="tagline-bar">5-MINUTE ISLAND ESCAPE • <span>FREE TROPICAL VACUUM OASIS</span></div>
+      </div>
+    </header>
+
+    <!-- ASCENDING HIERARCHY 4 WASH PACKAGES -->
+    <main class="tiers-stack">
+
+      <!-- TIER 1: TOP / LARGEST HERO PANEL ($28 / $39.99) -->
+      <section class="tier-card tier-1">
+        <div class="crown-badge">★ #1 Ultimate Tropical Escape • Best Protection ★</div>
+        <div class="tier-main">
+          <div class="tier-header">
+            <div class="tier-num">1</div>
+            <div class="tier-title-group">
+              <h2>The Island Paradise</h2>
+              <div class="tier-subtitle">Ceramic &amp; Graphene Shield + Carnauba Hot Wax</div>
+            </div>
+          </div>
+
+          <div class="features-grid-6">
+            <div class="feature-pill-lg">
+              <div class="feat-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="#00F5D4"><path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/></svg>
+              </div>
+              <div class="feat-text">
+                <strong>Ceramic Sea-Glass</strong>
+                <span>Hydrophobic Graphene Shield</span>
+              </div>
+            </div>
+
+            <div class="feature-pill-lg gold">
+              <div class="feat-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="#FFD84D"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z"/></svg>
+              </div>
+              <div class="feat-text">
+                <strong>Carnauba Hot Wax</strong>
+                <span>Deep Mirror Resort Glow</span>
+              </div>
+            </div>
+
+            <div class="feature-pill-lg">
+              <div class="feat-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="#FF8C3B"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+              </div>
+              <div class="feat-text">
+                <strong>Lava Bath Presoak</strong>
+                <span>Warm Foaming Deep Clean</span>
+              </div>
+            </div>
+
+            <div class="feature-pill-lg gold">
+              <div class="feat-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="#FFD84D"><circle cx="12" cy="12" r="9" stroke="#FFD84D" stroke-width="3" fill="none"/><circle cx="12" cy="12" r="3.5" fill="#00F5D4"/></svg>
+              </div>
+              <div class="feat-text">
+                <strong>Tire &amp; Rim Tropical Shine</strong>
+                <span>Satin Mirror Island Dressing</span>
+              </div>
+            </div>
+
+            <div class="feature-pill-lg">
+              <div class="feat-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00F5D4" stroke-width="2.8" stroke-linecap="round"><path d="M3 17c3-6 6-6 9 0s6 6 9 0"/><path d="M3 11c3-6 6-6 9 0s6 6 9 0"/></svg>
+              </div>
+              <div class="feat-text">
+                <strong>Undercarriage Salt Flush</strong>
+                <span>Sand &amp; Rust Inhibitor Blast</span>
+              </div>
+            </div>
+
+            <div class="feature-pill-lg gold">
+              <div class="feat-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="#FFD84D"><circle cx="8" cy="9" r="4"/><circle cx="16" cy="9" r="3.5" fill="#00F5D4"/><circle cx="12" cy="16" r="4" fill="#FF8C3B"/></svg>
+              </div>
+              <div class="feat-text">
+                <strong>Triple Foam Polish</strong>
+                <span>Conditioning Clear-Coat</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tier-bonus-strip">✓ Includes Every Feature From All Lower Tiers + Free Dash Wipe &amp; Tropical Scent</div>
+        </div>
+
+        <div class="price-column">
+          <div class="price-box">
+            <div class="single-label">Single Wash</div>
+            <div class="price-amount">$28</div>
+            <div class="unlimited-pill">Unlimited $39.99/mo</div>
+          </div>
+          <div class="vip-perk-box">
+            <div class="perk-title">30-DAY UV &amp; SALT SHIELD</div>
+            <div class="perk-sub">★ Rain Repellent Guaranteed ★</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TIER 2: SECOND LARGEST PANEL ($22 / $32.99) -->
+      <section class="tier-card tier-2">
+        <div class="pop-badge">★ Most Popular Sunset Glow ★</div>
+        <div class="tier-main">
+          <div class="tier-header">
+            <div class="tier-num">2</div>
+            <div class="tier-title-group">
+              <h2>Tropical Sunset</h2>
+              <div class="tier-subtitle">Hot Carnauba Wax &amp; Underbody Protection</div>
+            </div>
+          </div>
+
+          <div class="features-grid-compact">
+            <div class="feature-chip"><span style="color:#FFB84D">★</span> Hot Carnauba Wax</div>
+            <div class="feature-chip"><span style="color:#FFB84D">★</span> Triple Foam Conditioner</div>
+            <div class="feature-chip"><span style="color:#FFB84D">★</span> Wheel Brightener</div>
+            <div class="feature-chip"><span style="color:#FFB84D">★</span> Undercarriage Wash</div>
+          </div>
+
+          <div class="tier-2-strip">✓ Spot-Free Lagoon Rinse + Includes All Tier 3 &amp; Tier 4 Features</div>
+        </div>
+
+        <div class="price-column">
+          <div class="price-box">
+            <div class="single-label">Single Wash</div>
+            <div class="price-amount">$22</div>
+            <div class="unlimited-pill">Unlimited $32.99/mo</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TIER 3: MEDIUM PANEL ($16 / $24.99) -->
+      <section class="tier-card tier-3">
+        <div class="tier-main">
+          <div class="tier-header">
+            <div class="tier-num">3</div>
+            <div class="tier-title-group">
+              <h2>Turquoise Lagoon</h2>
+              <div class="tier-subtitle">Foaming Citrus Bath + Wheel &amp; Bug Blast</div>
+            </div>
+          </div>
+
+          <div class="features-grid-compact">
+            <div class="feature-chip"><span style="color:#00E1D9">●</span> Wheel &amp; Tire Scrub</div>
+            <div class="feature-chip"><span style="color:#00E1D9">●</span> High-Pressure Bug Prep</div>
+            <div class="feature-chip"><span style="color:#00E1D9">●</span> Foaming Citrus Bath</div>
+            <div class="feature-chip"><span style="color:#00E1D9">●</span> Power Air Dry + Tier 4</div>
+          </div>
+        </div>
+
+        <div class="price-column">
+          <div class="price-box">
+            <div class="single-label">Single Wash</div>
+            <div class="price-amount">$16</div>
+            <div class="unlimited-pill">Unlimited $24.99/mo</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TIER 4: BASE COMPACT PANEL ($10 / $17.99) -->
+      <section class="tier-card tier-4">
+        <div class="tier-main">
+          <div class="tier-header">
+            <div class="tier-num">4</div>
+            <div class="tier-title-group">
+              <h2>Island Breeze Express</h2>
+              <div class="tier-subtitle">Fast Daily Tropical Wash &amp; Dry</div>
+            </div>
+          </div>
+
+          <div class="features-row-3">
+            <div class="feature-chip-sm">Soft-Cloth Tropical Wash</div>
+            <div class="feature-chip-sm">Spot-Free Rinse</div>
+            <div class="feature-chip-sm">Turbo Jet Dry</div>
+          </div>
+        </div>
+
+        <div class="price-column">
+          <div class="price-box">
+            <div class="single-label">Single Wash</div>
+            <div class="price-amount">$10</div>
+            <div class="unlimited-pill">Unlimited $17.99/mo</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- UNLIMITED WASH CLUB CALLOUT BANNER -->
+    <footer class="club-footer">
+      <div class="club-footer-inner">
+        <div class="club-medallion">
+          <span>WASH</span>
+          <strong>EVERY</strong>
+          <span>DAY!</span>
+        </div>
+        <div class="club-copy">
+          <h3>Join The Unlimited Island Club</h3>
+          <p>Pays for Itself in 2 Washes • Fast VIP Member Lane</p>
+          <div class="club-perks-row">
+            <span>✓ No Contracts</span>
+            <span>✓ Cancel Anytime</span>
+            <span>✓ Free Vacuum Oasis</span>
+          </div>
+          <div class="club-cta-strip">Ask Attendant or Scan QR at Pay Station to Activate Instantly</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

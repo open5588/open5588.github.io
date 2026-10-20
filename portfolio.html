@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open5588 — .NET, Enterprise ERP/WMS, Media &amp; Systems Engineering</title>
+  <meta name="description" content="Senior / Staff .NET (C#), Enterprise ERP / WMS (YMSaaS) & Full-Stack Systems Architect (@open5588). Creator of YMSaaS, CelerCam, CelerCast, Skywave, and Osprey." />
+  <style>
+    :root {
+      --canvas-light: #f5f5f7;
+      --canvas-pure: #ffffff;
+      --canvas-dark: #000000;
+      --surface-dark: #1d1d1f;
+      --surface-dark-elevated: #272729;
+      --ink-primary: #1d1d1f;
+      --ink-secondary: #6e6e73;
+      --ink-tertiary: #86868b;
+      --ink-on-dark: #f5f5f7;
+      --ink-on-dark-muted: #a1a1a6;
+      --accent-blue: #0066cc;
+      --accent-pill: #0071e3;
+      --accent-pill-hover: #0077ed;
+      --accent-blue-dark: #2997ff;
+      --hairline-light: #d2d2d7;
+      --hairline-subtle: rgba(0, 0, 0, 0.08);
+      --hairline-dark: rgba(255, 255, 255, 0.14);
+      --radius-card: 18px;
+      --radius-media: 12px;
+      --radius-pill: 980px;
+      --shadow-card: 2px 4px 12px rgba(0, 0, 0, 0.06);
+      --shadow-device: 0 20px 50px rgba(0, 0, 0, 0.18);
+      --font-sans: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-mono: "SF Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --ease-apple: cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--canvas-light);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 17px;
+      line-height: 1.47059;
+      letter-spacing: -0.022em;
+    }
+
+    body {
+      background-color: var(--canvas-light);
+      color: var(--ink-primary);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      transition: opacity 0.2s var(--ease-apple), color 0.2s var(--ease-apple);
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* 1. Apple Global Black Header */
+    .global-nav {
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      color: var(--ink-on-dark);
+      height: 44px;
+      width: 100%;
+      position: relative;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .global-nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 100%;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      letter-spacing: -0.01em;
+    }
+    .brand-mark {
+      font-weight: 600;
+      font-size: 14px;
+      color: #ffffff;
+      text-decoration: none !important;
+      white-space: nowrap;
+      letter-spacing: -0.015em;
+    }
+    .global-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      list-style: none;
+      white-space: nowrap;
+    }
+    .global-links a {
+      color: rgba(245, 245, 247, 0.82);
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s var(--ease-apple);
+    }
+    .global-links a:hover {
+      color: #ffffff;
+    }
+
+    /* Language Switcher */
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 3px 5px;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: rgba(245, 245, 247, 0.78);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s var(--ease-apple), color 0.2s var(--ease-apple), transform 0.15s var(--ease-apple);
+    }
+    .lang-btn:hover {
+      color: #ffffff;
+    }
+    .lang-btn.active {
+      background: #ffffff;
+      color: #000000;
+    }
+    .lang-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* 2. Frosted Glass Sticky Local Sub-Nav */
+    .local-nav {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      height: 52px;
+      background: rgba(255, 255, 255, 0.76);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--hairline-light);
+    }
+    .local-nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 100%;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .local-nav-title {
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      letter-spacing: -0.015em;
+      text-decoration: none !important;
+      white-space: nowrap;
+    }
+    .local-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .local-nav-actions a.nav-item {
+      color: var(--ink-secondary);
+      text-decoration: none;
+    }
+    .local-nav-actions a.nav-item:hover {
+      color: var(--ink-primary);
+    }
+
+    /* Pill Buttons */
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border-radius: var(--radius-pill);
+      font-weight: 400;
+      text-decoration: none !important;
+      cursor: pointer;
+      transition: background 0.2s var(--ease-apple), color 0.2s var(--ease-apple), transform 0.15s var(--ease-apple), border-color 0.2s var(--ease-apple);
+      white-space: nowrap;
+    }
+    .btn-pill:active {
+      transform: scale(0.96);
+    }
+    .btn-pill-sm {
+      font-size: 12px;
+      padding: 5px 14px;
+      background: var(--accent-pill);
+      color: #ffffff !important;
+    }
+    .btn-pill-sm:hover {
+      background: var(--accent-pill-hover);
+    }
+    .btn-pill-primary {
+      font-size: 17px;
+      padding: 11px 22px;
+      background: var(--accent-pill);
+      color: #ffffff !important;
+      letter-spacing: -0.022em;
+    }
+    .btn-pill-primary:hover {
+      background: var(--accent-pill-hover);
+    }
+    .btn-pill-secondary {
+      font-size: 17px;
+      padding: 10px 21px;
+      background: transparent;
+      color: var(--accent-blue) !important;
+      border: 1px solid var(--accent-blue);
+      letter-spacing: -0.022em;
+    }
+    .btn-pill-secondary:hover {
+      background: rgba(0, 102, 204, 0.06);
+    }
+    .btn-pill-dark-outline {
+      font-size: 15px;
+      padding: 9px 18px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff !important;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+    }
+    .btn-pill-dark-outline:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .btn-pill-light-outline {
+      font-size: 15px;
+      padding: 9px 18px;
+      background: #ffffff;
+      color: var(--ink-primary) !important;
+      border: 1px solid var(--hairline-light);
+    }
+    .btn-pill-light-outline:hover {
+      border-color: var(--ink-secondary);
+    }
+
+    /* Layout Containers */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+    .container-wide {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    /* Typography Scale (Apple HIG) */
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ink-secondary);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .eyebrow-dark {
+      color: var(--ink-on-dark-muted);
+    }
+    .display-hero {
+      font-size: clamp(38px, 5.2vw, 54px);
+      font-weight: 600;
+      line-height: 1.07143;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+    .display-section {
+      font-size: clamp(30px, 4vw, 42px);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      margin-bottom: 14px;
+    }
+    .lead-copy {
+      font-size: clamp(18px, 2vw, 20px);
+      font-weight: 400;
+      line-height: 1.42;
+      letter-spacing: -0.01em;
+      color: var(--ink-secondary);
+      max-width: 780px;
+    }
+    .lead-copy-dark {
+      color: var(--ink-on-dark-muted);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 76px 0 60px;
+      text-align: center;
+      background: var(--canvas-light);
+    }
+    .hero-section .lead-copy {
+      margin: 0 auto 28px;
+    }
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 52px;
+    }
+
+    /* Hero 4-Product Preview Strip (Clean Product Visuals Only - Zero Webpage Screenshots) */
+    .hero-showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      text-align: left;
+    }
+    .hero-tile {
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      padding: 30px 30px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s var(--ease-apple);
+      text-decoration: none !important;
+    }
+    .hero-tile:hover {
+      transform: translateY(-3px);
+    }
+    .hero-tile-dark {
+      background: var(--canvas-dark);
+      color: var(--ink-on-dark);
+    }
+    .hero-tile-light {
+      background: var(--canvas-pure);
+      color: var(--ink-primary);
+      box-shadow: var(--shadow-card);
+    }
+    .hero-tile h3 {
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1.14;
+      letter-spacing: -0.015em;
+      margin-bottom: 6px;
+    }
+    .hero-tile p {
+      font-size: 15px;
+      color: var(--ink-secondary);
+      margin-bottom: 20px;
+    }
+    .hero-tile-dark p {
+      color: var(--ink-on-dark-muted);
+    }
+    .hero-tile-img-wrap {
+      width: 100%;
+      border-radius: 12px 12px 0 0;
+      overflow: hidden;
+      line-height: 0;
+      box-shadow: var(--shadow-device);
+      background: #141416;
+    }
+    .hero-tile-img-wrap img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* Full-Bleed Product Sections */
+    .product-section {
+      padding: 92px 0;
+      border-top: 1px solid var(--hairline-subtle);
+    }
+    .product-section-dark {
+      background: var(--canvas-dark);
+      color: var(--ink-on-dark);
+      border-top: 1px solid var(--hairline-dark);
+    }
+    .product-section-pure {
+      background: var(--canvas-pure);
+      color: var(--ink-primary);
+    }
+    .product-section-light {
+      background: var(--canvas-light);
+      color: var(--ink-primary);
+    }
+
+    .product-header {
+      max-width: 820px;
+      margin-bottom: 42px;
+    }
+    .product-links-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    /* Clean Product Media Stage (Pure App & Studio Photography, No Webpage Chrome) */
+    .media-stage {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .media-card {
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      position: relative;
+      background: var(--surface-dark);
+      border: 1px solid var(--hairline-dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .media-card-light {
+      background: var(--canvas-light);
+      border: 1px solid var(--hairline-light);
+      box-shadow: var(--shadow-card);
+    }
+    .media-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 310px;
+      max-height: 440px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .media-stack {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 20px;
+    }
+    .media-stack .media-card img {
+      min-height: 185px;
+      max-height: 215px;
+    }
+    .media-caption {
+      padding: 11px 16px;
+      font-size: 12px;
+      color: var(--ink-secondary);
+      background: rgba(255, 255, 255, 0.92);
+      border-top: 1px solid var(--hairline-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .media-caption-dark {
+      background: #141416;
+      color: var(--ink-on-dark-muted);
+      border-top: 1px solid var(--hairline-dark);
+    }
+
+    /* Spec Strip */
+    .spec-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      padding-top: 28px;
+      border-top: 1px solid var(--hairline-light);
+    }
+    .spec-strip-dark {
+      border-top: 1px solid var(--hairline-dark);
+    }
+    .spec-item h4 {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      margin-bottom: 4px;
+    }
+    .spec-item p {
+      font-size: 13px;
+      color: var(--ink-secondary);
+      line-height: 1.42;
+    }
+    .spec-strip-dark .spec-item p {
+      color: var(--ink-on-dark-muted);
+    }
+
+    /* 3-Column Bento Grid */
+    .bento-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .app-card {
+      background: var(--canvas-light);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      border: 1px solid var(--hairline-subtle);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .app-card-visual {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      background: #1d1d1f;
+      position: relative;
+    }
+    .app-card-visual img.cover {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .app-card-body {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .app-header-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .app-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 11px;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      flex-shrink: 0;
+    }
+    .app-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.012em;
+    }
+    .app-card p {
+      font-size: 14px;
+      color: var(--ink-secondary);
+      margin-bottom: 18px;
+      line-height: 1.46;
+    }
+    .scene-thumbs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .scene-thumbs img {
+      width: 100%;
+      height: 52px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    /* Open-Source Table */
+    .oss-table-wrap {
+      background: var(--canvas-pure);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      overflow-x: auto;
+      border: 1px solid var(--hairline-subtle);
+    }
+    table.oss-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    }
+    table.oss-table th {
+      padding: 15px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      border-bottom: 1px solid var(--hairline-light);
+      background: #fafafa;
+    }
+    table.oss-table td {
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--hairline-subtle);
+      vertical-align: middle;
+    }
+    table.oss-table tr:last-child td {
+      border-bottom: none;
+    }
+    .mono-badge {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--canvas-light);
+      color: var(--ink-primary);
+      display: inline-block;
+    }
+
+    /* 12 Live Web Sandboxes Grid */
+    .sandbox-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .sandbox-card {
+      background: var(--canvas-pure);
+      border-radius: 14px;
+      padding: 20px;
+      border: 1px solid var(--hairline-subtle);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none !important;
+      color: var(--ink-primary);
+      transition: transform 0.2s var(--ease-apple), box-shadow 0.2s var(--ease-apple);
+    }
+    .sandbox-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 2px 8px 20px rgba(0, 0, 0, 0.09);
+    }
+    .sandbox-card h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--ink-primary);
+    }
+    .sandbox-card p {
+      font-size: 13px;
+      color: var(--ink-secondary);
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+    .sandbox-link-label {
+      font-size: 13px;
+      color: var(--accent-blue);
+      font-weight: 600;
+    }
+
+    /* Retainer Cards */
+    .retainer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .retainer-card {
+      background: var(--canvas-pure);
+      border-radius: var(--radius-card);
+      padding: 32px 26px;
+      border: 1px solid var(--hairline-light);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .retainer-card-featured {
+      background: var(--canvas-dark);
+      color: var(--ink-on-dark);
+      border-color: var(--canvas-dark);
+    }
+    .retainer-price {
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 12px 0 8px;
+    }
+    .retainer-list {
+      list-style: none;
+      margin: 18px 0 26px;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .retainer-list li {
+      padding: 6px 0;
+      border-bottom: 1px solid var(--hairline-subtle);
+    }
+    .retainer-card-featured .retainer-list li {
+      border-bottom-color: var(--hairline-dark);
+      color: var(--ink-on-dark-muted);
+    }
+
+    /* Footer */
+    footer.apple-footer {
+      background: var(--canvas-light);
+      border-top: 1px solid var(--hairline-light);
+      padding: 40px 0 56px;
+      font-size: 12px;
+      color: var(--ink-secondary);
+    }
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--hairline-light);
+      margin-top: 16px;
+    }
+
+    @media (max-width: 960px) {
+      .hero-showcase-grid,
+      .media-stage,
+      .bento-3col,
+      .retainer-grid {
+        grid-template-columns: 1fr;
+      }
+      .spec-strip,
+      .sandbox-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .global-links {
+        display: none;
+      }
+    }
+    @media (max-width: 560px) {
+      .spec-strip,
+      .sandbox-grid {
+        grid-template-columns: 1fr;
+      }
+      .local-nav-actions .nav-item {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Apple Global Navigation Bar -->
+  <header class="global-nav">
+    <div class="global-nav-inner">
+      <a href="/portfolio.html" class="brand-mark">Open5588 Studio</a>
+      <ul class="global-links">
+        <li><a href="#erp" data-i18n="nav_erp">ERP &amp; .NET</a></li>
+        <li><a href="#celercam">CelerCam</a></li>
+        <li><a href="#celercast">CelerCast</a></li>
+        <li><a href="#skywave">Skywave</a></li>
+        <li><a href="#osprey">Osprey</a></li>
+        <li><a href="#apps" data-i18n="nav_apps">Mobile &amp; Games</a></li>
+        <li><a href="#opensource" data-i18n="nav_oss">Open Source</a></li>
+        <li><a href="#sandboxes" data-i18n="nav_labs">Web Labs</a></li>
+        <li><a href="#retainer" data-i18n="nav_retainer">Retainer</a></li>
+      </ul>
+      <div class="lang-switcher" role="group" aria-label="Language Selector">
+        <button class="lang-btn active" onclick="setLang('en')" data-lang="en">EN</button>
+        <button class="lang-btn" onclick="setLang('de')" data-lang="de">DE</button>
+        <button class="lang-btn" onclick="setLang('ja')" data-lang="ja">JA</button>
+        <button class="lang-btn" onclick="setLang('fr')" data-lang="fr">FR</button>
+        <button class="lang-btn" onclick="setLang('es')" data-lang="es">ES</button>
+        <button class="lang-btn" onclick="setLang('pl')" data-lang="pl">PL</button>
+        <button class="lang-btn" onclick="setLang('zh-TW')" data-lang="zh-TW">繁中</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. Frosted Glass Sticky Local Sub-Nav -->
+  <nav class="local-nav">
+    <div class="local-nav-inner">
+      <a href="#top" class="local-nav-title">Jason (@open5588)</a>
+      <div class="local-nav-actions">
+        <a href="#erp" class="nav-item" data-i18n="nav_erp">ERP &amp; .NET</a>
+        <a href="https://github.com/open5588" target="_blank" rel="noopener" class="nav-item">GitHub @open5588</a>
+        <a href="/Jason_Wu_Resume_2026.pdf" target="_blank" rel="noopener" class="nav-item" data-i18n="nav_resume">Resume PDF</a>
+        <a href="mailto:open5588@gmail.com" class="btn-pill btn-pill-sm" data-i18n="nav_contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 3. Hero Section -->
+  <section id="top" class="hero-section">
+    <div class="container">
+      <span class="eyebrow" data-i18n="hero_eyebrow">Principal .NET (C#), Enterprise ERP / WMS &amp; Full-Stack Systems Architect</span>
+      <h1 class="display-hero" data-i18n="hero_title">Enterprise ERP &amp; .NET precision.<br>Real-time performance on every screen.</h1>
+      <p class="lead-copy" data-i18n="hero_subtitle">
+        10+ years architecting mission-critical Enterprise ERP, Multi-Tenant WMS SaaS (YMSaaS), and C# / .NET (.NET 8 / 9 / 10 LTS, T-SQL / SQL Server, WebForms modernization) alongside ultra-low-latency media pipelines and cross-platform native applications.
+      </p>
+      <div class="hero-cta-row">
+        <a href="#erp" class="btn-pill btn-pill-primary" data-i18n="hero_cta_explore">Explore ERP &amp; Shipped Systems</a>
+        <a href="/Jason_Wu_Resume_2026.pdf" target="_blank" rel="noopener" class="btn-pill btn-pill-secondary" data-i18n="hero_cta_resume">Download Engineering Resume</a>
+        <a href="mailto:open5588@gmail.com" class="btn-pill btn-pill-light-outline">open5588@gmail.com</a>
+      </div>
+    </div>
+
+    <!-- 4 Flagship Products Overview Grid (Pure Product Visuals, Zero Webpage Chrome Screenshots) -->
+    <div class="container-wide">
+      <div class="hero-showcase-grid">
+        <a href="#celercam" class="hero-tile hero-tile-dark">
+          <div>
+            <span class="eyebrow eyebrow-dark">macOS · Windows · iOS · Android · OBS Studio</span>
+            <h3>CelerCam</h3>
+            <p data-i18n="tile_celercam">Sub-18ms wireless camera &amp; native OBS Studio hardware video pipeline.</p>
+          </div>
+          <div class="hero-tile-img-wrap">
+            <img src="https://celercam.com/assets/hero-studio-v2.webp" alt="CelerCam Studio Hardware Setup" loading="eager" />
+          </div>
+        </a>
+
+        <a href="#celercast" class="hero-tile hero-tile-light">
+          <div>
+            <span class="eyebrow">macOS arm64 · Windows x64 · WebRTC Matrix</span>
+            <h3>CelerCast</h3>
+            <p data-i18n="tile_celercast">Multi-room 4K broadcast console &amp; synchronized campus AV distribution.</p>
+          </div>
+          <div class="hero-tile-img-wrap">
+            <img src="https://celercast.celercam.com/assets/celercast-hero.jpg" alt="CelerCast Multi-Room Broadcast" loading="eager" />
+          </div>
+        </a>
+
+        <a href="#skywave" class="hero-tile hero-tile-light">
+          <div>
+            <span class="eyebrow">macOS · iPadOS · iOS · Android · Web Viewer</span>
+            <h3>Skywave</h3>
+            <p data-i18n="tile_skywave">60fps zero-trust remote desktop &amp; low-latency multi-screen workspace.</p>
+          </div>
+          <div class="hero-tile-img-wrap" style="background:#eef1f6;">
+            <img src="https://skywavedesk.com/assets/fresh/skywave-ipad-home-light.webp" alt="Skywave Multi-Device Client" style="object-fit:contain; padding:12px;" loading="lazy" />
+          </div>
+        </a>
+
+        <a href="#osprey" class="hero-tile hero-tile-dark">
+          <div>
+            <span class="eyebrow eyebrow-dark">Android Gateway · HMAC Webhook Relay · Open Source</span>
+            <h3>Osprey SMS</h3>
+            <p data-i18n="tile_osprey">Self-hosted carrier SMS gateway with real-time telemetry &amp; automatic failover.</p>
+          </div>
+          <div class="hero-tile-img-wrap">
+            <img src="https://osprey-sms.pages.dev/assets/dashboard-preview.jpg" alt="Osprey SMS Gateway Dashboard" loading="lazy" />
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3.5 Primary Specialization: Enterprise ERP, WMS, YMSaaS & C# / .NET Architecture -->
+  <section id="erp" class="product-section product-section-pure">
+    <div class="container">
+      <div class="product-header">
+        <span class="eyebrow" data-i18n="erp_eyebrow">Primary Specialization · C# / .NET 8–10 · T-SQL · YMSaaS · Enterprise ERP &amp; WMS</span>
+        <h2 class="display-section" data-i18n="erp_title">Enterprise ERP, Multi-Tenant WMS SaaS &amp; .NET Architecture.</h2>
+        <p class="lead-copy" data-i18n="erp_desc">
+          10+ years leading end-to-end architecture for high-volume Enterprise Resource Planning (ERP), Warehouse Management Systems (WMS), Trucking/Container Logistics, and legacy ASP.NET WebForms-to-.NET 8/9/10 + React 19 modernizations across US and Asia distribution centers.
+        </p>
+        <div class="product-links-bar">
+          <span class="mono-badge" style="font-size:13px; padding:6px 12px;">C# 12 · .NET 8 / .NET 9 / .NET 10 LTS</span>
+          <span class="mono-badge" style="font-size:13px; padding:6px 12px;">MS SQL Server · T-SQL · EF Core / Dapper</span>
+          <span class="mono-badge" style="font-size:13px; padding:6px 12px;">YMSaaS (NestJS · Next.js · Prisma · MySQL)</span>
+          <span class="mono-badge" style="font-size:13px; padding:6px 12px;">React 19 · MUI X DataGrid · React Native PDA</span>
+        </div>
+      </div>
+
+      <div class="bento-3col" style="margin-bottom: 20px;">
+        <div class="app-card">
+          <div class="app-card-body">
+            <div>
+              <span class="eyebrow" data-i18n="erp_c1_eye">Multi-Tenant Cloud WMS &amp; ERP</span>
+              <h3 style="margin-bottom:8px;" data-i18n="erp_c1_title">YMSaaS &amp; WmsApp Suite</h3>
+              <p data-i18n="erp_card1">
+                Full-scale multi-tenant SaaS rewrite replacing legacy ASP.NET WebForms WMS (<code>YMSystem.sln</code>). Features dynamic per-tenant DB isolation (<code>TenantPrismaService</code>), 4-layer Inventory stock defense, PO &amp; automated Inspection state machines, 3-tier nested Logistics tracking (Master/Sub/Parcel), Outbound Picking/Packing, Quotation engine, and a React Native barcode PDA app (<code>WmsApp</code>).
+              </p>
+            </div>
+            <div><span class="mono-badge">NestJS · Next.js · Prisma · MySQL · React Native</span></div>
+          </div>
+        </div>
+
+        <div class="app-card">
+          <div class="app-card-body">
+            <div>
+              <span class="eyebrow" data-i18n="erp_c2_eye">.NET 8 Web API + React + T-SQL</span>
+              <h3 style="margin-bottom:8px;" data-i18n="erp_c2_title">ERP Sales Analysis &amp; Order Rebuild</h3>
+              <p data-i18n="erp_card2">
+                Re-architected core enterprise ERP <strong>Sales Analysis (SA)</strong>, <strong>Inventory</strong>, and <strong>Sales Order (SO)</strong> modules from legacy <code>.NET 4.8 WebForms</code> to <strong>.NET 8 Web API (C# 12) + React (Vite)</strong>. Engineered an <strong>Oracle Golden Verification Harness</strong> (<code>145/145</code> xUnit &amp; E2E tests green) proving 100% row-by-row, column-by-column financial parity.
+              </p>
+            </div>
+            <div><span class="mono-badge">C# 12 · .NET 8 · T-SQL · xUnit · React Vite</span></div>
+          </div>
+        </div>
+
+        <div class="app-card">
+          <div class="app-card-body">
+            <div>
+              <span class="eyebrow" data-i18n="erp_c3_eye">.NET 9 SSO &amp; .NET 10 Docker Swarm</span>
+              <h3 style="margin-bottom:8px;" data-i18n="erp_c3_title">Enterprise SSO &amp; Cloud .NET 10</h3>
+              <p data-i18n="erp_card3">
+                Built a centralized <strong>.NET 9 Single Sign-On (SSO) &amp; RBAC</strong> control plane with React 19 / MUI 9 (<code>29/29</code> integration tests) unifying identity across ERP/WMS portals, and migrated Windows IIS (<code>.NET 4.6.2</code>) order notification bots to <strong>.NET 10 LTS</strong> on multi-node <strong>AWS Linux Docker Swarm</strong> with Microsoft Graph API.
+              </p>
+            </div>
+            <div><span class="mono-badge">.NET 9 · .NET 10 LTS · Docker Swarm · MS Graph</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bento-3col">
+        <div class="app-card">
+          <div class="app-card-body">
+            <div>
+              <span class="eyebrow" data-i18n="erp_c4_eye">C# / .NET Warehouse Automation</span>
+              <h3 style="margin-bottom:8px;" data-i18n="erp_c4_title">WMSLocationImporter &amp; WMSQrBook</h3>
+              <p data-i18n="erp_card4">
+                One-click C#/.NET warehouse engineering tools: Excel-to-WMS SQL Server slotting (<code>Area/Bin/Slot</code>), New Distribution Center (DC) Creation Wizards, cross-warehouse layout cloning, and automated Rack/OpenArea QR Code Book generation (<code>.docx</code> &amp; <code>.pdf</code>).
+              </p>
+            </div>
+            <div><span class="mono-badge">C# · .NET · SQL Server · OpenXML / Word Interop</span></div>
+          </div>
+        </div>
+
+        <div class="app-card">
+          <div class="app-card-body">
+            <div>
+              <span class="eyebrow" data-i18n="erp_c5_eye">Logistics, Freight &amp; Transload ERP</span>
+              <h3 style="margin-bottom:8px;" data-i18n="erp_c5_title">Trucking2000 &amp; ContainerTracker</h3>
+              <p data-i18n="erp_card5">
+                End-to-end C# / .NET freight management, container lifecycle tracking APIs (<code>ContainerTrackerAPI</code>), Transload WMS UI (<code>React 19</code> + <code>MUI X DataGrid v8</code>), and automated Amazon Fulfillment performance analytics pipelines.
+              </p>
+            </div>
+            <div><span class="mono-badge">C# / .NET · React 19 · MUI X DataGrid v8 · REST API</span></div>
+          </div>
+        </div>
+
+        <div class="app-card">
+          <div class="app-card-body">
+            <div>
+              <span class="eyebrow" data-i18n="erp_c6_eye">Cross-Site Hardware &amp; ERP Ops</span>
+              <h3 style="margin-bottom:8px;" data-i18n="erp_c6_title">PunchHub &amp; AI ERP Workflows</h3>
+              <p data-i18n="erp_card6">
+                Replaced legacy Windows C# TCP socket utilities with a unified Dockerized receiver (<code>PunchHub</code>) managing Chiyu SEMAC RFID/biometric terminals across US and Asia warehouses, alongside automated LINE/email inquiry-to-quotation ERP pipelines.
+              </p>
+            </div>
+            <div><span class="mono-badge">C# Legacy Migration · FastAPI · Docker · ERP Ops</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec-strip" style="margin-top: 28px;">
+        <div class="spec-item">
+          <h4>10+ Years</h4>
+          <p data-i18n="erp_spec1">Production C# / .NET, T-SQL, Enterprise ERP &amp; multi-warehouse WMS architecture.</p>
+        </div>
+        <div class="spec-item">
+          <h4>145 / 145</h4>
+          <p data-i18n="erp_spec2">Automated golden-master parity tests in .NET 8 ERP WebForms modernization.</p>
+        </div>
+        <div class="spec-item">
+          <h4>Multi-Tenant</h4>
+          <p data-i18n="erp_spec3">Dynamic per-tenant database routing &amp; full WMS parity in YMSaaS.</p>
+        </div>
+        <div class="spec-item">
+          <h4>.NET 8 / 9 / 10</h4>
+          <p data-i18n="erp_spec4">Hands-on production deployments across .NET 8, .NET 9 SSO, and .NET 10 Linux Swarm.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Product 01: CelerCam (Dark Cinema Showcase — Clean Studio & App Photos Only) -->
+  <section id="celercam" class="product-section product-section-dark">
+    <div class="container">
+      <div class="product-header">
+        <span class="eyebrow eyebrow-dark">CelerCam · celercam.com</span>
+        <h2 class="display-section" data-i18n="cc_title">Turn any phone into a broadcast-grade wireless studio camera.</h2>
+        <p class="lead-copy lead-copy-dark" data-i18n="cc_desc">
+          Engineered from the ground up with custom UDP/RTP packet framing, hardware H.264/HEVC encoding, zero-configuration mDNS discovery, and a native C++/Rust OBS Studio plugin that bypasses virtual webcam bottlenecks.
+        </p>
+        <div class="product-links-bar">
+          <a href="https://celercam.com/en/" target="_blank" rel="noopener" class="btn-pill btn-pill-primary" data-i18n="cc_btn_site">Visit celercam.com</a>
+          <a href="https://play.google.com/store/apps/details?id=app.celercam" target="_blank" rel="noopener" class="btn-pill btn-pill-dark-outline">Google Play Store</a>
+          <a href="https://celercam.com/dl/CelerCam-0.1.8-windows.msi" class="btn-pill btn-pill-dark-outline">Windows Receiver (.msi)</a>
+          <a href="https://celercam.com/dl/CelerCam-0.1.8-macOS-OBS-Plugin-preview13.dmg" class="btn-pill btn-pill-dark-outline">macOS OBS Plugin (.dmg)</a>
+          <a href="https://celercam.com/dl/CelerCam-0.1.8-windows-obs-plugin.zip" class="btn-pill btn-pill-dark-outline">Windows OBS Plugin (.zip)</a>
+        </div>
+      </div>
+
+      <div class="media-stage">
+        <div class="media-card">
+          <img src="https://celercam.com/assets/hero-studio-v2.webp" alt="CelerCam Studio Hardware Setup" loading="lazy" />
+          <div class="media-caption media-caption-dark">
+            <span data-i18n="cc_cap1">CelerCam — Wireless Multi-Camera Studio Pipeline</span>
+            <a href="https://celercam.com/en/" target="_blank" rel="noopener" style="color: var(--accent-blue-dark);">celercam.com ↗</a>
+          </div>
+        </div>
+        <div class="media-stack">
+          <div class="media-card">
+            <img src="https://celercam.com/assets/scene-multicam-v1.webp" alt="CelerCam Multi-Angle Live Production" loading="lazy" />
+            <div class="media-caption media-caption-dark">
+              <span data-i18n="cc_cap2">Multi-Camera OBS Studio Direct Hardware Ingest</span>
+            </div>
+          </div>
+          <div class="media-card">
+            <img id="celercam-ui-img" src="https://celercam.com/assets/screens/en-US/02-streaming.webp" alt="CelerCam Mobile Hardware Encoder Telemetry" loading="lazy" />
+            <div class="media-caption media-caption-dark">
+              <span data-i18n="cc_cap3">iOS &amp; Android Real-Time Bitrate &amp; Encoder Telemetry</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec-strip spec-strip-dark">
+        <div class="spec-item">
+          <h4>&lt; 18 ms</h4>
+          <p data-i18n="cc_spec1">Glass-to-glass LAN transport latency with custom jitter buffer control.</p>
+        </div>
+        <div class="spec-item">
+          <h4>Native OBS</h4>
+          <p data-i18n="cc_spec2">Direct GPU texture upload via native macOS (.dmg) &amp; Windows (.msi) plugins.</p>
+        </div>
+        <div class="spec-item">
+          <h4>1080p60 / 4K</h4>
+          <p data-i18n="cc_spec3">Hardware-accelerated VideoToolbox &amp; MediaCodec H.264/HEVC pipelines.</p>
+        </div>
+        <div class="spec-item">
+          <h4>Zero-Config</h4>
+          <p data-i18n="cc_spec4">Instant mDNS discovery &amp; QR pairing across Wi-Fi and USB tethering.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Product 02: CelerCast (Pure White Gallery Showcase — Clean Product Visuals Only) -->
+  <section id="celercast" class="product-section product-section-pure">
+    <div class="container">
+      <div class="product-header">
+        <span class="eyebrow">CelerCast · celercast.celercam.com</span>
+        <h2 class="display-section" data-i18n="cast_title">Multi-room broadcast orchestration for campuses and studios.</h2>
+        <p class="lead-copy" data-i18n="cast_desc">
+          A desktop control plane built for schools, lecture halls, and enterprise studios to route live camera feeds, screen shares, and announcements simultaneously across dozens of receiving displays with synchronized audio-video clock recovery.
+        </p>
+        <div class="product-links-bar">
+          <a href="https://celercast.celercam.com" target="_blank" rel="noopener" class="btn-pill btn-pill-primary" data-i18n="cast_btn_site">Visit celercast.celercam.com</a>
+          <a href="https://celercast.celercam.com/guide.html" target="_blank" rel="noopener" class="btn-pill btn-pill-light-outline" data-i18n="cast_btn_guide">Architecture &amp; Deployment Guide</a>
+          <a href="https://celercast.celercam.com/downloads/CelerCast-macOS-arm64-0.4.4.dmg" class="btn-pill btn-pill-light-outline">macOS Apple Silicon (.dmg)</a>
+          <a href="https://pub-f7430b57f9e54382ab77e949b56b2db4.r2.dev/CelerCast-Windows-x86_64-0.4.4.msi" class="btn-pill btn-pill-light-outline">Windows x64 Installer (.msi)</a>
+        </div>
+      </div>
+
+      <div class="media-stage">
+        <div class="media-card media-card-light">
+          <img src="https://celercast.celercam.com/assets/campus-broadcast-story-v2.jpg" alt="CelerCast Multi-Room Campus Broadcast" loading="lazy" />
+          <div class="media-caption">
+            <span data-i18n="cast_cap1">CelerCast v0.4.4 — Synchronized Multi-Room AV Playout</span>
+            <a href="https://celercast.celercam.com" target="_blank" rel="noopener">celercast.celercam.com ↗</a>
+          </div>
+        </div>
+        <div class="media-stack">
+          <div class="media-card media-card-light">
+            <img src="https://celercast.celercam.com/assets/source-classroom-story-v3.jpg" alt="CelerCast Source Studio Control" loading="lazy" />
+            <div class="media-caption">
+              <span data-i18n="cast_cap2">Central Broadcast Studio &amp; Instructor Source Node</span>
+            </div>
+          </div>
+          <div class="media-card media-card-light">
+            <img src="https://celercast.celercam.com/assets/receiver-classroom-story-v3.jpg" alt="CelerCast Classroom Receiver Display" loading="lazy" />
+            <div class="media-caption">
+              <span data-i18n="cast_cap3">Zero-Touch Classroom Receiver Terminals</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec-strip">
+        <div class="spec-item">
+          <h4>1-to-N Matrix</h4>
+          <p data-i18n="cast_spec1">Simultaneous multi-room AV distribution with group zone routing.</p>
+        </div>
+        <div class="spec-item">
+          <h4>macOS &amp; Win</h4>
+          <p data-i18n="cast_spec2">Signed native installers (v0.4.4) for Apple Silicon macOS and Windows x64.</p>
+        </div>
+        <div class="spec-item">
+          <h4>Clock Sync</h4>
+          <p data-i18n="cast_spec3">Sub-frame lip-sync and drift correction across distributed display nodes.</p>
+        </div>
+        <div class="spec-item">
+          <h4>Resilient LAN</h4>
+          <p data-i18n="cast_spec4">Automatic stream reconnection and health telemetry per classroom terminal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Product 03: Skywave (Parchment Gallery Showcase — Clean Device App Views Only) -->
+  <section id="skywave" class="product-section product-section-light">
+    <div class="container">
+      <div class="product-header">
+        <span class="eyebrow">Skywave · skywavedesk.com</span>
+        <h2 class="display-section" data-i18n="sw_title">High-frame-rate remote workstation access from any screen.</h2>
+        <p class="lead-copy" data-i18n="sw_desc">
+          Skywave pairs a lightweight native host daemon on macOS with responsive client viewers across Web, iOS, iPadOS, and Android—delivering 60fps desktop streaming, precise touch-to-cursor mapping, and end-to-end encrypted transport.
+        </p>
+        <div class="product-links-bar">
+          <a href="https://skywavedesk.com" target="_blank" rel="noopener" class="btn-pill btn-pill-primary" data-i18n="sw_btn_site">Visit skywavedesk.com</a>
+          <a href="https://skywavedesk.com/dl/Skywave.dmg" class="btn-pill btn-pill-light-outline">macOS Host (.dmg)</a>
+          <a href="https://skywavedesk.com/dl/skywave-android.apk" class="btn-pill btn-pill-light-outline">Android Client (.apk)</a>
+        </div>
+      </div>
+
+      <div class="media-stage">
+        <div class="media-card media-card-light" style="background:#eef1f6;">
+          <img src="https://skywavedesk.com/assets/fresh/skywave-web-viewer-light.webp" alt="Skywave Web & Desktop Viewer" style="object-fit:contain; padding:14px;" loading="lazy" />
+          <div class="media-caption">
+            <span data-i18n="sw_cap1">Skywave — Low-Latency Remote Workstation Session</span>
+            <a href="https://skywavedesk.com" target="_blank" rel="noopener">skywavedesk.com ↗</a>
+          </div>
+        </div>
+        <div class="media-stack">
+          <div class="media-card media-card-light" style="background:#eef1f6;">
+            <img src="https://skywavedesk.com/assets/fresh/skywave-ipad-home-light.webp" alt="Skywave iPadOS Client" style="object-fit:contain; padding:10px;" loading="lazy" />
+            <div class="media-caption">
+              <span data-i18n="sw_cap2">iPadOS Multi-Host Workspace Manager</span>
+            </div>
+          </div>
+          <div class="media-card media-card-light" style="background:#eef1f6;">
+            <img src="https://skywavedesk.com/assets/fresh/skywave-ios-home-light.webp" alt="Skywave iOS & Android Clients" style="object-fit:contain; padding:10px;" loading="lazy" />
+            <div class="media-caption">
+              <span data-i18n="sw_cap3">iOS &amp; Android Mobile Remote Client</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec-strip">
+        <div class="spec-item">
+          <h4>60 FPS</h4>
+          <p data-i18n="sw_spec1">Hardware-accelerated screen capture and adaptive bitrate streaming.</p>
+        </div>
+        <div class="spec-item">
+          <h4>Cross-Device</h4>
+          <p data-i18n="sw_spec2">Unified clients for macOS, Web Browser, iPad, iPhone, and Android.</p>
+        </div>
+        <div class="spec-item">
+          <h4>Zero-Trust</h4>
+          <p data-i18n="sw_spec3">Authenticated session handshakes with ephemeral end-to-end encryption.</p>
+        </div>
+        <div class="spec-item">
+          <h4>Multi-Display</h4>
+          <p data-i18n="sw_spec4">Instant monitor switching and precision keyboard/trackpad passthrough.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Product 04: Osprey SMS (Dark Cinema Showcase — Clean Dashboard & Architecture Diagrams Only) -->
+  <section id="osprey" class="product-section product-section-dark">
+    <div class="container">
+      <div class="product-header">
+        <span class="eyebrow eyebrow-dark">Osprey SMS · osprey-sms.pages.dev · github.com/open5588/Osprey</span>
+        <h2 class="display-section" data-i18n="osp_title">Self-hosted Android SMS gateway &amp; webhook infrastructure.</h2>
+        <p class="lead-copy lead-copy-dark" data-i18n="osp_desc">
+          Built for teams requiring deterministic carrier SMS delivery and inbound OTP/webhook routing without per-message cloud markups. Includes an Android background service, HMAC-SHA256 webhook signing, and real-time queue observability.
+        </p>
+        <div class="product-links-bar">
+          <a href="https://osprey-sms.pages.dev" target="_blank" rel="noopener" class="btn-pill btn-pill-primary" data-i18n="osp_btn_site">Visit osprey-sms.pages.dev</a>
+          <a href="https://github.com/open5588/Osprey" target="_blank" rel="noopener" class="btn-pill btn-pill-dark-outline">GitHub Repository</a>
+          <a href="https://github.com/open5588/Osprey/releases" target="_blank" rel="noopener" class="btn-pill btn-pill-dark-outline">GitHub Releases</a>
+          <a href="https://osprey-sms.pages.dev/dl/Osprey-1.0.0-android-trial.apk" class="btn-pill btn-pill-dark-outline">Android APK (v1.0.0)</a>
+        </div>
+      </div>
+
+      <div class="media-stage">
+        <div class="media-card">
+          <img src="https://osprey-sms.pages.dev/assets/dashboard-preview.jpg" alt="Osprey SMS Dashboard Preview" loading="lazy" />
+          <div class="media-caption media-caption-dark">
+            <span data-i18n="osp_cap1">Osprey Real-Time Dispatch &amp; Device Telemetry Console</span>
+            <a href="https://github.com/open5588/Osprey" target="_blank" rel="noopener" style="color: var(--accent-blue-dark);">github.com/open5588/Osprey ↗</a>
+          </div>
+        </div>
+        <div class="media-stack">
+          <div class="media-card">
+            <img src="https://osprey-sms.pages.dev/assets/architecture.jpg" alt="Osprey SMS System Architecture" loading="lazy" />
+            <div class="media-caption media-caption-dark">
+              <span data-i18n="osp_cap2">End-to-End Webhook &amp; Carrier Dispatch Architecture</span>
+            </div>
+          </div>
+          <div class="media-card">
+            <img src="https://osprey-sms.pages.dev/assets/hero-art.jpg" alt="Osprey Carrier Relay Network" loading="lazy" />
+            <div class="media-caption media-caption-dark">
+              <span data-i18n="osp_cap3">High-Throughput Dual-SIM Failover Engine</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec-strip spec-strip-dark">
+        <div class="spec-item">
+          <h4>Dual-SIM</h4>
+          <p data-i18n="osp_spec1">Intelligent carrier slot selection, rate-limiting, and automatic failover.</p>
+        </div>
+        <div class="spec-item">
+          <h4>HMAC-SHA256</h4>
+          <p data-i18n="osp_spec2">Cryptographically signed inbound/outbound webhooks with exponential retry.</p>
+        </div>
+        <div class="spec-item">
+          <h4>Open Source</h4>
+          <p data-i18n="osp_spec3">Publicly auditable codebase and binary releases on GitHub (open5588/Osprey).</p>
+        </div>
+        <div class="spec-item">
+          <h4>Zero Markup</h4>
+          <p data-i18n="osp_spec4">Direct local SIM dispatch eliminating third-party cloud aggregator fees.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Mobile Apps & Interactive Worlds (urhand.net) -->
+  <section id="apps" class="product-section product-section-pure">
+    <div class="container">
+      <div class="product-header">
+        <span class="eyebrow" data-i18n="apps_eyebrow">Consumer Apps &amp; Interactive Products</span>
+        <h2 class="display-section" data-i18n="apps_title">Shipped on the App Store &amp; Web.</h2>
+        <p class="lead-copy" data-i18n="apps_desc">
+          Beyond enterprise ERP/WMS and media infrastructure, we design, illustrate, and engineer complete consumer experiences—from iOS strategy games to family cognitive health platforms.
+        </p>
+      </div>
+
+      <div class="bento-3col">
+        <!-- Spirit Island Defense -->
+        <div class="app-card">
+          <div>
+            <div class="app-card-visual">
+              <img class="cover" src="https://spiritisland.urhand.net/key-art.png" alt="Spirit Island Defense Key Art" loading="lazy" />
+            </div>
+            <div class="app-card-body">
+              <div>
+                <div class="app-header-row">
+                  <img class="app-icon" src="https://spiritisland.urhand.net/app-icon.png" alt="Spirit Island App Icon" loading="lazy" />
+                  <div>
+                    <h3>Spirit Island Defense</h3>
+                    <span style="font-size: 12px; color: var(--ink-secondary);">iOS App Store · Strategy Tower Defense</span>
+                  </div>
+                </div>
+                <p data-i18n="app_spirit_desc">
+                  Tactical elemental tower-defense game featuring custom shader effects, dynamic wave AI, and native 60fps iOS rendering. Live on the Apple App Store.
+                </p>
+              </div>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="https://apps.apple.com/tw/app/%E9%9D%88%E5%B3%B6%E5%AE%88%E6%9C%9B/id6800583840" target="_blank" rel="noopener" class="btn-pill btn-pill-sm">App Store ↗</a>
+                <a href="https://spiritisland.urhand.net" target="_blank" rel="noopener" class="btn-pill btn-pill-light-outline" style="font-size: 12px; padding: 5px 12px;">spiritisland.urhand.net ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cat Move -->
+        <div class="app-card">
+          <div>
+            <div class="app-card-visual">
+              <img class="cover" src="https://catmove.urhand.net/game/key-art.webp" alt="Cat Move Key Art" loading="lazy" />
+            </div>
+            <div class="app-card-body">
+              <div>
+                <div class="app-header-row">
+                  <img class="app-icon" src="https://catmove.urhand.net/game/app-icon.png" alt="Cat Move Icon" loading="lazy" />
+                  <div>
+                    <h3>Cat Move</h3>
+                    <span style="font-size: 12px; color: var(--ink-secondary);">Interactive Narrative Puzzle · 8 Chapters</span>
+                  </div>
+                </div>
+                <p data-i18n="app_cat_desc">
+                  Cozy spatial-packing and narrative puzzle game across 8 handcrafted architectural chapters (Warehouse, Studio, Bookshop, Glasshouse, Observatory).
+                </p>
+                <div class="scene-thumbs">
+                  <img src="https://catmove.urhand.net/game/scenes/chapter-1-warehouse.jpg" alt="Chapter 1" loading="lazy" />
+                  <img src="https://catmove.urhand.net/game/scenes/chapter-2-studio.jpg" alt="Chapter 2" loading="lazy" />
+                  <img src="https://catmove.urhand.net/game/scenes/chapter-4-cafe.jpg" alt="Chapter 4" loading="lazy" />
+                </div>
+              </div>
+              <div>
+                <a href="https://catmove.urhand.net" target="_blank" rel="noopener" class="btn-pill btn-pill-sm">catmove.urhand.net ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BrainBridge -->
+        <div class="app-card">
+          <div>
+            <div class="app-card-visual">
+              <img class="cover" src="https://brainbridge.urhand.net/brainbridge-family-journey.png" alt="BrainBridge Family Journey" loading="lazy" />
+            </div>
+            <div class="app-card-body">
+              <div>
+                <div class="app-header-row">
+                  <img class="app-icon" src="https://brainbridge.urhand.net/favicon.svg" alt="BrainBridge Icon" style="background:#f5f5f7; padding:6px;" loading="lazy" />
+                  <div>
+                    <h3>BrainBridge</h3>
+                    <span style="font-size: 12px; color: var(--ink-secondary);">Digital Health · Cognitive Care Platform</span>
+                  </div>
+                </div>
+                <p data-i18n="app_brain_desc">
+                  Collaborative cognitive wellness and memory-care platform connecting seniors, family members, and care teams through daily interactive exercises.
+                </p>
+              </div>
+              <div>
+                <a href="https://brainbridge.urhand.net" target="_blank" rel="noopener" class="btn-pill btn-pill-sm">brainbridge.urhand.net ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Open-Source Upstream Contributions -->
+  <section id="opensource" class="product-section product-section-light">
+    <div class="container">
+      <div class="product-header">
+        <span class="eyebrow" data-i18n="oss_eyebrow">Verified Open-Source Engineering (@open5588)</span>
+        <h2 class="display-section" data-i18n="oss_title">Production pull requests across global open-source systems.</h2>
+        <p class="lead-copy" data-i18n="oss_desc">
+          Selected upstream engineering contributions across Rust video stabilization, distributed policy engines, enterprise RAG pipelines, and React Native architecture.
+        </p>
+      </div>
+
+      <div class="oss-table-wrap">
+        <table class="oss-table">
+          <thead>
+            <tr>
+              <th data-i18n="th_repo">Repository</th>
+              <th data-i18n="th_stack">Stack</th>
+              <th data-i18n="th_work">Engineering Contribution</th>
+              <th data-i18n="th_link">Pull Request / Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>permitio/opal</strong></td>
+              <td><span class="mono-badge">Python · FastAPI · AsyncIO</span></td>
+              <td data-i18n="oss_r1">Fixed distributed policy-sync deadlocks, pub/sub reconnection resilience, and async lock contention.</td>
+              <td><a href="https://github.com/permitio/opal/pull/970" target="_blank" rel="noopener">#970 ↗</a></td>
+            </tr>
+            <tr>
+              <td><strong>onyx-dot-app/onyx</strong></td>
+              <td><span class="mono-badge">Python · Next.js · RAG</span></td>
+              <td data-i18n="oss_r2">Enterprise Jira Service Management (JSM) connector &amp; streaming citation state handling.</td>
+              <td><a href="https://github.com/onyx-dot-app/onyx/pull/16064" target="_blank" rel="noopener">#16064 ↗</a></td>
+            </tr>
+            <tr>
+              <td><strong>gyroflow/gyroflow</strong></td>
+              <td><span class="mono-badge">Rust · wgpu · OpenCL · Qt</span></td>
+              <td data-i18n="oss_r3">Camera/mount/lens registry &amp; LensFun XML parser for GPU motion stabilization pipeline.</td>
+              <td><a href="https://github.com/gyroflow/gyroflow/pull/1258" target="_blank" rel="noopener">#1258 ↗</a></td>
+            </tr>
+            <tr>
+              <td><strong>getdozer/dozer</strong></td>
+              <td><span class="mono-badge">Rust · gRPC · Arrow · SQL</span></td>
+              <td data-i18n="oss_r4">Real-time CDC streaming ingestion engine patches, schema evolution, and memory-safe buffer pooling.</td>
+              <td><a href="https://github.com/getdozer/dozer/pull/2531" target="_blank" rel="noopener">#2531–#2533 ↗</a></td>
+            </tr>
+            <tr>
+              <td><strong>tenstorrent/tt-metal</strong></td>
+              <td><span class="mono-badge">C++20 · AI Accelerator Runtime</span></td>
+              <td data-i18n="oss_r5">Low-level kernel dispatch validation and deterministic tensor buffer allocation fixes.</td>
+              <td><a href="https://github.com/tenstorrent/tt-metal/pull/60721" target="_blank" rel="noopener">#60721 ↗</a></td>
+            </tr>
+            <tr>
+              <td><strong>Spectral-Finance/lux</strong></td>
+              <td><span class="mono-badge">Elixir · TypeScript · Web3</span></td>
+              <td data-i18n="oss_r6">EIP-1559/EIP-4361 (SIWE) deterministic wallet signing &amp; multi-agent workflow validation.</td>
+              <td><a href="https://github.com/Spectral-Finance/lux/pull/990" target="_blank" rel="noopener">#990–#995 ↗</a></td>
+            </tr>
+            <tr>
+              <td><strong>zio/zio</strong></td>
+              <td><span class="mono-badge">Scala · Functional Concurrency</span></td>
+              <td data-i18n="oss_r7">Fiber runtime interruption safety and concurrent stream resource finalization fix.</td>
+              <td><a href="https://github.com/zio/zio/pull/11285" target="_blank" rel="noopener">#11285 ↗</a></td>
+            </tr>
+            <tr>
+              <td><strong>Expensify/App</strong></td>
+              <td><span class="mono-badge">TypeScript · React Native · Onyx</span></td>
+              <td data-i18n="oss_r8">23 root-cause architectural proposals covering offline Onyx state reconciliation and virtualized lists.</td>
+              <td><a href="https://github.com/Expensify/App/issues/102072" target="_blank" rel="noopener">#102072 &amp; 22 more ↗</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. 12 Interactive Web Engineering Sandboxes -->
+  <section id="sandboxes" class="product-section product-section-pure">
+    <div class="container">
+      <div class="product-header">
+        <span class="eyebrow" data-i18n="labs_eyebrow">Interactive Browser Micro-Apps</span>
+        <h2 class="display-section" data-i18n="labs_title">12 zero-dependency web sandboxes.</h2>
+        <p class="lead-copy" data-i18n="labs_desc">
+          Click any sandbox below to launch a live, self-contained browser application built with WebAudio, WebGL/GLSL, Canvas 2D physics, and deterministic state machines.
+        </p>
+      </div>
+
+      <div class="sandbox-grid">
+        <a href="/neon-synth/index.html" target="_blank" class="sandbox-card">
+          <div>
+            <h4>Polyphonic WebAudio Synth</h4>
+            <p>Real-time FM/subtractive DSP synthesizer with FFT oscilloscope and step sequencer.</p>
+          </div>
+          <span class="sandbox-link-label">Launch App ↗</span>
+        </a>
+        <a href="/circuit-lab/index.html" target="_blank" class="sandbox-card">
+          <div>
+            <h4>Logic Circuit Simulator</h4>
+            <p>Interactive digital logic gate router with clock generators and truth-table solver.</p>
+          </div>
+          <span class="sandbox-link-label">Launch App ↗</span>
+        </a>
+        <a href="/shader-studio/index.html" target="_blank" class="sandbox-card">
+          <div>
+            <h4>WebGL GLSL Shader Studio</h4>
+            <p>Live fragment shader IDE with real-time uniform controls and frame-time profiler.</p>
+          </div>
+          <span class="sandbox-link-label">Launch App ↗</span>
+        </a>
+        <a href="/orbital-sim/index.html" target="_blank" class="sandbox-card">
+          <div>
+            <h4>N-Body Orbital Mechanics</h4>
+            <p>Runge-Kutta gravitational integrator with trajectory prediction and Lagrange points.</p>
+          </div>
+          <span class="sandbox-link-label">Launch App ↗</span>
+        </a>
+        <a href="/packet-tracer/index.html" target="_blank" class="sandbox-card">
+          <div>
+            <h4>Network Packet Tracer</h4>
+            <p>Visual TCP/UDP/QUIC congestion control, BGP routing, and packet-loss simulator.</p>
+          </div>
+          <span class="sandbox-link-label">Launch App ↗</span>
+        </a>
+        <a href="/sql-playground/index.html" target="_blank" class="sandbox-card">
+          <div>
+            <h4>In-Browser SQL Query Planner</h4>
+            <p>Relational algebra parser, B-Tree index visualizer, and join execution explainer.</p>
+          </div>
+          <span class="sandbox-link-label">Launch App ↗</span>
+        </a>
+        <a href="/markdown-erd/index.html" target="_blank" class="sandbox-card">
+          <div>
+            <h4>Schema-to-ERD Architect</h4>
+            <p>Instant DDL/Markdown to interactive entity-relationship diagram generator.</p>
+          </div>
+          <span class="sandbox-link-label">Launch App ↗</span>
+        </a>
+        <a href="/algo-arena/index.html" target="_blank" class="sandbox-card">
+          <div>
+            <h4>Graph &amp; Pathfinding Arena</h4>
+            <p>Side-by-side A*, Dijkstra, bidirectional BFS, and minimum spanning tree benchmarks.</p>
+          </div>
+          <span class="sandbox-link-label">Launch App ↗</span>
+        </a>
+        <a href="/voxel-craft/index.html" target="_blank" class="sandbox-card">
+          <div>
+            <h4>Isometric Voxel Engine</h4>
+            <p>3D voxel builder with ambient occlusion shading and greedy mesh export.</p>
+          </div>
+          <span class="sandbox-link-label">Launch App ↗</span>
+        </a>
+        <a href="/kanban-pro/index.html" target="_blank" class="sandbox-card">
+          <div>
+            <h4>Offline-First Sprint Board</h4>
+            <p>CRDT-inspired Kanban workspace with keyboard command palette and velocity charts.</p>
+          </div>
+          <span class="sandbox-link-label">Launch App ↗</span>
+        </a>
+        <a href="/color-harmonizer/index.html" target="_blank" class="sandbox-card">
+          <div>
+            <h4>OKLCH Design Token Lab</h4>
+            <p>Perceptually uniform color scale generator with WCAG 2.1 AA/AAA contrast auditing.</p>
+          </div>
+          <span class="sandbox-link-label">Launch App ↗</span>
+        </a>
+        <a href="/focus-pomodoro/index.html" target="_blank" class="sandbox-card">
+          <div>
+            <h4>Acoustic Focus Workstation</h4>
+            <p>Procedural brown/pink noise generator paired with deep-work session analytics.</p>
+          </div>
+          <span class="sandbox-link-label">Launch App ↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. Retainer & Direct Engineering Engagement -->
+  <section id="retainer" class="product-section product-section-light">
+    <div class="container">
+      <div class="product-header">
+        <span class="eyebrow" data-i18n="ret_eyebrow">Global Remote Engagement · US / EU / UK / JP / APAC</span>
+        <h2 class="display-section" data-i18n="ret_title">Work directly with Jason (@open5588).</h2>
+        <p class="lead-copy" data-i18n="ret_desc">
+          Available for Senior/Staff .NET (C#), Enterprise ERP/WMS, Full-Stack, Media Pipeline, and AI Engineering roles, as well as fixed-scope architecture sprints and monthly retainers.
+        </p>
+      </div>
+
+      <div class="retainer-grid">
+        <div class="retainer-card">
+          <div>
+            <span class="eyebrow" data-i18n="ret_c1_eye">Architecture &amp; ERP/MVP Sprint</span>
+            <h3 data-i18n="ret_c1_title">Fixed-Scope Delivery</h3>
+            <div class="retainer-price">$3,500<span style="font-size:15px; font-weight:400; color:var(--ink-secondary);"> / sprint</span></div>
+            <p style="font-size:14px; color:var(--ink-secondary);" data-i18n="ret_c1_desc">Rapid 2-week production implementation for ERP/WMS modules, .NET migrations, or high-priority bottlenecks.</p>
+            <ul class="retainer-list">
+              <li data-i18n="ret_c1_b1">End-to-end ERP/WMS module or media pipeline</li>
+              <li data-i18n="ret_c1_b2">C# / .NET 8–10 / T-SQL / TypeScript / Rust / Python</li>
+              <li data-i18n="ret_c1_b3">Automated xUnit/E2E test suite &amp; CI/CD deployment</li>
+              <li data-i18n="ret_c1_b4">Complete source-code &amp; IP handover</li>
+            </ul>
+          </div>
+          <a href="mailto:open5588@gmail.com?subject=Fixed-Scope%20Engineering%20Sprint%20Inquiry" class="btn-pill btn-pill-light-outline" style="width:100%;" data-i18n="ret_c1_cta">Book Sprint via Email</a>
+        </div>
+
+        <div class="retainer-card retainer-card-featured">
+          <div>
+            <span class="eyebrow eyebrow-dark" data-i18n="ret_c2_eye">Most Popular · Ongoing Engineering</span>
+            <h3 data-i18n="ret_c2_title">Monthly Fractional Principal</h3>
+            <div class="retainer-price">$6,500<span style="font-size:15px; font-weight:400; color:var(--ink-on-dark-muted);"> / month</span></div>
+            <p style="font-size:14px; color:var(--ink-on-dark-muted);" data-i18n="ret_c2_desc">Dedicated weekly engineering velocity, .NET / ERP / SaaS architecture ownership, and production PR shipping.</p>
+            <ul class="retainer-list">
+              <li data-i18n="ret_c2_b1">Direct production commits &amp; architecture leadership</li>
+              <li data-i18n="ret_c2_b2">Enterprise ERP/WMS (YMSaaS), .NET 8–10, React &amp; AI</li>
+              <li data-i18n="ret_c2_b3">Async overlap with US, EU, UK, JP &amp; APAC teams</li>
+              <li data-i18n="ret_c2_b4">Cancel or pause anytime with zero lock-in</li>
+            </ul>
+          </div>
+          <a href="mailto:open5588@gmail.com?subject=Monthly%20Retainer%20/%20Full-Time%20Role%20Inquiry" class="btn-pill btn-pill-primary" style="width:100%;" data-i18n="ret_c2_cta">Start Conversation</a>
+        </div>
+
+        <div class="retainer-card">
+          <div>
+            <span class="eyebrow" data-i18n="ret_c3_eye">Full-Time / B2B Contract Role</span>
+            <h3 data-i18n="ret_c3_title">Dedicated Staff Engineer</h3>
+            <div class="retainer-price">Custom<span style="font-size:15px; font-weight:400; color:var(--ink-secondary);"> / B2B or FTE</span></div>
+            <p style="font-size:14px; color:var(--ink-secondary);" data-i18n="ret_c3_desc">Full-time remote integration with your core .NET, ERP/WMS, or Full-Stack engineering organization.</p>
+            <ul class="retainer-list">
+              <li data-i18n="ret_c3_b1">10+ years shipping C# / .NET, SQL Server &amp; ERP/WMS</li>
+              <li data-i18n="ret_c3_b2">Full-stack TypeScript/React/Next.js + Rust/Python</li>
+              <li data-i18n="ret_c3_b3">Proven solo-to-scale product &amp; migration execution</li>
+              <li data-i18n="ret_c3_b4">Immediate availability for technical interviews</li>
+            </ul>
+          </div>
+          <a href="/Jason_Wu_Resume_2026.pdf" target="_blank" rel="noopener" class="btn-pill btn-pill-light-outline" style="width:100%;" data-i18n="ret_c3_cta">View Resume PDF</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. Apple Minimalist Footer -->
+  <footer class="apple-footer">
+    <div class="container">
+      <p data-i18n="footer_note">
+        All showcased enterprise architectures (YMSaaS, .NET 8/9/10 ERP Suite) and shipped products (<a href="https://celercam.com/en/" target="_blank" rel="noopener">CelerCam</a>,
+        <a href="https://celercast.celercam.com" target="_blank" rel="noopener">CelerCast</a>,
+        <a href="https://skywavedesk.com" target="_blank" rel="noopener">Skywave</a>,
+        <a href="https://osprey-sms.pages.dev" target="_blank" rel="noopener">Osprey</a>,
+        <a href="https://spiritisland.urhand.net" target="_blank" rel="noopener">Spirit Island Defense</a>,
+        <a href="https://catmove.urhand.net" target="_blank" rel="noopener">Cat Move</a>,
+        <a href="https://brainbridge.urhand.net" target="_blank" rel="noopener">BrainBridge</a>) are architected and shipped by Open5588 Studio.
+      </p>
+      <div class="footer-row">
+        <span>Copyright © 2026 Open5588 Studio (Jason · @open5588). All rights reserved.</span>
+        <div style="display:flex; gap:20px;">
+          <a href="mailto:open5588@gmail.com">open5588@gmail.com</a>
+          <a href="https://github.com/open5588" target="_blank" rel="noopener">GitHub</a>
+          <a href="/retainer.html">Retainer Plans</a>
+          <a href="/Jason_Wu_Resume_2026.pdf" target="_blank" rel="noopener">Resume PDF</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Comprehensive 7-Language Translation Engine (EN, DE, JA, FR, ES, PL, 繁中) -->
+  <script>
+    const I18N = {
+      "en": {
+        nav_erp: "ERP & .NET",
+        nav_apps: "Mobile & Games",
+        nav_oss: "Open Source",
+        nav_labs: "Web Labs",
+        nav_retainer: "Retainer",
+        nav_resume: "Resume PDF",
+        nav_contact: "Contact",
+        hero_eyebrow: "Principal .NET (C#), Enterprise ERP / WMS & Full-Stack Systems Architect",
+        hero_title: "Enterprise ERP & .NET precision.<br>Real-time performance on every screen.",
+        hero_subtitle: "10+ years architecting mission-critical Enterprise ERP, Multi-Tenant WMS SaaS (YMSaaS), and C# / .NET (.NET 8 / 9 / 10 LTS, T-SQL / SQL Server, WebForms modernization) alongside ultra-low-latency media pipelines and cross-platform native applications.",
+        hero_cta_explore: "Explore ERP & Shipped Systems",
+        hero_cta_resume: "Download Engineering Resume",
+        tile_celercam: "Sub-18ms wireless camera & native OBS Studio hardware video pipeline.",
+        tile_celercast: "Multi-room 4K broadcast console & synchronized campus AV distribution.",
+        tile_skywave: "60fps zero-trust remote desktop & low-latency multi-screen workspace.",
+        tile_osprey: "Self-hosted carrier SMS gateway with real-time telemetry & automatic failover.",
+        erp_eyebrow: "Primary Specialization · C# / .NET 8–10 · T-SQL · YMSaaS · Enterprise ERP & WMS",
+        erp_title: "Enterprise ERP, Multi-Tenant WMS SaaS & .NET Architecture.",
+        erp_desc: "10+ years leading end-to-end architecture for high-volume Enterprise Resource Planning (ERP), Warehouse Management Systems (WMS), Trucking/Container Logistics, and legacy ASP.NET WebForms-to-.NET 8/9/10 + React 19 modernizations across US and Asia distribution centers.",
+        erp_c1_eye: "Multi-Tenant Cloud WMS & ERP",
+        erp_c1_title: "YMSaaS & WmsApp Suite",
+        erp_card1: "Full-scale multi-tenant SaaS rewrite replacing legacy ASP.NET WebForms WMS (<code>YMSystem.sln</code>). Features dynamic per-tenant DB isolation (<code>TenantPrismaService</code>), 4-layer Inventory stock defense, PO & automated Inspection state machines, 3-tier nested Logistics tracking (Master/Sub/Parcel), Outbound Picking/Packing, Quotation engine, and a React Native barcode PDA app (<code>WmsApp</code>).",
+        erp_c2_eye: ".NET 8 Web API + React + T-SQL",
+        erp_c2_title: "ERP Sales Analysis & Order Rebuild",
+        erp_card2: "Re-architected core enterprise ERP <strong>Sales Analysis (SA)</strong>, <strong>Inventory</strong>, and <strong>Sales Order (SO)</strong> modules from legacy <code>.NET 4.8 WebForms</code> to <strong>.NET 8 Web API (C# 12) + React (Vite)</strong>. Engineered an <strong>Oracle Golden Verification Harness</strong> (<code>145/145</code> xUnit & E2E tests green) proving 100% row-by-row, column-by-column financial parity.",
+        erp_c3_eye: ".NET 9 SSO & .NET 10 Docker Swarm",
+        erp_c3_title: "Enterprise SSO & Cloud .NET 10",
+        erp_card3: "Built a centralized <strong>.NET 9 Single Sign-On (SSO) & RBAC</strong> control plane with React 19 / MUI 9 (<code>29/29</code> integration tests) unifying identity across ERP/WMS portals, and migrated Windows IIS (<code>.NET 4.6.2</code>) order notification bots to <strong>.NET 10 LTS</strong> on multi-node <strong>AWS Linux Docker Swarm</strong> with Microsoft Graph API.",
+        erp_c4_eye: "C# / .NET Warehouse Automation",
+        erp_c4_title: "WMSLocationImporter & WMSQrBook",
+        erp_card4: "One-click C#/.NET warehouse engineering tools: Excel-to-WMS SQL Server slotting (<code>Area/Bin/Slot</code>), New Distribution Center (DC) Creation Wizards, cross-warehouse layout cloning, and automated Rack/OpenArea QR Code Book generation (<code>.docx</code> & <code>.pdf</code>).",
+        erp_c5_eye: "Logistics, Freight & Transload ERP",
+        erp_c5_title: "Trucking2000 & ContainerTracker",
+        erp_card5: "End-to-end C# / .NET freight management, container lifecycle tracking APIs (<code>ContainerTrackerAPI</code>), Transload WMS UI (<code>React 19</code> + <code>MUI X DataGrid v8</code>), and automated Amazon Fulfillment performance analytics pipelines.",
+        erp_c6_eye: "Cross-Site Hardware & ERP Ops",
+        erp_c6_title: "PunchHub & AI ERP Workflows",
+        erp_card6: "Replaced legacy Windows C# TCP socket utilities with a unified Dockerized receiver (<code>PunchHub</code>) managing Chiyu SEMAC RFID/biometric terminals across US and Asia warehouses, alongside automated LINE/email inquiry-to-quotation ERP pipelines.",
+        erp_spec1: "Production C# / .NET, T-SQL, Enterprise ERP & multi-warehouse WMS architecture.",
+        erp_spec2: "Automated golden-master parity tests in .NET 8 ERP WebForms modernization.",
+        erp_spec3: "Dynamic per-tenant database routing & full WMS parity in YMSaaS.",
+        erp_spec4: "Hands-on production deployments across .NET 8, .NET 9 SSO, and .NET 10 Linux Swarm.",
+        cc_title: "Turn any phone into a broadcast-grade wireless studio camera.",
+        cc_desc: "Engineered from the ground up with custom UDP/RTP packet framing, hardware H.264/HEVC encoding, zero-configuration mDNS discovery, and a native C++/Rust OBS Studio plugin that bypasses virtual webcam bottlenecks.",
+        cc_cap1: "CelerCam — Wireless Multi-Camera Studio Pipeline",
+        cc_cap2: "Multi-Camera OBS Studio Direct Hardware Ingest",
+        cc_cap3: "iOS & Android Real-Time Bitrate & Encoder Telemetry",
+        cc_spec1: "Glass-to-glass LAN transport latency with custom jitter buffer control.",
+        cc_spec2: "Direct GPU texture upload via native macOS (.dmg) & Windows (.msi) plugins.",
+        cc_spec3: "Hardware-accelerated VideoToolbox & MediaCodec H.264/HEVC pipelines.",
+        cc_spec4: "Instant mDNS discovery & QR pairing across Wi-Fi and USB tethering.",
+        cast_title: "Multi-room broadcast orchestration for campuses and studios.",
+        cast_desc: "A desktop control plane built for schools, lecture halls, and enterprise studios to route live camera feeds, screen shares, and announcements simultaneously across dozens of receiving displays with synchronized audio-video clock recovery.",
+        cast_cap1: "CelerCast v0.4.4 — Synchronized Multi-Room AV Playout",
+        cast_cap2: "Central Broadcast Studio & Instructor Source Node",
+        cast_cap3: "Zero-Touch Classroom Receiver Terminals",
+        cast_spec1: "Simultaneous multi-room AV distribution with group zone routing.",
+        cast_spec2: "Signed native installers (v0.4.4) for Apple Silicon macOS and Windows x64.",
+        cast_spec3: "Sub-frame lip-sync and drift correction across distributed display nodes.",
+        cast_spec4: "Automatic stream reconnection and health telemetry per classroom terminal.",
+        sw_title: "High-frame-rate remote workstation access from any screen.",
+        sw_desc: "Skywave pairs a lightweight native host daemon on macOS with responsive client viewers across Web, iOS, iPadOS, and Android—delivering 60fps desktop streaming, precise touch-to-cursor mapping, and end-to-end encrypted transport.",
+        sw_cap1: "Skywave — Low-Latency Remote Workstation Session",
+        sw_cap2: "iPadOS Multi-Host Workspace Manager",
+        sw_cap3: "iOS & Android Mobile Remote Client",
+        sw_spec1: "Hardware-accelerated screen capture and adaptive bitrate streaming.",
+        sw_spec2: "Unified clients for macOS, Web Browser, iPad, iPhone, and Android.",
+        sw_spec3: "Authenticated session handshakes with ephemeral end-to-end encryption.",
+        sw_spec4: "Instant monitor switching and precision keyboard/trackpad passthrough.",
+        osp_title: "Self-hosted Android SMS gateway & webhook infrastructure.",
+        osp_desc: "Built for teams requiring deterministic carrier SMS delivery and inbound OTP/webhook routing without per-message cloud markups. Includes an Android background service, HMAC-SHA256 webhook signing, and real-time queue observability.",
+        osp_cap1: "Osprey Real-Time Dispatch & Device Telemetry Console",
+        osp_cap2: "End-to-End Webhook & Carrier Dispatch Architecture",
+        osp_cap3: "High-Throughput Dual-SIM Failover Engine",
+        osp_spec1: "Intelligent carrier slot selection, rate-limiting, and automatic failover.",
+        osp_spec2: "Cryptographically signed inbound/outbound webhooks with exponential retry.",
+        osp_spec3: "Publicly auditable codebase and binary releases on GitHub (open5588/Osprey).",
+        osp_spec4: "Direct local SIM dispatch eliminating third-party cloud aggregator fees.",
+        apps_eyebrow: "Consumer Apps & Interactive Products",
+        apps_title: "Shipped on the App Store & Web.",
+        apps_desc: "Beyond enterprise ERP/WMS and media infrastructure, we design, illustrate, and engineer complete consumer experiences—from iOS strategy games to family cognitive health platforms.",
+        app_spirit_desc: "Tactical elemental tower-defense game featuring custom shader effects, dynamic wave AI, and native 60fps iOS rendering. Live on the Apple App Store.",
+        app_cat_desc: "Cozy spatial-packing and narrative puzzle game across 8 handcrafted architectural chapters (Warehouse, Studio, Bookshop, Glasshouse, Observatory).",
+        app_brain_desc: "Collaborative cognitive wellness and memory-care platform connecting seniors, family members, and care teams through daily interactive exercises.",
+        oss_eyebrow: "Verified Open-Source Engineering (@open5588)",
+        oss_title: "Production pull requests across global open-source systems.",
+        oss_desc: "Selected upstream engineering contributions across Rust video stabilization, distributed policy engines, enterprise RAG pipelines, and React Native architecture.",
+        labs_eyebrow: "Interactive Browser Micro-Apps",
+        labs_title: "12 zero-dependency web sandboxes.",
+        labs_desc: "Click any sandbox below to launch a live, self-contained browser application built with WebAudio, WebGL/GLSL, Canvas 2D physics, and deterministic state machines.",
+        ret_eyebrow: "Global Remote Engagement · US / EU / UK / JP / APAC",
+        ret_title: "Work directly with Jason (@open5588).",
+        ret_desc: "Available for Senior/Staff .NET (C#), Enterprise ERP/WMS, Full-Stack, Media Pipeline, and AI Engineering roles, as well as fixed-scope architecture sprints and monthly retainers."
+      },
+      "de": {
+        nav_erp: "ERP & .NET",
+        nav_apps: "Mobile & Games",
+        nav_oss: "Open Source",
+        nav_labs: "Web-Labs",
+        nav_retainer: "Zusammenarbeit",
+        nav_resume: "Lebenslauf PDF",
+        nav_contact: "Kontakt",
+        hero_eyebrow: "Principal .NET (C#), Enterprise ERP / WMS & Full-Stack Systems Architect",
+        hero_title: "Enterprise-ERP & .NET-Präzision.<br>Echtzeit-Performance auf jedem System.",
+        hero_subtitle: "Über 10 Jahre Erfahrung in der Architektur geschäftskritischer Enterprise-ERP-, Multi-Tenant-WMS-SaaS- (YMSaaS) und C# / .NET-Systeme (.NET 8 / 9 / 10 LTS, T-SQL / SQL Server, WebForms-Modernisierung) sowie Ultra-Low-Latency-Videopipelines.",
+        hero_cta_explore: "ERP & Produkte entdecken",
+        hero_cta_resume: "Engineering-CV herunterladen",
+        tile_celercam: "Drahtlose Studiokamera mit <18 ms Latenz & nativem OBS-Plugin.",
+        tile_celercast: "Multi-Raum-4K-Broadcast-Konsole & synchronisierte AV-Verteilung.",
+        tile_skywave: "60fps Zero-Trust-Remote-Desktop & Multi-Monitor-Workspace.",
+        tile_osprey: "Selbstgehostetes Android-SMS-Gateway mit HMAC-Webhooks & Failover.",
+        erp_eyebrow: "Kernkompetenz · C# / .NET 8–10 · T-SQL · YMSaaS · Enterprise ERP & WMS",
+        erp_title: "Enterprise-ERP, Multi-Tenant-WMS-SaaS & .NET-Architektur.",
+        erp_desc: "Über 10 Jahre End-to-End-Architektur für hochvolumige ERP-, Lagerverwaltungs- (WMS) und Logistiksysteme sowie die Modernisierung von Legacy-ASP.NET-WebForms auf .NET 8/9/10 Web API, T-SQL und React 19.",
+        erp_c1_eye: "Multi-Tenant Cloud WMS & ERP",
+        erp_c1_title: "YMSaaS & WmsApp Suite",
+        erp_card1: "Komplette Multi-Tenant-SaaS-Neuentwicklung als Ersatz für ein Legacy-ASP.NET-WebForms-WMS (<code>YMSystem.sln</code>). Dynamische Mandanten-DB-Isolierung (<code>TenantPrismaService</code>), 4-stufige Bestandsprüfung, PO- & Inspektions-Zustandsautomaten, 3-stufiges Logistik-Tracking, Kommissionierung sowie React-Native-Scanner-App (<code>WmsApp</code>).",
+        erp_c2_eye: ".NET 8 Web API + React + T-SQL",
+        erp_c2_title: "ERP Sales Analysis & Order Rebuild",
+        erp_card2: "Neuarchitektur der zentralen ERP-Module <strong>Sales Analysis (SA)</strong>, <strong>Inventory</strong> und <strong>Sales Order (SO)</strong> von <code>.NET 4.8 WebForms</code> auf <strong>.NET 8 Web API (C# 12) + React</strong> mit <strong>Oracle Golden Verification Harness</strong> (<code>145/145</code> xUnit/E2E-Tests grün, 100 % Datenparität).",
+        erp_c3_eye: ".NET 9 SSO & .NET 10 Docker Swarm",
+        erp_c3_title: "Enterprise SSO & Cloud .NET 10",
+        erp_card3: "Zentrale <strong>.NET 9 Single Sign-On (SSO) & RBAC</strong>-Plattform mit React 19 / MUI 9 (<code>29/29</code> Integrationstests) für alle ERP/WMS-Portale sowie Migration von Windows-IIS-Diensten (<code>.NET 4.6.2</code>) auf <strong>.NET 10 LTS</strong> im <strong>AWS Linux Docker Swarm</strong>.",
+        erp_c4_eye: "C# / .NET Lagerautomatisierung",
+        erp_c4_title: "WMSLocationImporter & WMSQrBook",
+        erp_card4: "C#/.NET-Automatisierungstools für Verteilzentren: Excel-zu-SQL-Server-Lagerplatzimport (<code>Area/Bin/Slot</code>), DC-Erstellungsassistenten, Lager-Klonierung und automatische QR-Code-Handbuchgenerierung (<code>.docx</code> & <code>.pdf</code>).",
+        erp_c5_eye: "Logistik-, Fracht- & Transload-ERP",
+        erp_c5_title: "Trucking2000 & ContainerTracker",
+        erp_card5: "Durchgängige C#/.NET-Speditions- und Container-Tracking-APIs (<code>ContainerTrackerAPI</code>), Transload-WMS-Oberfläche (<code>React 19</code> + <code>MUI X DataGrid v8</code>) und Amazon-Fulfillment-Analysen.",
+        erp_c6_eye: "Standortübergreifende Hardware & ERP-Ops",
+        erp_c6_title: "PunchHub & KI-ERP-Workflows",
+        erp_card6: "Ablösung alter Windows-C#-TCP-Dienste durch einen containerisierten Empfänger (<code>PunchHub</code>) für RFID-/Biometrie-Terminals in US- und Asien-Lagern sowie automatisierte Angebots-Pipelines.",
+        erp_spec1: "Produktive C# / .NET-, T-SQL-, Enterprise-ERP- & Multi-Warehouse-WMS-Architektur.",
+        erp_spec2: "Automatisierte Golden-Master-Paritätstests bei der .NET 8 ERP-Modernisierung.",
+        erp_spec3: "Dynamisches Mandanten-DB-Routing & volle WMS-Parität in YMSaaS.",
+        erp_spec4: "Produktivbetrieb mit .NET 8, .NET 9 SSO und .NET 10 auf Linux Docker Swarm.",
+        cc_title: "Verwandeln Sie jedes Smartphone in eine drahtlose Broadcast-Kamera.",
+        cc_desc: "Von Grund auf entwickelt mit eigenem UDP/RTP-Framing, Hardware-H.264/HEVC-Encoding, Zero-Config-mDNS und einem nativen C++/Rust OBS Studio-Plugin.",
+        cast_title: "Multi-Raum-Broadcast-Orchestrierung für Campus und Studios.",
+        cast_desc: "Desktop-Steuerzentrale für Bildungseinrichtungen und Studios zur lippensynchronen Live-Verteilung von Kameras und Präsentationen.",
+        sw_title: "Remote-Workstation-Zugriff mit 60 FPS von jedem Endgerät.",
+        sw_desc: "Skywave verbindet einen nativen macOS-Host-Daemon mit Clients für Web, iOS, iPadOS und Android inklusive Ende-zu-Ende-Verschlüsselung.",
+        osp_title: "Selbstgehostetes Android-SMS-Gateway & Webhook-Infrastruktur.",
+        osp_desc: "Deterministischer SMS-Versand und eingehendes OTP/Webhook-Routing über eigene SIM-Karten mit HMAC-SHA256-Signatur.",
+        apps_eyebrow: "Consumer-Apps & Interaktive Produkte",
+        apps_title: "Veröffentlicht im App Store & Web.",
+        apps_desc: "Neben ERP/WMS- und Medieninfrastruktur entwickeln wir komplette Consumer-Produkte – von iOS-Strategiespielen bis zu digitalen Gesundheitsplattformen.",
+        oss_eyebrow: "Verifizierte Open-Source-Beiträge (@open5588)",
+        oss_title: "Produktive Pull Requests in globalen Open-Source-Systemen.",
+        oss_desc: "Ausgewählte Upstream-Beiträge in Rust-Videostabilisierung, verteilten Policy-Engines, Enterprise-RAG-Pipelines und React Native.",
+        labs_eyebrow: "Interaktive Browser-Applikationen",
+        labs_title: "12 Zero-Dependency Web-Sandboxes.",
+        labs_desc: "Starten Sie interaktive Browser-Anwendungen mit WebAudio, WebGL/GLSL, 2D-Physik und SQL-Query-Planern direkt im Browser.",
+        ret_eyebrow: "Weltweite Remote-Zusammenarbeit · DACH / EU / US / UK",
+        ret_title: "Direkte Zusammenarbeit mit Jason (@open5588).",
+        ret_desc: "Verfügbar für Senior/Staff .NET (C#)-, ERP/WMS-, Full-Stack- und AI-Engineering-Positionen sowie Architektur-Sprints und monatliche Retainer."
+      },
+      "ja": {
+        nav_erp: "ERP & .NET",
+        nav_apps: "モバイル＆ゲーム",
+        nav_oss: "オープンソース",
+        nav_labs: "Webラボ",
+        nav_retainer: "技術顧問・契約",
+        nav_resume: "職務経歴書 PDF",
+        nav_contact: "お問い合わせ",
+        hero_eyebrow: "プリンシパル .NET (C#) / 基幹ERP・WMS / フルスタックシステムアーキテクト",
+        hero_title: "基幹ERPと.NETの堅牢な設計。<br>あらゆる画面でリアルタイム性能を実現。",
+        hero_subtitle: "10年以上にわたり基幹ERP、マルチテナント倉庫管理SaaS (YMSaaS)、C# / .NET (.NET 8 / 9 / 10 LTS、T-SQL / SQL Server、レガシーWebForms刷新) の設計・開発を主導。さらに超低遅延映像配信やクロスプラットフォーム製品を一貫開発。",
+        hero_cta_explore: "ERP実績＆リリース製品を見る",
+        hero_cta_resume: "英文レジュメ (PDF) を表示",
+        tile_celercam: "遅延18ms未満のワイヤレスカメラ＆ネイティブOBS Studioプラグイン。",
+        tile_celercast: "マルチルーム4K配信コンソール＆キャンパスAV同期システム。",
+        tile_skywave: "60fpsゼロトラスト・リモートデスクトップ＆マルチ画面ワークスペース。",
+        tile_osprey: "自社運用可能なAndroid SMSゲートウェイ＆高信頼Webhookリレー。",
+        erp_eyebrow: "主要専門領域 · C# / .NET 8–10 · T-SQL · YMSaaS · 基幹ERP / 倉庫管理WMS",
+        erp_title: "基幹ERP・マルチテナントWMS SaaS (YMSaaS)・.NETアーキテクチャ。",
+        erp_desc: "米国およびアジアの物流拠点を結ぶ基幹ERP、倉庫管理システム(WMS)、コンテナ・配車管理システム、および旧ASP.NET WebFormsから.NET 8/9/10 + React 19への完全刷新を10年以上リード。",
+        erp_c1_eye: "マルチテナント型クラウドWMS & ERP",
+        erp_c1_title: "YMSaaS & WmsApp スイート",
+        erp_card1: "旧ASP.NET WebForms製WMS (<code>YMSystem.sln</code>) を全面刷新したマルチテナントSaaS。テナント別DB動的ルーティング (<code>TenantPrismaService</code>)、4段階の在庫防衛・履歴監査、発注(PO)・検品自動ステートマシン、3階層物流追跡、出荷引当、見積エンジン、React Native製ハンディターミナルApp (<code>WmsApp</code>) を統合。",
+        erp_c2_eye: ".NET 8 Web API + React + T-SQL",
+        erp_c2_title: "ERP 販売分析・受注管理モジュール刷新",
+        erp_card2: "旧<code>.NET 4.8 WebForms</code>の<strong>販売分析 (SA)</strong>・<strong>在庫</strong>・<strong>受注照会 (SO)</strong>を<strong>.NET 8 Web API (C# 12) + React (Vite)</strong>へ再構築。旧本番出力と全行・全列100%一致を保証する<strong>Oracle Golden検証ハーネス</strong> (<code>145/145</code>テスト全通過) を構築。",
+        erp_c3_eye: ".NET 9 SSO & .NET 10 Docker Swarm",
+        erp_c3_title: "統合SSO認証基盤 & .NET 10 クラウド移行",
+        erp_card3: "複数ERP/WMSポータルを統合する<strong>.NET 9 シングルサインオン (SSO) & RBAC管理コンソール</strong> (React 19 / MUI 9、統合テスト<code>29/29</code>通過) を構築。さらにWindows IIS (<code>.NET 4.6.2</code>) の通知サービスを<strong>.NET 10 LTS + AWS Linux Docker Swarm</strong>へ完全移行。",
+        erp_c4_eye: "C# / .NET 倉庫自動化ツール群",
+        erp_c4_title: "WMSLocationImporter & WMSQrBook",
+        erp_card4: "ExcelからSQL Server WMSへのロケーション一括登録 (<code>Area/Bin/Slot</code>)、新規物流センター(DC)構築ウィザード、倉庫間レイアウト複製、および棚番QRコード台帳 (<code>.docx</code> / <code>.pdf</code>) 自動生成ツールをC#/.NETで開発。",
+        erp_c5_eye: "配車・コンテナ追跡・トランスロードWMS",
+        erp_c5_title: "Trucking2000 & ContainerTracker",
+        erp_card5: "C# / .NETによる配車・輸送管理システム、コンテナ追跡API (<code>ContainerTrackerAPI</code>)、<code>React 19</code> + <code>MUI X DataGrid v8</code>製トランスロードWMS画面、Amazonフルフィルメント分析基盤を構築。",
+        erp_c6_eye: "拠点間ハードウェア統合 & AI業務自動化",
+        erp_c6_title: "PunchHub & AI見積ワークフロー",
+        erp_card6: "米国・アジア各拠点の生体認証/RFID打刻機を統合管理するDocker対応レシーバー (<code>PunchHub</code>) で旧C#通信ツールを刷新。LINE/メール自動見積連携パイプラインも実装。",
+        erp_spec1: "10年以上のC# / .NET、T-SQL、基幹ERP・複数倉庫WMSアーキテクチャ経験。",
+        erp_spec2: ".NET 8 ERP刷新におけるGolden Master自動一致検証テスト145件全通過。",
+        erp_spec3: "YMSaaSにおけるテナント別独立DBルーティングと全WMS機能の完全移行。",
+        erp_spec4: ".NET 8、.NET 9 SSO、.NET 10 Linux Swarmの本番運用実績。",
+        cc_title: "スマートフォンを放送局品質のワイヤレススタジオカメラへ。",
+        cc_desc: "独自UDP/RTPパケット制御、ハードウェアH.264/HEVCエンコード、mDNS自動検出、ネイティブC++/Rust製OBSプラグインを実装。",
+        cast_title: "キャンパスやスタジオ向けのマルチルーム映像・音声配信基盤。",
+        cast_desc: "複数の教室やスタジオ端末へライブ映像・画面共有・アナウンスを高精度なクロック同期で一斉配信するデスクトップ管制システム。",
+        sw_title: "あらゆる画面から、60fpsでリモートワークステーションへ接続。",
+        sw_desc: "軽量なmacOSネイティブホストとWeb・iOS・iPadOS・Androidクライアントを直結し、低遅延60fpsストリーミングと暗号化通信を実現。",
+        osp_title: "セルフホスト型Android SMSゲートウェイ＆Webhook基盤。",
+        osp_desc: "クラウド従量課金を不要にするキャリア回線直結のSMS送受信・OTPルーティング基盤。HMAC-SHA256署名と自動再試行キューを搭載。",
+        apps_eyebrow: "コンシューマーアプリ＆インタラクティブ作品",
+        apps_title: "App StoreおよびWebで公開中。",
+        apps_desc: "基幹ERP/WMSや通信基盤だけでなく、iOS向けタワーディフェンスゲームから家族向け認知ケアプラットフォームまで一貫開発。",
+        oss_eyebrow: "オープンソースコントリビューション (@open5588)",
+        oss_title: "グローバルOSSプロジェクトへの実装プルリクエスト。",
+        oss_desc: "Rust映像手ブレ補正(Gyroflow)、分散ポリシーエンジン(OPAL)、エンタープライズRAG(Onyx)、React Native(Expensify)等への貢献実績。",
+        labs_eyebrow: "インタラクティブWebサンドボックス",
+        labs_title: "12種類のゼロ依存ブラウザアプリ。",
+        labs_desc: "WebAudioシンセサイザー、WebGLシェーダーIDE、軌道力学シミュレーション、SQLクエリプランナーなどブラウザ上で即座に動作します。",
+        ret_eyebrow: "グローバルリモート対応 · 日本 / 欧米 / APAC",
+        ret_title: "Jason (@open5588) との直接契約・採用について。",
+        ret_desc: "シニア/スタッフ .NET (C#)・ERP/WMS・フルスタックエンジニア採用（フルリモート）、技術顧問リテイナー、短期開発スプリントに対応可能です。"
+      },
+      "fr": {
+        nav_erp: "ERP & .NET",
+        nav_apps: "Apps & Jeux",
+        nav_oss: "Open Source",
+        nav_labs: "Web Labs",
+        nav_retainer: "Collaboration",
+        nav_resume: "CV PDF",
+        nav_contact: "Contact",
+        hero_eyebrow: "Architecte Principal .NET (C#), ERP / WMS d'Entreprise & Systèmes Full-Stack",
+        hero_title: "La rigueur ERP & .NET.<br>La performance temps réel sur chaque écran.",
+        hero_subtitle: "Plus de 10 ans d'expérience dans l'architecture d'ERP critiques, de WMS SaaS multi-locataires (YMSaaS) et de systèmes C# / .NET (.NET 8 / 9 / 10 LTS, T-SQL / SQL Server, modernisation WebForms) ainsi que de pipelines vidéo ultra-basse latence.",
+        hero_cta_explore: "Explorer les Systèmes ERP & Produits",
+        hero_cta_resume: "Télécharger le CV (PDF)",
+        tile_celercam: "Caméra sans fil <18 ms & plugin natif OBS Studio.",
+        tile_celercast: "Console de diffusion 4K multi-salles & synchronisation AV.",
+        tile_skywave: "Bureau à distance 60 fps zero-trust sur Web, iOS, iPad et Android.",
+        tile_osprey: "Passerelle SMS Android auto-hébergée avec webhooks HMAC-SHA256.",
+        erp_eyebrow: "Spécialisation Principale · C# / .NET 8–10 · T-SQL · YMSaaS · ERP & WMS",
+        erp_title: "Architecture ERP d'Entreprise, WMS Multi-Tenant SaaS & .NET.",
+        erp_desc: "Plus de 10 ans à diriger l'architecture de systèmes ERP, de gestion d'entrepôt (WMS), de suivi logistique et de modernisation ASP.NET WebForms vers .NET 8/9/10 Web API, T-SQL et React 19.",
+        erp_card1: "Réécriture SaaS multi-tenant complète remplaçant un WMS ASP.NET WebForms historique (<code>YMSystem.sln</code>) avec isolation DB par locataire (<code>TenantPrismaService</code>), gestion des stocks à 4 niveaux, commandes d'achat, inspection automatisée, suivi logistique à 3 niveaux et application mobile React Native (<code>WmsApp</code>).",
+        erp_card2: "Refonte des modules ERP <strong>Sales Analysis (SA)</strong>, <strong>Inventory</strong> et <strong>Sales Order (SO)</strong> de <code>.NET 4.8 WebForms</code> vers <strong>.NET 8 Web API (C# 12) + React</strong> avec harnais de vérification Oracle Golden (<code>145/145</code> tests xUnit/E2E validés à 100 %).",
+        erp_card3: "Plateforme centralisée <strong>.NET 9 Single Sign-On (SSO) & RBAC</strong> sous React 19 / MUI 9 (<code>29/29</code> tests d'intégration) et migration des services de notification Windows IIS (<code>.NET 4.6.2</code>) vers <strong>.NET 10 LTS</strong> sur cluster <strong>AWS Linux Docker Swarm</strong>.",
+        erp_card4: "Outils d'automatisation d'entrepôt C#/.NET : import Excel vers SQL Server (<code>Area/Bin/Slot</code>), assistant de création de centre de distribution (DC) et génération automatique de cahiers QR Code (<code>.docx</code> & <code>.pdf</code>).",
+        erp_card5: "Systèmes C# / .NET de gestion de flotte (<code>Trucking2000</code>), API de suivi de conteneurs (<code>ContainerTrackerAPI</code>) et interface Transload WMS (<code>React 19</code> + <code>MUI X DataGrid v8</code>).",
+        erp_card6: "Remplacement des anciens démons TCP C# par le récepteur Dockerisé <code>PunchHub</code> gérant les terminaux RFID/biométriques aux États-Unis et en Asie.",
+        cc_title: "Transformez votre téléphone en caméra de studio sans fil.",
+        cc_desc: "Conçu avec encapsulation UDP/RTP sur mesure, encodage matériel H.264/HEVC, découverte mDNS instantanée et plugin OBS Studio natif en C++/Rust.",
+        cast_title: "Orchestration audiovisuelle multi-salles pour campus et studios.",
+        cast_desc: "Plan de contrôle desktop permettant de diffuser des flux caméra, partages d'écran et annonces avec synchronisation d'horloge précise.",
+        sw_title: "Accès poste de travail distant à 60 FPS depuis n'importe quel écran.",
+        sw_desc: "Skywave associe un démon hôte macOS natif à des clients Web, iOS, iPadOS et Android fluides et chiffrés de bout en bout.",
+        osp_title: "Passerelle SMS Android auto-hébergée & infrastructure webhook.",
+        osp_desc: "Routage SMS et OTP déterministe via double SIM avec signature HMAC-SHA256, file d'attente résiliente et télémétrie en direct.",
+        apps_eyebrow: "Applications Mobiles & Expériences Interactives",
+        apps_title: "Publié sur l'App Store et le Web.",
+        oss_eyebrow: "Contributions Open Source Vérifiées (@open5588)",
+        oss_title: "Pull requests en production sur des projets open source majeurs.",
+        labs_eyebrow: "Micro-Applications Web Interactives",
+        labs_title: "12 sandboxes web sans dépendances.",
+        ret_eyebrow: "Engagement Remote Global · Europe / Canada / US",
+        ret_title: "Travailler directement avec Jason (@open5588).",
+        ret_desc: "Disponible pour des postes Senior/Staff .NET (C#), ERP/WMS, Full-Stack & IA ainsi que pour des sprints d'architecture et contrats mensuels."
+      },
+      "es": {
+        nav_erp: "ERP y .NET",
+        nav_apps: "Apps y Juegos",
+        nav_oss: "Código Abierto",
+        nav_labs: "Web Labs",
+        nav_retainer: "Contratación",
+        nav_resume: "CV en PDF",
+        nav_contact: "Contacto",
+        hero_eyebrow: "Arquitecto Principal .NET (C#), ERP / WMS Empresarial y Full-Stack",
+        hero_title: "Precisión en ERP empresarial y .NET.<br>Rendimiento en tiempo real en cada pantalla.",
+        hero_subtitle: "Más de 10 años diseñando sistemas ERP críticos, WMS SaaS multi-inquilino (YMSaaS) y aplicaciones C# / .NET (.NET 8 / 9 / 10 LTS, T-SQL / SQL Server, modernización de WebForms) junto con pipelines de video de ultra baja latencia.",
+        hero_cta_explore: "Explorar ERP y Productos",
+        hero_cta_resume: "Descargar CV (PDF)",
+        tile_celercam: "Cámara inalámbrica <18 ms y plugin nativo para OBS Studio.",
+        tile_celercast: "Consola de transmisión 4K multisala y distribución AV sincronizada.",
+        tile_skywave: "Escritorio remoto zero-trust a 60 fps para Web, iOS, iPad y Android.",
+        tile_osprey: "Pasarela SMS Android autoalojada con webhooks HMAC-SHA256.",
+        erp_eyebrow: "Especialidad Principal · C# / .NET 8–10 · T-SQL · YMSaaS · ERP y WMS",
+        erp_title: "Arquitectura ERP Empresarial, WMS Multi-Tenant SaaS y .NET.",
+        erp_desc: "Más de 10 años liderando la arquitectura de sistemas ERP, gestión de almacenes (WMS), logística de contenedores y modernización de ASP.NET WebForms a .NET 8/9/10 Web API, T-SQL y React 19.",
+        erp_card1: "Reescritura completa en SaaS multi-tenant reemplazando el WMS legado en ASP.NET WebForms (<code>YMSystem.sln</code>) con aislamiento dinámico de base de datos por cliente (<code>TenantPrismaService</code>), control de inventario de 4 capas, órdenes de compra, máquina de estados de recepción/inspección, seguimiento logístico de 3 niveles y app móvil en React Native (<code>WmsApp</code>).",
+        erp_card2: "Reconstrucción de los módulos ERP <strong>Sales Analysis (SA)</strong>, <strong>Inventory</strong> y <strong>Sales Order (SO)</strong> desde <code>.NET 4.8 WebForms</code> a <strong>.NET 8 Web API (C# 12) + React</strong> con validación Oracle Golden (<code>145/145</code> pruebas xUnit/E2E en verde y 100 % de paridad financiera).",
+        erp_card3: "Plataforma centralizada <strong>.NET 9 Single Sign-On (SSO) y RBAC</strong> con React 19 / MUI 9 (<code>29/29</code> pruebas de integración) y migración de bots de notificación de Windows IIS (<code>.NET 4.6.2</code>) a <strong>.NET 10 LTS</strong> en <strong>AWS Linux Docker Swarm</strong>.",
+        erp_card4: "Herramientas C#/.NET de automatización de almacenes: importación Excel a SQL Server (<code>Area/Bin/Slot</code>), asistente de creación de centros de distribución (DC) y generación automática de libros QR (<code>.docx</code> y <code>.pdf</code>).",
+        erp_card5: "Gestión de transporte en C# / .NET (<code>Trucking2000</code>), APIs de seguimiento de contenedores (<code>ContainerTrackerAPI</code>) e interfaz Transload WMS en <code>React 19</code> + <code>MUI X DataGrid v8</code>.",
+        erp_card6: "Reemplazo de demonios TCP C# heredados por el receptor Dockerizado <code>PunchHub</code> para terminales RFID/biométricos en almacenes de EE. UU. y Asia.",
+        cc_title: "Convierte cualquier teléfono en una cámara de estudio inalámbrica.",
+        cast_title: "Orquestación de transmisión multisala para campus y estudios.",
+        sw_title: "Acceso remoto a estaciones de trabajo a 60 FPS desde cualquier pantalla.",
+        osp_title: "Pasarela SMS Android autoalojada e infraestructura de webhooks.",
+        apps_eyebrow: "Aplicaciones Móviles y Experiencias Interactivas",
+        apps_title: "Disponible en App Store y Web.",
+        oss_eyebrow: "Contribuciones Open Source Verificadas (@open5588)",
+        oss_title: "Pull requests en sistemas open source globales.",
+        labs_eyebrow: "Micro-Aplicaciones Web Interactivas",
+        labs_title: "12 laboratorios web sin dependencias.",
+        ret_eyebrow: "Colaboración Remota Global · EE. UU. / Europa / LATAM",
+        ret_title: "Trabaja directamente con Jason (@open5588).",
+        ret_desc: "Disponible para roles Senior/Staff .NET (C#), ERP/WMS, Full-Stack e IA, así como sprints de arquitectura y retainers mensuales."
+      },
+      "pl": {
+        nav_erp: "ERP i .NET",
+        nav_apps: "Aplikacje i Gry",
+        nav_oss: "Open Source",
+        nav_labs: "Web Labs",
+        nav_retainer: "Współpraca",
+        nav_resume: "CV PDF",
+        nav_contact: "Kontakt",
+        hero_eyebrow: "Główny Architekt .NET (C#), Systemów ERP / WMS oraz Full-Stack",
+        hero_title: "Precyzja systemów ERP i .NET.<br>Wydajność czasu rzeczywistego na każdej platformie.",
+        hero_subtitle: "Ponad 10 lat doświadczenia w architekturze systemów klasy Enterprise ERP, wielodostępnych platform WMS SaaS (YMSaaS) oraz C# / .NET (.NET 8 / 9 / 10 LTS, T-SQL / SQL Server, modernizacja WebForms) oraz potoków wideo o ultraniskim opóźnieniu.",
+        hero_cta_explore: "Zobacz Systemy ERP i Produkty",
+        hero_cta_resume: "Pobierz CV (PDF)",
+        tile_celercam: "Bezprzewodowa kamera <18 ms i natywna wtyczka OBS Studio.",
+        tile_celercast: "Wielosalowa konsola transmisji 4K i synchronizacja AV.",
+        tile_skywave: "Zdalny pulpit 60 fps zero-trust na Web, iOS, iPad i Android.",
+        tile_osprey: "Samodzielna bramka SMS Android z webhookami HMAC-SHA256.",
+        erp_eyebrow: "Główna Specjalizacja · C# / .NET 8–10 · T-SQL · YMSaaS · Systemy ERP i WMS",
+        erp_title: "Architektura Systemów ERP, Multi-Tenant WMS SaaS (YMSaaS) i .NET.",
+        erp_desc: "Ponad 10 lat doświadczenia w budowie systemów ERP, magazynowych (WMS), logistycznych oraz migracji z ASP.NET WebForms do .NET 8/9/10 Web API, MS SQL Server (T-SQL) i React 19 dla centrów dystrybucyjnych w USA i Azji.",
+        erp_card1: "Kompleksowa przebudowa systemu WMS z ASP.NET WebForms (<code>YMSystem.sln</code>) na chmurowy SaaS multi-tenant (<code>YMSaaS</code>) z dynamiczną izolacją baz danych (<code>TenantPrismaService</code>), 4-warstwową ochroną stanów magazynowych, obsługą zamówień zakupu (PO), odbiorów, 3-poziomowej logistyki oraz aplikacją mobilną React Native (<code>WmsApp</code>).",
+        erp_card2: "Przebudowa kluczowych modułów ERP <strong>Sales Analysis (SA)</strong>, <strong>Inventory</strong> oraz <strong>Sales Order (SO)</strong> z <code>.NET 4.8 WebForms</code> do <strong>.NET 8 Web API (C# 12) + React</strong> z zestawem testów porównawczych Oracle Golden (<code>145/145</code> testów xUnit/E2E, 100% zgodności finansowej).",
+        erp_card3: "Centralna platforma <strong>.NET 9 Single Sign-On (SSO) i RBAC</strong> w React 19 / MUI 9 (<code>29/29</code> testów integracyjnych) oraz migracja usług powiadomień z Windows IIS (<code>.NET 4.6.2</code>) do <strong>.NET 10 LTS</strong> na klastrze <strong>AWS Linux Docker Swarm</strong>.",
+        erp_card4: "Narzędzia automatyzacji magazynów w C#/.NET: import lokalizacji Excel do SQL Server (<code>Area/Bin/Slot</code>), kreator nowych centrów dystrybucji (DC) oraz automatyczne generowanie ksiąg kodów QR (<code>.docx</code> i <code>.pdf</code>).",
+        erp_card5: "Systemy C# / .NET do zarządzania transportem (<code>Trucking2000</code>), API śledzenia kontenerów (<code>ContainerTrackerAPI</code>) oraz interfejs Transload WMS (<code>React 19</code> + <code>MUI X DataGrid v8</code>).",
+        erp_card6: "Zastąpienie starszych usług TCP w C# zunifikowanym serwerem Docker <code>PunchHub</code> obsługującym czytniki RFID/biometryczne w magazynach w USA i Azji.",
+        cc_title: "Zmień dowolny telefon w bezprzewodową kamerę studyjną.",
+        cast_title: "Wielosalowa orkiestracja transmisji AV dla kampusów i studiów.",
+        sw_title: "Zdalny dostęp do stacji roboczej w 60 FPS z każdego ekranu.",
+        osp_title: "Własna bramka SMS Android i infrastruktura webhooków.",
+        apps_eyebrow: "Aplikacje Mobilne i Gry Interaktywne",
+        apps_title: "Dostępne w App Store i Web.",
+        oss_eyebrow: "Zweryfikowane Projekty Open Source (@open5588)",
+        oss_title: "Wdrożone zmiany w globalnych repozytoriach open source.",
+        labs_eyebrow: "Interaktywne Mikro-Aplikacje Webowe",
+        labs_title: "12 samowystarczalnych laboratoriów w przeglądarce.",
+        ret_eyebrow: "Współpraca Zdalna · UE / Polska / UK / USA",
+        ret_title: "Bezpośrednia współpraca z Jasonem (@open5588).",
+        ret_desc: "Dostępny w ramach ról Senior/Staff .NET (C#), ERP/WMS, Full-Stack & AI Engineer (B2B/kontrakt) oraz dedykowanych sprintów wdrożeniowych."
+      },
+      "zh-TW": {
+        nav_erp: "ERP 與 .NET",
+        nav_apps: "行動應用與遊戲",
+        nav_oss: "開源貢獻",
+        nav_labs: "互動實驗室",
+        nav_retainer: "遠端合作方案",
+        nav_resume: "英文履歷 PDF",
+        nav_contact: "聯絡合作",
+        hero_eyebrow: "首席 .NET (C#) · 企業級 ERP / WMS 倉儲架構 · 全端系統工程師",
+        hero_title: "深耕企業級 ERP 與 .NET 核心架構。<br>跨全平台極致即時效能交付。",
+        hero_subtitle: "超過 10 年大型企業 ERP、多租戶倉儲管理雲端平台 (YMSaaS) 與 C# / .NET (.NET 8 / 9 / 10 LTS、T-SQL / MS SQL Server、舊版 WebForms 現代化重構) 實戰經驗，同時獨立打造超低延遲影音串流與跨平台原生系統。",
+        hero_cta_explore: "瀏覽 ERP 架構與上線產品",
+        hero_cta_resume: "下載工程履歷 (PDF)",
+        tile_celercam: "低於 18ms 無線專業攝影機與原生 OBS Studio 硬體串流插件。",
+        tile_celercast: "多教室 4K 廣播控台與校園跨空間同步影音分發系統。",
+        tile_skywave: "60fps 零信任跨平台遠端桌面與多螢幕工作空間。",
+        tile_osprey: "自託管 Android 雙卡簡訊閘道器與 HMAC Webhook 轉發系統。",
+        erp_eyebrow: "核心主力專長 · C# / .NET 8–10 · T-SQL · YMSaaS 多租戶倉儲 · 企業級 ERP",
+        erp_title: "企業級 ERP、多租戶 WMS SaaS (YMSaaS) 與 .NET 系統架構。",
+        erp_desc: "超過 10 年主導跨美國與亞洲物流中心之大型企業資源規劃 (ERP)、倉儲管理系統 (WMS)、貨櫃與車隊派送管理，以及舊版 ASP.NET WebForms 升級至 .NET 8 / 9 / 10 LTS + React 19 的端到端架構重構。",
+        erp_c1_eye: "多租戶雲端 WMS 與 ERP 平台",
+        erp_c1_title: "YMSaaS 與 WmsApp 倉儲套件",
+        erp_card1: "全面取代舊版 ASP.NET WebForms WMS (<code>YMSystem.sln</code>) 的新一代多租戶 SaaS 系統。支援每租戶獨立資料庫動態路由 (<code>TenantPrismaService</code>)、庫存管理四道防線與異動稽核、採購單 (PO) 與驗貨自動狀態機、三層巢狀物流追蹤（主單/子單/包裹）、配貨撿貨出貨、報價稅運引擎，以及 React Native 倉儲盤點掃描 App (<code>WmsApp</code>)。",
+        erp_c2_eye: ".NET 8 Web API + React + T-SQL",
+        erp_c2_title: "ERP 銷售分析與訂單模組現代化重構",
+        erp_card2: "以 <strong>.NET 8 Web API (C# 12) + React (Vite)</strong> 重構舊版 <code>.NET 4.8 WebForms</code> 的 <strong>Sales Analysis (銷售分析)</strong>、<strong>Inventory (庫存)</strong> 與 <strong>Sales Order (訂單查詢)</strong> 核心模組，並建立 <strong>Oracle Golden 自動比對驗證框架</strong>（<code>145/145</code> 測試全綠，與舊系統逐列逐欄 100% 帳務一致）。",
+        erp_c3_eye: ".NET 9 SSO 與 .NET 10 Docker Swarm",
+        erp_c3_title: "企業單一登入平台與 .NET 10 雲原生移植",
+        erp_card3: "打造 <strong>.NET 9 Single Sign-On (SSO) 與 RBAC 權限中控台</strong>（搭配 React 19 / MUI 9，通過 <code>29/29</code> 整合測試）統一跨站 ERP/WMS 認證；並將原 Windows IIS (<code>.NET 4.6.2</code>) 匯單與通知服務移植至 <strong>.NET 10 LTS</strong>，運行於 <strong>AWS Linux Docker Swarm</strong> 叢集並串接 Microsoft Graph API。",
+        erp_c4_eye: "C# / .NET 倉儲自動化工具鏈",
+        erp_c4_title: "WMSLocationImporter 與 WMSQrBook",
+        erp_card4: "一鍵式 C#/.NET 倉儲工程工具：支援 Excel 儲位 (<code>Area/Bin/Slot</code>) 匯入 MS SQL Server、新建物流中心 (Create New DC) 精靈、跨倉儲配置複製，以及自動排版產出 Rack 大標與 OpenArea 小標 QR Code 手冊 (<code>.docx</code> / <code>.pdf</code>)。",
+        erp_c5_eye: "物流車隊、貨櫃追蹤與轉運倉儲 ERP",
+        erp_c5_title: "Trucking2000 與 ContainerTracker",
+        erp_card5: "完整開發 C# / .NET 車隊派送管理系統 (<code>Trucking2000</code>)、貨櫃全生命週期追蹤 API (<code>ContainerTrackerAPI</code>)、轉運倉儲管理介面 (<code>React 19</code> + <code>MUI X DataGrid v8</code>) 以及 Amazon 物流履約績效分析系統。",
+        erp_c6_eye: "跨國廠區硬體整合與 AI 業務自動化",
+        erp_c6_title: "PunchHub 與 AI 詢價轉報價工作流",
+        erp_card6: "以 Docker 化跨平台接收端 (<code>PunchHub</code>) 取代舊版 Windows C# TCP 工具，統一納管亞洲與美國各廠區卡機設備；並整合 LINE / Email 詢價自動解析、追單與轉訂單之 ERP 自動化排程。",
+        erp_spec1: "超過 10 年 C# / .NET、T-SQL、大型 ERP 與跨國多倉儲 WMS 核心研發經驗。",
+        erp_spec2: ".NET 8 ERP 升級專案通過 145 項 Golden Master 自動化帳務一致性驗證。",
+        erp_spec3: "YMSaaS 實現動態多租戶獨立 DB 路由與全鏈路進銷存/倉儲模組對齊。",
+        erp_spec4: "涵蓋 .NET 8、.NET 9 SSO 至最新 .NET 10 LTS Linux 容器叢集之正式環境實績。",
+        cc_title: "將任何手機化為廣播級低延遲無線攝影機。",
+        cc_desc: "底層自研 UDP/RTP 封包排程、H.264/HEVC 硬體編碼、mDNS 零配置自動探索，並提供 macOS 與 Windows 原生 C++/Rust OBS Studio 插件，徹底繞過傳統虛擬鏡頭效能瓶頸。",
+        cc_cap1: "CelerCam — 無線多機位專業攝影棚串流管線",
+        cc_cap2: "OBS Studio 多機位原生硬體直連擷取",
+        cc_cap3: "iOS 與 Android 即時編碼率與硬體狀態監控",
+        cc_spec1: "區域網路端到端延遲低於 18ms，配備自適應抖動緩衝控制。",
+        cc_spec2: "透過 macOS (.dmg) 與 Windows (.msi) 原生 OBS 插件直接上傳 GPU 材質。",
+        cc_spec3: "支援 VideoToolbox 與 MediaCodec H.264/HEVC 硬體加速編解碼。",
+        cc_spec4: "支援 Wi-Fi 與 USB 網路共享之 mDNS 零配置探索與 QR 快速配對。",
+        cast_title: "專為校園與專業攝影棚打造的多空間同步廣播系統。",
+        cast_desc: "支援 macOS (Apple Silicon) 與 Windows x64 的原生控制端，可將多路攝影機、螢幕分享與廣播訊號精準同步分發至數十間教室與顯示終端。",
+        cast_cap1: "CelerCast v0.4.4 — 跨教室多端點影音同步播放",
+        cast_cap2: "主控廣播攝影棚與授課來源端控制台",
+        cast_cap3: "零接觸教室接收端自動全螢幕播放",
+        cast_spec1: "1 對多矩陣分發，支援分組區域路由與即時插播。",
+        cast_spec2: "提供 macOS Apple Silicon (.dmg) 與 Windows x64 (.msi) 原生安裝包。",
+        cast_spec3: "跨教室顯示終端具備微秒級時鐘同步與唇音同步校正。",
+        cast_spec4: "支援斷線自動重連與各教室終端即時連線健康度監控。",
+        sw_title: "隨時隨地，以 60 FPS 流暢操控遠端工作站。",
+        sw_desc: "結合輕量化 macOS 原生背景服務與 Web、iOS、iPadOS、Android 客戶端，提供端到端加密、多螢幕切換與精準觸控游標映射。",
+        sw_cap1: "Skywave — 低延遲遠端工作站連線畫面",
+        sw_cap2: "iPadOS 多主機遠端工作空間管理",
+        sw_cap3: "iOS 與 Android 行動端遠端控制介面",
+        sw_spec1: "硬體加速螢幕擷取與動態位元率串流，穩定 60 FPS。",
+        sw_spec2: "完整支援 macOS、Web 瀏覽器、iPad、iPhone 與 Android。",
+        sw_spec3: "零信任連線握手機制，具備端到端暫時金鑰加密。",
+        sw_spec4: "支援多螢幕即時切換與完整鍵盤/觸控板手勢穿透。",
+        osp_title: "自託管 Android SMS 簡訊閘道與高可靠 Webhook 架構。",
+        osp_desc: "免除第三方雲端簡訊高昂抽成，支援雙 SIM 卡智慧路由、HMAC-SHA256 簽章驗證、自動重試佇列與即時監控儀表板，並於 GitHub 開源發布。",
+        osp_cap1: "Osprey 即時簡訊派發與設備電信狀態監控台",
+        osp_cap2: "端到端 Webhook 簽章驗證與雙卡派發架構",
+        osp_cap3: "高吞吐量雙 SIM 卡自動故障轉移引擎",
+        osp_spec1: "智慧雙卡槽選擇、速率限制與電信商自動故障轉移。",
+        osp_spec2: "支援 HMAC-SHA256 加密簽章 Webhook 與指數退避自動重試。",
+        osp_spec3: "於 GitHub (open5588/Osprey) 開源完整程式碼與 APK 發布版本。",
+        osp_spec4: "直接使用實體 SIM 卡發送，徹底省去雲端簡訊平台高額抽成。",
+        apps_eyebrow: "消費者應用程式與互動遊戲作品",
+        apps_title: "已於 App Store 與 Web 正式上線。",
+        apps_desc: "除了企業級 ERP/WMS 與底層多媒體系統，亦獨立完成視覺美術、遊戲機制與全端產品開發——涵蓋 iOS 塔防策略遊戲、解謎作品與家庭認知照護平台。",
+        app_spirit_desc: "元素戰術塔防 iOS 遊戲，具備自訂著色器特效、動態波次 AI 與原生 60fps 渲染，已於 Apple App Store 正式上架。",
+        app_cat_desc: "溫馨空間收納與敘事解謎遊戲，包含倉庫、工作室、書店、溫室與天文台等 8 個手繪建築章節。",
+        app_brain_desc: "結合長者、家庭成員與照護團隊的每日互動認知健康與記憶照護平台。",
+        oss_eyebrow: "全球開源專案實戰貢獻 (@open5588)",
+        oss_title: "跨國開源核心專案 Pull Requests 紀錄。",
+        oss_desc: "涵蓋 Rust 影片防手震引擎 (Gyroflow)、即時資料串流 (Dozer)、分散式權限引擎 (OPAL)、企業級 RAG (Onyx) 與 React Native (Expensify)。",
+        labs_eyebrow: "瀏覽器原生互動工程實驗室",
+        labs_title: "12 款零外部依賴 Web 互動沙盒。",
+        labs_desc: "點擊任一卡片即可直接在瀏覽器執行 WebAudio 合成器、WebGL 著色器開發環境、軌道物理模擬與 SQL 查詢規劃器。",
+        ret_eyebrow: "全球遠端工程合作 · 歐美 / 日本 / 亞太",
+        ret_title: "與 Jason (@open5588) 直接展開技術合作。",
+        ret_desc: "提供跨國遠端 Senior/Staff .NET (C#)、ERP/WMS、全端工程師全職/合約協作、每月技術顧問 Retainer，以及固定範疇的核心架構衝刺交付。",
+        ret_c1_eye: "核心架構與 ERP / MVP 衝刺方案",
+        ret_c1_title: "固定範疇專案交付",
+        ret_c1_desc: "2 週高密度開發衝刺，適合 ERP/WMS 模組擴充、.NET 升級或關鍵效能瓶頸突破。",
+        ret_c1_b1: "端到端 ERP/WMS 模組、API 或影音串流功能交付",
+        ret_c1_b2: "C# / .NET 8–10 / T-SQL / TypeScript / Rust / Python",
+        ret_c1_b3: "包含完整 xUnit / E2E 自動化測試與 CI/CD 部署",
+        ret_c1_b4: "100% 原始碼與智慧財產權完整移交",
+        ret_c1_cta: "透過 Email 預約衝刺開發",
+        ret_c2_eye: "最受歡迎 · 持續性核心研發協作",
+        ret_c2_title: "每月技術顧問 / 首席工程師 Retainer",
+        ret_c2_desc: "穩定每週工程產出，直接負責 .NET / ERP / SaaS 架構設計與正式環境 PR 交付。",
+        ret_c2_b1: "直接提交生產環境程式碼與架構 Code Review",
+        ret_c2_b2: "企業級 ERP/WMS (YMSaaS)、.NET 8–10、React 與 AI 整合",
+        ret_c2_b3: "配合歐美、英國、日本與亞太團隊時區非同步協作",
+        ret_c2_b4: "彈性按月合作，隨時可暫停或取消、無綁約限制",
+        ret_c2_cta: "立即寫信洽談合作",
+        ret_c3_eye: "全職遠端 / B2B 長期合約",
+        ret_c3_title: "專屬資深 / 首席工程師 (FTE / B2B)",
+        ret_c3_desc: "全職遠端加入您的核心 .NET、ERP/WMS 或全端產品工程團隊。",
+        ret_c3_b1: "10 年以上 C# / .NET、SQL Server 與大型 ERP/WMS 實戰",
+        ret_c3_b2: "精通 TypeScript / React / Next.js + Rust / Python 全棧開發",
+        ret_c3_b3: "具備從 0 到 1 獨立交付與大型舊系統無損遷移實績",
+        ret_c3_b4: "可立即安排技術面試與架構討論",
+        ret_c3_cta: "檢視工程履歷 PDF"
+      }
+    };
+
+    function setLang(lang) {
+      const base = I18N["en"];
+      const dict = I18N[lang] || base;
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        const val = dict[key] || base[key];
+        if (val) {
+          el.innerHTML = val;
+        }
+      });
+      // Switch CelerCam mobile app UI image between English and Traditional Chinese cleanly
+      const ccImg = document.getElementById("celercam-ui-img");
+      if (ccImg) {
+        ccImg.src = (lang === "zh-TW")
+          ? "https://celercam.com/assets/screens/zh-TW/02-streaming.webp"
+          : "https://celercam.com/assets/screens/en-US/02-streaming.webp";
+      }
+      document.querySelectorAll(".lang-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+      });
+      try {
+        const url = new URL(window.location.href);
+        url.searchParams.set("lang", lang);
+        window.history.replaceState({}, "", url.toString());
+      } catch (e) {}
+    }
+
+    (function initLang() {
+      const params = new URLSearchParams(window.location.search);
+      const qLang = params.get("lang");
+      if (qLang && I18N[qLang]) {
+        setLang(qLang);
+      }
+    })();
+  </script>
+</body>
+</html>

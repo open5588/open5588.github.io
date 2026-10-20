@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&family=Outfit:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1600px; height: 1200px; overflow: hidden;
+    background: #F8FAFC; color: #0F172A;
+    font-family: 'Inter', sans-serif;
+    display: flex; flex-direction: column; padding: 34px 44px;
+  }
+  .header {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 2px solid #E2E8F0; padding-bottom: 16px; margin-bottom: 22px;
+  }
+  .header h1 { font-size: 22px; font-weight: 800; color: #0F172A; letter-spacing: -0.3px; }
+  .header p { font-size: 13px; color: #475569; margin-top: 3px; }
+  .badge {
+    background: #0F172A; color: #FFFFFF; font-size: 11px; font-weight: 700;
+    padding: 8px 16px; border-radius: 6px; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .directions-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-bottom: 22px;
+  }
+  .dir-col {
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .dir-tag {
+    font-size: 12px; font-weight: 800; color: #0F172A; letter-spacing: 1.2px;
+    text-transform: uppercase; display: flex; justify-content: space-between; align-items: center;
+    background: #E2E8F0; padding: 8px 14px; border-radius: 6px;
+  }
+  .logo-box {
+    height: 235px; border-radius: 14px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; position: relative; padding: 28px;
+  }
+  .light-box {
+    background: #FFFFFF; border: 1.5px solid #CBD5E1; box-shadow: 0 8px 24px rgba(15,23,42,0.04);
+  }
+  .dark-box {
+    background: #0B192C; border: 1.5px solid #1E293B;
+  }
+  .box-corner {
+    position: absolute; top: 12px; left: 16px; font-size: 10px; font-weight: 700;
+    letter-spacing: 1.2px; text-transform: uppercase; opacity: 0.55;
+  }
+  /* Direction 01: Geometric Authoritative Sans (Montserrat Black + Medium Tracked) */
+  .d1-primary {
+    font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 56px;
+    letter-spacing: -1.5px; line-height: 1; text-transform: uppercase;
+  }
+  .d1-sub {
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 17px;
+    letter-spacing: 9.5px; text-transform: uppercase; margin-top: 10px; padding-left: 9.5px;
+  }
+  .d1-rule {
+    width: 100%; max-width: 390px; height: 3px; margin-top: 8px;
+  }
+  /* Direction 02: Contemporary Precision Humanist (Outfit Bold Inline Hierarchy) */
+  .d2-primary {
+    font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 46px;
+    letter-spacing: 2px; line-height: 1.05; text-transform: uppercase;
+  }
+  .d2-sub {
+    font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 20px;
+    letter-spacing: 5.5px; text-transform: uppercase; margin-top: 8px;
+  }
+  /* Bottom Style Guide & Kerning Specification Bar */
+  .style-guide {
+    flex: 1; background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 14px;
+    padding: 22px 28px; display: grid; grid-template-columns: 1.1fr 1.1fr 1fr; gap: 28px;
+  }
+  .sg-col h3 {
+    font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.4px;
+    color: #0B192C; border-bottom: 2px solid #E2E8F0; padding-bottom: 8px; margin-bottom: 12px;
+  }
+  .sg-row { font-size: 12.5px; line-height: 1.65; color: #334155; margin-bottom: 6px; }
+  .sg-row strong { color: #0F172A; }
+  .color-chips { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px; }
+  .chip {
+    border-radius: 8px; padding: 10px 12px; font-size: 11px; font-weight: 700;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <h1>ALLIED MEDICAL AND RESCUE — PURE TYPOGRAPHIC IDENTITY & STYLE GUIDE</h1>
+      <p>100% Text-Only Typographic Focus (Zero Icons/Graphics) • Two Distinct Font Directions • Dark-on-Light & Light-on-Dark • Vector AI / EPS / SVG / PNG</p>
+    </div>
+    <div class="badge">PREPARED FOR TIM (@timocal)</div>
+  </div>
+
+  <div class="directions-grid">
+    <!-- DIRECTION 01 -->
+    <div class="dir-col">
+      <div class="dir-tag">
+        <span>FONT DIRECTION 01 // GEOMETRIC ARCHITECTURAL AUTHORITY</span>
+        <span>MONTSERRAT 900 BLACK + 700 BOLD</span>
+      </div>
+
+      <!-- Dark on Light -->
+      <div class="logo-box light-box">
+        <span class="box-corner" style="color:#475569;">1A • DARK-ON-LIGHT VARIATION (PRIMARY PRINT & WEB HEADER)</span>
+        <div class="d1-primary" style="color:#0B192C;">ALLIED</div>
+        <div class="d1-rule" style="background:#C81E1E;"></div>
+        <div class="d1-sub" style="color:#1E293B;">MEDICAL <span style="color:#C81E1E;">AND</span> RESCUE</div>
+      </div>
+
+      <!-- Light on Dark -->
+      <div class="logo-box dark-box">
+        <span class="box-corner" style="color:#94A3B8;">1B • LIGHT-ON-DARK VARIATION (REVERSED DIGITAL & UNIFORM)</span>
+        <div class="d1-primary" style="color:#FFFFFF;">ALLIED</div>
+        <div class="d1-rule" style="background:#EF4444;"></div>
+        <div class="d1-sub" style="color:#E2E8F0;">MEDICAL <span style="color:#EF4444;">AND</span> RESCUE</div>
+      </div>
+    </div>
+
+    <!-- DIRECTION 02 -->
+    <div class="dir-col">
+      <div class="dir-tag">
+        <span>FONT DIRECTION 02 // CONTEMPORARY CLINICAL PRECISION</span>
+        <span>OUTFIT 800 EXTRA-BOLD + 600 SEMI-BOLD</span>
+      </div>
+
+      <!-- Dark on Light -->
+      <div class="logo-box light-box">
+        <span class="box-corner" style="color:#475569;">2A • DARK-ON-LIGHT VARIATION (PRIMARY PRINT & WEB HEADER)</span>
+        <div class="d2-primary" style="color:#0B192C;">ALLIED <span style="font-weight:400;color:#C81E1E;">|</span> MEDICAL</div>
+        <div class="d2-sub" style="color:#334155;">AND RESCUE</div>
+      </div>
+
+      <!-- Light on Dark -->
+      <div class="logo-box dark-box">
+        <span class="box-corner" style="color:#94A3B8;">2B • LIGHT-ON-DARK VARIATION (REVERSED DIGITAL & UNIFORM)</span>
+        <div class="d2-primary" style="color:#FFFFFF;">ALLIED <span style="font-weight:400;color:#EF4444;">|</span> MEDICAL</div>
+        <div class="d2-sub" style="color:#CBD5E1;">AND RESCUE</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STYLE GUIDE -->
+  <div class="style-guide">
+    <div class="sg-col">
+      <h3>01 // Typography & Kerning Rules (Direction 01)</h3>
+      <div class="sg-row"><strong>Primary Typeface:</strong> Montserrat Black (900) & Bold (700)</div>
+      <div class="sg-row"><strong>Primary Word ("ALLIED"):</strong> Optical Kerning, Tracking <code>-25</code> (<code>-0.025em</code>), Cap-Height Ratio <code>3.2 : 1</code> vs. secondary line.</div>
+      <div class="sg-row"><strong>Secondary Line ("MEDICAL AND RESCUE"):</strong> Montserrat Bold (700), Tracking <code>+550</code> (<code>+0.55em</code>) so the left/right edges align flush with "ALLIED".</div>
+      <div class="sg-row"><strong>Baseline Separation:</strong> <code>0.18X</code> vertical gap (where <code>X</code> = cap height of "ALLIED").</div>
+    </div>
+
+    <div class="sg-col">
+      <h3>02 // Typography & Spacing Rules (Direction 02)</h3>
+      <div class="sg-row"><strong>Primary Typeface:</strong> Outfit ExtraBold (800) & SemiBold (600)</div>
+      <div class="sg-row"><strong>Upper Lockup ("ALLIED | MEDICAL"):</strong> Outfit ExtraBold (800), Tracking <code>+45</code> (<code>+0.045em</code>), balanced with a <code>400</code> weight vertical typographic divider.</div>
+      <div class="sg-row"><strong>Lower Lockup ("AND RESCUE"):</strong> Outfit SemiBold (600), Tracking <code>+280</code> (<code>+0.28em</code>), centered optically beneath the upper lockup.</div>
+      <div class="sg-row"><strong>Minimum Clear Space:</strong> <code>1.0X</code> (height of capital letter <code>A</code>) on all four sides across web headers, social avatars, and vehicles.</div>
+    </div>
+
+    <div class="sg-col">
+      <h3>03 // Exact HEX & RGB Color Values</h3>
+      <div class="color-chips">
+        <div class="chip" style="background:#0B192C;color:#FFF;">
+          <span>Clinical Navy</span>
+          <span>HEX: #0B192C</span>
+          <span>RGB: 11, 25, 44</span>
+        </div>
+        <div class="chip" style="background:#C81E1E;color:#FFF;">
+          <span>Rescue Crimson</span>
+          <span>HEX: #C81E1E</span>
+          <span>RGB: 200, 30, 30</span>
+        </div>
+        <div class="chip" style="background:#334155;color:#FFF;">
+          <span>Surgical Slate</span>
+          <span>HEX: #334155</span>
+          <span>RGB: 51, 65, 85</span>
+        </div>
+        <div class="chip" style="background:#F8FAFC;color:#0B192C;border:1px solid #CBD5E1;">
+          <span>Sterile White</span>
+          <span>HEX: #FFFFFF</span>
+          <span>RGB: 255, 255, 255</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

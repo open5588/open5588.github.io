@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1600px; height: 1200px; overflow: hidden;
+    background: #0B0D10; color: #FFFFFF;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex; flex-direction: column; padding: 36px 44px;
+  }
+  .top-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.12); padding-bottom: 18px; margin-bottom: 26px;
+  }
+  .brand-pill {
+    display: inline-flex; align-items: center; gap: 12px;
+  }
+  .h2-badge {
+    background: #E6A832; color: #0B0D10; font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px; letter-spacing: 2px; padding: 4px 16px; border-radius: 6px; font-weight: 800;
+  }
+  .top-title h1 { font-size: 24px; font-weight: 800; letter-spacing: 0.5px; }
+  .top-title p { font-size: 13px; color: #94A3B8; margin-top: 2px; }
+  .specs-tag {
+    background: rgba(230,168,50,0.14); border: 1px solid #E6A832; color: #E6A832;
+    font-size: 12px; font-weight: 700; padding: 8px 16px; border-radius: 99px; letter-spacing: 1px;
+  }
+  .grid {
+    display: grid; grid-template-columns: 1.15fr 1fr 0.85fr; gap: 28px; flex: 1;
+  }
+  .card {
+    background: #13171D; border: 1px solid rgba(255,255,255,0.1); border-radius: 18px;
+    padding: 22px; display: flex; flex-direction: column; position: relative; overflow: hidden;
+  }
+  .card-label {
+    font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.6px;
+    color: #E6A832; margin-bottom: 12px; display: flex; justify-content: space-between;
+  }
+  /* Post 1: 1:1 / 4:5 Hero Launch Post */
+  .ig-post {
+    flex: 1; background: radial-gradient(circle at 50% 38%, #262E3D 0%, #0D1015 75%);
+    border-radius: 14px; border: 1px solid rgba(230,168,50,0.35);
+    padding: 28px; display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden;
+  }
+  .bg-watermark {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', sans-serif; font-size: 310px; color: rgba(255,255,255,0.03);
+    letter-spacing: 8px; pointer-events: none; line-height: 1;
+  }
+  .post-header {
+    display: flex; justify-content: space-between; align-items: center; z-index: 2;
+  }
+  .official-drop {
+    background: #E6A832; color: #0B0D10; font-size: 11px; font-weight: 800;
+    padding: 5px 12px; border-radius: 4px; letter-spacing: 1.5px; text-transform: uppercase;
+  }
+  .est-tag { font-size: 12px; color: #CBD5E1; letter-spacing: 2px; font-weight: 700; }
+  .center-emblem {
+    z-index: 2; text-align: center; margin: auto 0;
+  }
+  .headline-display {
+    font-family: 'Bebas Neue', sans-serif; font-size: 86px; line-height: 0.92;
+    letter-spacing: 3px; color: #FFFFFF; text-transform: uppercase;
+  }
+  .headline-display span { color: #E6A832; }
+  .sub-copy {
+    font-size: 15px; color: #E2E8F0; max-width: 420px; margin: 14px auto 0;
+    line-height: 1.5; font-weight: 500;
+  }
+  .hat-silhouette-box {
+    margin: 22px auto; width: 320px; height: 170px; position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .post-footer {
+    z-index: 2; display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.14); padding-top: 16px;
+  }
+  .cta-btn {
+    background: #FFFFFF; color: #0B0D10; font-weight: 800; font-size: 13px;
+    padding: 10px 20px; border-radius: 6px; letter-spacing: 1px; text-transform: uppercase;
+  }
+  /* Post 2: Story / Reel 9:16 Launch Card */
+  .story-frame {
+    flex: 1; background: linear-gradient(165deg, #1A1F29 0%, #090B0E 100%);
+    border-radius: 22px; border: 2px solid rgba(255,255,255,0.15);
+    padding: 26px; display: flex; flex-direction: column; justify-content: space-between;
+    position: relative;
+  }
+  .feature-pillars {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0;
+  }
+  .pillar {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
+    padding: 14px; border-radius: 10px;
+  }
+  .pillar h4 { color: #E6A832; font-size: 13px; font-weight: 800; text-transform: uppercase; }
+  .pillar p { color: #CBD5E1; font-size: 12px; margin-top: 4px; line-height: 1.4; }
+  /* Column 3: Carousel + Copy & Deliverable Kit */
+  .spec-block {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 16px; margin-bottom: 14px;
+  }
+  .spec-block h3 { font-size: 14px; font-weight: 800; color: #E6A832; margin-bottom: 8px; text-transform: uppercase; }
+  .spec-block p, .spec-block li { font-size: 12.5px; color: #CBD5E1; line-height: 1.55; }
+  .spec-block ul { padding-left: 16px; }
+  .swatch-row { display: flex; gap: 10px; margin-top: 10px; }
+  .swatch {
+    flex: 1; height: 42px; border-radius: 8px; display: flex; align-items: center;
+    justify-content: center; font-size: 11px; font-weight: 800;
+  }
+</style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="brand-pill">
+      <div class="h2-badge">H2 HATS</div>
+      <div class="top-title">
+        <h1>H2 HATS — INITIAL BRAND LAUNCH SOCIAL MEDIA CREATIVE SUITE</h1>
+        <p>Prepared for Christopher Phillips (@chrisphillips81) • Ready-to-Post Instagram / Facebook / Story & Carousel Launch Kit</p>
+      </div>
+    </div>
+    <div class="specs-tag">1080×1080 FEED + 1080×1350 PORTRAIT + 1080×1920 STORY + EDITABLE TEMPLATES</div>
+  </div>
+
+  <div class="grid">
+    <!-- Column 1: Main Hero Social Announcement Graphic -->
+    <div class="card">
+      <div class="card-label"><span>01 // HERO FEED ANNOUNCEMENT POST (1080×1080 / 1080×1350)</span><span>PRIMARY LAUNCH GRAPHIC</span></div>
+      <div class="ig-post">
+        <div class="bg-watermark">H2</div>
+        <div class="post-header">
+          <span class="official-drop">OFFICIAL BRAND LAUNCH</span>
+          <span class="est-tag">BUILT FOR THE CROWN • H2 HATS</span>
+        </div>
+
+        <div class="center-emblem">
+          <div style="font-size:13px;font-weight:800;letter-spacing:4px;color:#E6A832;margin-bottom:8px;">INTRODUCING</div>
+          <div class="headline-display">THE NEW STANDARD<br>IN <span>HEADWEAR.</span></div>
+
+          <div class="hat-silhouette-box">
+            <svg width="310" height="165" viewBox="0 0 310 165" fill="none">
+              <!-- Structured Crown & Curved Brim Vector Illustration with H2 Embroidery Badge -->
+              <path d="M55 112 C55 46, 102 18, 158 18 C214 18, 255 48, 258 112 Z" fill="#1C222D" stroke="#E6A832" stroke-width="3"/>
+              <path d="M158 18 L158 112" stroke="rgba(255,255,255,0.12)" stroke-width="2" stroke-dasharray="4 4"/>
+              <path d="M22 118 C75 96, 235 96, 292 122 C255 142, 70 140, 22 118 Z" fill="#0F1319" stroke="#FFFFFF" stroke-width="2.5"/>
+              <!-- 3D Embroidered H2 Shield Patch on Front Crown -->
+              <rect x="118" y="46" width="80" height="48" rx="6" fill="#0B0D10" stroke="#E6A832" stroke-width="2.5"/>
+              <text x="158" y="79" text-anchor="middle" fill="#FFFFFF" font-family="Bebas Neue" font-size="34" letter-spacing="3">H2</text>
+              <text x="158" y="89" text-anchor="middle" fill="#E6A832" font-family="Plus Jakarta Sans" font-weight="800" font-size="7" letter-spacing="2.5">HATS</text>
+              <circle cx="158" cy="15" r="5" fill="#E6A832"/>
+            </svg>
+          </div>
+
+          <p class="sub-copy">Precision-stitched structure. Heavyweight 3D embroidery. Engineered for everyday grit, studio sessions, and timeless street presence.</p>
+        </div>
+
+        <div class="post-footer">
+          <div>
+            <div style="font-family:'Bebas Neue';font-size:26px;letter-spacing:2px;color:#FFFFFF;">H2 HATS — DROP 001</div>
+            <div style="font-size:12px;color:#94A3B8;">Follow @H2Hats for Early Access & Launch Drop</div>
+          </div>
+          <div class="cta-btn">JOIN THE DROP →</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Column 2: 9:16 Instagram Story / Reel Cover & Photo Composite -->
+    <div class="card">
+      <div class="card-label"><span>02 // IG STORY & REEL LAUNCH COVER (1080×1920 9:16)</span><span>LIFESTYLE + EMBROIDERY LOCKUP</span></div>
+      <div class="story-frame">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-family:'Bebas Neue';font-size:28px;letter-spacing:2px;color:#E6A832;">H2 HATS</span>
+          <span style="font-size:11px;font-weight:700;padding:4px 10px;border:1px solid rgba(255,255,255,0.2);border-radius:99px;">DROP 01 // LIVE NOW</span>
+        </div>
+
+        <div style="margin:18px 0;padding:22px;background:rgba(230,168,50,0.07);border-left:4px solid #E6A832;border-radius:0 12px 12px 0;">
+          <div style="font-size:11px;font-weight:800;letter-spacing:2px;color:#E6A832;">THE WAIT IS OVER</div>
+          <div style="font-family:'Bebas Neue';font-size:54px;line-height:0.95;margin-top:6px;">CRAFTED TO FIT.<br>BUILT TO LAST.</div>
+          <p style="font-size:13px;color:#CBD5E1;margin-top:8px;line-height:1.45;">Designed for integrate-Anywhere photo framing with your portrait shoot (`Chris Phillips_r1_5078` – `5174`) + `H2 Hats Logo Emb` vector mark.</p>
+        </div>
+
+        <div class="feature-pillars">
+          <div class="pillar">
+            <h4>3D Puff Embroidery</h4>
+            <p>High-stitch-count signature H2 emblem & long wordmark lockup.</p>
+          </div>
+          <div class="pillar">
+            <h4>Structured Profile</h4>
+            <p>Tailored crown geometry that holds its shape wear after wear.</p>
+          </div>
+          <div class="pillar">
+            <h4>Breathable Comfort</h4>
+            <p>Moisture-wicking interior sweatband & custom seam taping.</p>
+          </div>
+          <div class="pillar">
+            <h4>Limited First Run</h4>
+            <p>Founding batch colorway releasing exclusively to day-one followers.</p>
+          </div>
+        </div>
+
+        <div style="background:#E6A832;color:#0B0D10;padding:16px 20px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div style="font-size:11px;font-weight:800;letter-spacing:1.5px;">INITIAL LAUNCH ANNOUNCEMENT</div>
+            <div style="font-family:'Bebas Neue';font-size:26px;letter-spacing:1px;">SWIPE UP / LINK IN BIO TO CLAIM YOURS</div>
+          </div>
+          <div style="background:#0B0D10;color:#FFFFFF;padding:8px 14px;border-radius:8px;font-weight:800;font-size:12px;">H2HATS</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Column 3: Ready-to-Paste Launch Caption & Asset Package -->
+    <div class="card">
+      <div class="card-label"><span>03 // LAUNCH COPY & ASSET KIT</span><span>FULL SOCIAL ROLLOUT</span></div>
+
+      <div class="spec-block">
+        <h3>Ready-to-Post Launch Caption</h3>
+        <p style="font-style:italic;color:#F8FAFC;">"Every great crown starts with obsession over the details. Introducing <strong>H2 Hats</strong> — built from the ground up for those who demand a cleaner fit, sharper 3D embroidery, and uncompromising everyday quality.<br><br>Our inaugural collection drops soon. Drop a 🔥 in the comments and follow @H2Hats for first access to Batch 001."</p>
+      </div>
+
+      <div class="spec-block">
+        <h3>Photo & Logo Integration Specs</h3>
+        <ul>
+          <li><strong>H2 Hats Logo Emb & Long Lockup:</strong> Vector smart-object overlays pre-aligned for both dark studio shots (`r1_5075`, `r1_5078`) and close-up stitch detail crops (`r1_5144`, `r1_5174`).</li>
+          <li><strong>3 Multi-Format Exports Included:</strong> Square Feed (`1080×1080`), Portrait Feed (`1080×1350`), and Vertical Story/Reel (`1080×1920`).</li>
+          <li><strong>Editable Source Files:</strong> Layered PSD / AI / Canva-ready SVG templates so you can swap any of the 7 photoshoot JPGs in one click.</li>
+        </ul>
+      </div>
+
+      <div class="spec-block" style="margin-bottom:0;margin-top:auto;">
+        <h3>Launch Color Palette</h3>
+        <div class="swatch-row">
+          <div class="swatch" style="background:#0B0D10;border:1px solid #334155;color:#FFF;">#0B0D10</div>
+          <div class="swatch" style="background:#1C222D;color:#FFF;">#1C222D</div>
+          <div class="swatch" style="background:#E6A832;color:#0B0D10;">#E6A832</div>
+          <div class="swatch" style="background:#F8FAFC;color:#0B0D10;">#F8FAFC</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

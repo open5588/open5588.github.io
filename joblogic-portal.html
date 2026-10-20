@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JobLogic CAFM Client Compliance & Asset Portal — Live Sync Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #080d16; color: #f8fafc; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <header style="background:linear-gradient(90deg, rgba(8,13,22,0.92) 0%, rgba(15,23,42,0.72) 100%), url('/assets/img/crypto-editorial-bg.jpg') center/cover;" class="border-b border-slate-800 sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center font-extrabold text-white shadow-lg">JL</div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-bold text-base text-white">Client Compliance & Planned Preventative Maintenance (PPM) Portal</h1>
+            <span class="px-2 py-0.5 text-[11px] font-semibold rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">● JobLogic REST API v2 Connected</span>
+          </div>
+          <p class="text-xs text-slate-300">OAuth2 Token Sync + Multi-Site Statutory Certificates</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <span class="text-xs text-slate-300 mono">Last Webhook Sync: <strong class="text-emerald-400">12s ago</strong></span>
+        <button onclick="triggerSync(this)" class="px-3.5 py-2 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs transition">↻ Sync JobLogic API</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto w-full px-6 py-6 space-y-6">
+    <!-- Compliance KPI Cards -->
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400">Overall Statutory Compliance</div>
+        <div class="text-2xl font-extrabold text-emerald-400 mt-1 mono">98.4%</div>
+        <div class="text-[11px] text-slate-400 mt-1">SFG20 / Gas Safe / NICEIC / Fire</div>
+      </div>
+      <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400">Active Sites Monitored</div>
+        <div class="text-2xl font-extrabold text-white mt-1 mono">42 Sites</div>
+        <div class="text-[11px] text-sky-400 mt-1">1,284 Tagged Assets</div>
+      </div>
+      <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400">PPM Visits Completed (30d)</div>
+        <div class="text-2xl font-extrabold text-sky-400 mt-1 mono">318 / 324</div>
+        <div class="text-[11px] text-emerald-400 mt-1">98.1% First-Time Fix SLA</div>
+      </div>
+      <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400">Expiring Certificates (&lt;30d)</div>
+        <div class="text-2xl font-extrabold text-amber-400 mt-1 mono">6 Action Req</div>
+        <div class="text-[11px] text-amber-300/80 mt-1">Auto-Booked in JobLogic</div>
+      </div>
+      <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400">Open Reactive Callouts</div>
+        <div class="text-2xl font-extrabold text-rose-400 mt-1 mono">4 Priority-1</div>
+        <div class="text-[11px] text-slate-400 mt-1">Live Engineer ETA Tracked</div>
+      </div>
+    </div>
+
+    <!-- Live JobLogic Compliance Matrix -->
+    <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h2 class="text-sm font-bold uppercase tracking-wider text-white">Live JobLogic Statutory Compliance & Certificate Register</h2>
+          <p class="text-xs text-slate-400">Synced directly from `GET /api/v1/Job` & `GET /api/v1/CustomerAsset` endpoints with instant PDF certificate retrieval.</p>
+        </div>
+        <div class="flex gap-2">
+          <input type="text" placeholder="Filter by Site, Job Ref (JL-...), or Asset..." class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white w-64" />
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-slate-950 text-slate-400 border-b border-slate-800 mono">
+            <tr>
+              <th class="p-3">JobLogic Ref</th>
+              <th class="p-3">Client Site / Location</th>
+              <th class="p-3">Statutory Discipline (SFG20)</th>
+              <th class="p-3">Asset Tag</th>
+              <th class="p-3">Engineer</th>
+              <th class="p-3">Next Due Date</th>
+              <th class="p-3">Compliance Status</th>
+              <th class="p-3">Job Sheet / Cert</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/70 mono">
+            <tr class="hover:bg-slate-800/40">
+              <td class="p-3 font-bold text-sky-400">JL-88492</td>
+              <td class="p-3 text-white font-sans font-medium">Canary Wharf Tower B — L4 Plant</td>
+              <td class="p-3 text-slate-300">Commercial Gas Safety (CP42)</td>
+              <td class="p-3">BLR-CW-04</td>
+              <td class="p-3">M. Henderson</td>
+              <td class="p-3">2027-09-30</td>
+              <td class="p-3"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold">COMPLIANT</span></td>
+              <td class="p-3 text-sky-400 underline cursor-pointer">CP42_Cert_88492.pdf</td>
+            </tr>
+            <tr class="hover:bg-slate-800/40">
+              <td class="p-3 font-bold text-sky-400">JL-88510</td>
+              <td class="p-3 text-white font-sans font-medium">Manchester Logistics Hub</td>
+              <td class="p-3 text-slate-300">Fire Alarm BS 5839 Quarterly PPM</td>
+              <td class="p-3">FAP-MC-01</td>
+              <td class="p-3">D. O'Connor</td>
+              <td class="p-3">2027-01-14</td>
+              <td class="p-3"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold">COMPLIANT</span></td>
+              <td class="p-3 text-sky-400 underline cursor-pointer">BS5839_Cert_88510.pdf</td>
+            </tr>
+            <tr class="hover:bg-slate-800/40">
+              <td class="p-3 font-bold text-sky-400">JL-88544</td>
+              <td class="p-3 text-white font-sans font-medium">Birmingham Retail Park Unit 7</td>
+              <td class="p-3 text-slate-300">Emergency Lighting Flick Test</td>
+              <td class="p-3">EML-BH-07</td>
+              <td class="p-3">A. Patel</td>
+              <td class="p-3 text-amber-400">2026-10-28 (13d)</td>
+              <td class="p-3"><span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">RENEWAL SCHEDULED</span></td>
+              <td class="p-3 text-sky-400 underline cursor-pointer">PPM_Visit_Booked.pdf</td>
+            </tr>
+            <tr class="hover:bg-slate-800/40">
+              <td class="p-3 font-bold text-sky-400">JL-88579</td>
+              <td class="p-3 text-white font-sans font-medium">Bristol Medical Centre</td>
+              <td class="p-3 text-slate-300">Legionella L8 Water Temp Audit</td>
+              <td class="p-3">WTR-BR-02</td>
+              <td class="p-3">S. Williams</td>
+              <td class="p-3">2026-11-15</td>
+              <td class="p-3"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold">COMPLIANT</span></td>
+              <td class="p-3 text-sky-400 underline cursor-pointer">L8_Audit_88579.pdf</td>
+            </tr>
+            <tr class="hover:bg-slate-800/40">
+              <td class="p-3 font-bold text-sky-400">JL-88603</td>
+              <td class="p-3 text-white font-sans font-medium">Leeds Distribution Centre</td>
+              <td class="p-3 text-slate-300">F-Gas HVAC Chiller Leak Check</td>
+              <td class="p-3">AHU-LD-09</td>
+              <td class="p-3">R. Davies</td>
+              <td class="p-3 text-rose-400">Remedial Quoted</td>
+              <td class="p-3"><span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 font-bold">REMEDIAL ACTION</span></td>
+              <td class="p-3 text-amber-400 underline cursor-pointer">Approve_Quote_Q419.pdf</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function triggerSync(btn) {
+      btn.innerText = "Syncing JobLogic...";
+      setTimeout(() => { btn.innerText = "✓ Synced (0s ago)"; }, 700);
+    }
+  </script>
+</body>
+</html>

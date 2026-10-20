@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TERRA MARE — Mediterranean Grounding Beach Sandal Concept Board (#2794153)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1600px;
+    height: 1200px;
+    overflow: hidden;
+    background: #F4EFE6;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    color: #1C2628;
+  }
+  .board {
+    width: 1600px;
+    height: 1200px;
+    padding: 28px 34px;
+    display: grid;
+    grid-template-rows: 78px 1fr 270px;
+    gap: 18px;
+    background:
+      radial-gradient(circle at 88% 12%, rgba(216,179,132,0.22), transparent 42%),
+      radial-gradient(circle at 12% 88%, rgba(26,95,112,0.10), transparent 45%),
+      #F4EFE6;
+  }
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #D5C7B2;
+    padding-bottom: 12px;
+  }
+  .brand-title {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .brand-title h1 {
+    font-family: "Georgia", serif;
+    font-size: 31px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #162B32;
+  }
+  .brand-title .sub {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #9C5A25;
+    background: #EFE4D2;
+    padding: 5px 12px;
+    border-radius: 4px;
+    border: 1px solid #D5B895;
+  }
+  .meta-badges {
+    display: flex;
+    gap: 10px;
+  }
+  .badge {
+    background: #162B32;
+    color: #F4EFE6;
+    padding: 7px 14px;
+    border-radius: 5px;
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .badge.copper {
+    background: linear-gradient(135deg, #B85D27, #803B12);
+    color: #FFF7ED;
+  }
+
+  /* Main Middle Grid */
+  .middle-grid {
+    display: grid;
+    grid-template-columns: 620px 1fr;
+    gap: 18px;
+    height: 100%;
+  }
+  .card {
+    background: #FAF7F2;
+    border: 1px solid #DCD0BE;
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: 0 6px 20px rgba(28,38,40,0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .section-tag {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: #9C5A25;
+    margin-bottom: 4px;
+  }
+  .card-title {
+    font-family: "Georgia", serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #162B32;
+    margin-bottom: 8px;
+  }
+
+  /* Orthographic Left Panel */
+  .ortho-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    flex: 1;
+    align-items: center;
+  }
+  .ortho-box {
+    background: #F2ECE1;
+    border: 1px solid #DFD3C0;
+    border-radius: 8px;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .ortho-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    color: #162B32;
+    text-transform: uppercase;
+  }
+
+  /* Right Technical Panel: Lateral + Exploded 4-Layer + Grounding Detail */
+  .right-col {
+    display: grid;
+    grid-template-rows: 245px 1fr;
+    gap: 16px;
+  }
+  .exploded-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 0.95fr;
+    gap: 16px;
+  }
+
+  /* Bottom 4 Specification Columns (Brief Items 2, 3, 4, 5) */
+  .bottom-specs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .spec-card {
+    background: #FAF7F2;
+    border: 1px solid #DCD0BE;
+    border-top: 4px solid #162B32;
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .spec-card.earthing {
+    border-top-color: #B85D27;
+    background: linear-gradient(180deg, #FFFDF9 0%, #F9EFE4 100%);
+  }
+  .spec-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 11.8px;
+    line-height: 1.38;
+    color: #364144;
+  }
+  .spec-list li strong {
+    color: #162B32;
+  }
+  .swatch-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed #DCD0BE;
+  }
+  .swatch {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #4A5456;
+  }
+  .swatch-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.2);
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+<div class="board">
+  <!-- HEADER -->
+  <header class="header">
+    <div class="brand-title">
+      <h1>TERRA MARE</h1>
+      <span class="sub">Mediterranean Earthing Resort Sandal • Industrial Design Concept Board</span>
+    </div>
+    <div class="meta-badges">
+      <div class="badge">100% Zero-Plastic Tactility</div>
+      <div class="badge">Glue-Free Interlock Welt</div>
+      <div class="badge copper">⚡ 8mm Copper-Carbon Earthing Core (&lt; 10⁵ Ω)</div>
+    </div>
+  </header>
+
+  <!-- MIDDLE GRID: ORTHOGRAPHIC VIEWS + EXPLODED / LATERAL DIAGRAMS -->
+  <div class="middle-grid">
+    <!-- LEFT: TOP & BOTTOM ORTHOGRAPHIC VIEWS (ITEM 1 & 6) -->
+    <div class="card">
+      <div>
+        <div class="section-tag">01 &amp; 06 • Orthographic Plan Views (1:1 Proportion)</div>
+        <div class="card-title">Architectural Minimalist Silhouette — Top Footbed &amp; Wave-Grip Outsole</div>
+      </div>
+
+      <div class="ortho-grid">
+        <!-- TOP VIEW -->
+        <div class="ortho-box">
+          <div class="ortho-label">A. Top Footbed View (Dorsal)</div>
+          <svg viewBox="0 0 250 510" width="215" height="430">
+            <defs>
+              <linearGradient id="corkTop" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#DFC196"/>
+                <stop offset="55%" stop-color="#C89F6D"/>
+                <stop offset="100%" stop-color="#AD804F"/>
+              </linearGradient>
+              <linearGradient id="linenStrap" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#EFE7DA"/>
+                <stop offset="50%" stop-color="#FAF6F0"/>
+                <stop offset="100%" stop-color="#DED2BF"/>
+              </linearGradient>
+              <radialGradient id="copperNode" cx="45%" cy="45%" r="55%">
+                <stop offset="0%" stop-color="#FFE4C4"/>
+                <stop offset="40%" stop-color="#D97F43"/>
+                <stop offset="80%" stop-color="#9C4716"/>
+                <stop offset="100%" stop-color="#4A1F07"/>
+              </radialGradient>
+            </defs>
+            <!-- Outer Crepe Welt -->
+            <path d="M 125,18 C 182,18 212,66 206,142 C 201,208 184,264 186,332 C 188,396 194,442 174,478 C 158,500 142,504 125,504 C 108,504 92,500 76,478 C 56,442 62,396 64,332 C 66,264 49,208 44,142 C 38,66 68,18 125,18 Z" fill="#2B241F" stroke="#1A1512" stroke-width="2"/>
+            <!-- Brushed Cork Footbed -->
+            <path d="M 125,26 C 176,26 203,70 198,142 C 193,206 177,262 179,330 C 181,392 186,436 168,470 C 153,491 139,495 125,495 C 111,495 97,491 82,470 C 64,436 69,392 71,330 C 73,262 57,206 52,142 C 47,70 74,26 125,26 Z" fill="url(#corkTop)" stroke="#F4EFE6" stroke-width="1.6" stroke-dasharray="4,3"/>
+            <!-- Recessed Heel Cup & Metatarsal Contour -->
+            <ellipse cx="125" cy="422" rx="38" ry="48" fill="none" stroke="#9C7144" stroke-width="1.2" stroke-dasharray="3,3"/>
+            <!-- Riva Boat Decking Longitudinal Micro-Channels + Silver Conductive Stitching -->
+            <line x1="95" y1="55" x2="95" y2="465" stroke="#9C7144" stroke-width="0.9" opacity="0.55"/>
+            <line x1="125" y1="45" x2="125" y2="475" stroke="#E2E8F0" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <line x1="155" y1="55" x2="155" y2="465" stroke="#9C7144" stroke-width="0.9" opacity="0.55"/>
+            <!-- 8mm Copper-Carbon Grounding Core Plug (1st Metatarsal Zone) -->
+            <circle cx="152" cy="158" r="14" fill="url(#copperNode)" stroke="#FAF6F0" stroke-width="2"/>
+            <circle cx="152" cy="158" r="5.5" fill="#2E1505"/>
+            <circle cx="152" cy="158" r="20" fill="none" stroke="#B85D27" stroke-width="1" stroke-dasharray="2,2"/>
+            <!-- Secondary Conductive Heel Node -->
+            <circle cx="125" cy="425" r="10" fill="url(#copperNode)" stroke="#FAF6F0" stroke-width="1.5"/>
+            <circle cx="125" cy="425" r="3.5" fill="#2E1505"/>
+            <!-- Woven Sea-Linen Architectural Y-Strap (Wide Tapered Resort Cut) -->
+            <rect x="113" y="96" width="24" height="28" rx="4" fill="#9C4716" stroke="#FAF6F0" stroke-width="1.2"/>
+            <path d="M 125,108 C 125,108 72,182 48,268 L 62,302 C 84,220 125,146 125,146 C 125,146 166,220 188,302 L 202,268 C 178,182 125,108 125,108 Z" fill="url(#linenStrap)" stroke="#B5A38A" stroke-width="2"/>
+            <!-- Subtle Herringbone Weave Lines on Strap -->
+            <path d="M 125,124 C 95,172 72,226 55,284" fill="none" stroke="#C8B89E" stroke-width="1.2" stroke-dasharray="3,3"/>
+            <path d="M 125,124 C 155,172 178,226 195,284" fill="none" stroke="#C8B89E" stroke-width="1.2" stroke-dasharray="3,3"/>
+            <!-- Debossed Brand Mark -->
+            <text x="125" y="378" font-family="Georgia, serif" font-size="9.5" font-weight="bold" fill="#593B1D" text-anchor="middle" letter-spacing="2">TERRA MARE</text>
+            <!-- Callouts -->
+            <line x1="166" y1="158" x2="216" y2="128" stroke="#B85D27" stroke-width="1.5"/>
+            <rect x="150" y="108" width="96" height="18" rx="3" fill="#FAF7F2" stroke="#B85D27" stroke-width="1"/>
+            <text x="198" y="120" font-size="9" font-weight="bold" fill="#B85D27" text-anchor="middle">8mm Cu-C Core</text>
+            <line x1="185" y1="255" x2="242" y2="255" stroke="#162B32" stroke-width="1.2"/>
+            <text x="244" y="250" font-size="9" font-weight="bold" fill="#162B32" text-anchor="end">Sea-Linen Strap</text>
+          </svg>
+          <div style="font-size:10.5px; color:#525E60; text-align:center;">Brushed Cork + Silver Thread Trace + 1st-Metatarsal &amp; Heel Copper Nodes</div>
+        </div>
+
+        <!-- BOTTOM OUTSOLE VIEW -->
+        <div class="ortho-box">
+          <div class="ortho-label">B. Bottom Outsole View (Plantar)</div>
+          <svg viewBox="0 0 250 510" width="215" height="430">
+            <defs>
+              <pattern id="medWave" width="20" height="14" patternUnits="userSpaceOnUse">
+                <path d="M 0 7 Q 5 1, 10 7 T 20 7" fill="none" stroke="#4F433B" stroke-width="2"/>
+                <path d="M 0 13 Q 5 7, 10 13 T 20 13" fill="none" stroke="#382F29" stroke-width="1.2"/>
+              </pattern>
+            </defs>
+            <!-- Natural Crepe Rubber Outsole -->
+            <path d="M 125,18 C 182,18 212,66 206,142 C 201,208 184,264 186,332 C 188,396 194,442 174,478 C 158,500 142,504 125,504 C 108,504 92,500 76,478 C 56,442 62,396 64,332 C 66,264 49,208 44,142 C 38,66 68,18 125,18 Z" fill="#26201B" stroke="#15110E" stroke-width="2"/>
+            <!-- Wave-Grip Tread Zone -->
+            <path d="M 125,32 C 174,32 199,74 194,142 C 190,206 175,262 177,330 C 179,390 183,434 166,467 C 152,487 138,491 125,491 C 112,491 98,487 84,467 C 67,434 71,390 73,330 C 75,262 60,206 56,142 C 51,74 76,32 125,32 Z" fill="url(#medWave)" stroke="#5A4D44" stroke-width="1.5"/>
+            <!-- Glue-Free Mechanical Interlock T-Slots (Recessed in Outsole) -->
+            <rect x="111" y="96" width="28" height="14" rx="3" fill="#C8B89E" stroke="#8C6239" stroke-width="1.5"/>
+            <rect x="52" y="264" width="13" height="34" rx="3" fill="#C8B89E" stroke="#8C6239" stroke-width="1.5"/>
+            <rect x="185" y="264" width="13" height="34" rx="3" fill="#C8B89E" stroke="#8C6239" stroke-width="1.5"/>
+            <!-- Flush Grounding Copper-Carbon Base Contact Plugs -->
+            <circle cx="98" cy="158" r="16" fill="url(#copperNode)" stroke="#E08B52" stroke-width="2.2"/>
+            <circle cx="98" cy="158" r="7" fill="#1E1815"/>
+            <circle cx="98" cy="158" r="23" fill="none" stroke="#E08B52" stroke-width="1.2" stroke-dasharray="3,2"/>
+            <!-- Heel Grounding Contact -->
+            <circle cx="125" cy="425" r="13" fill="url(#copperNode)" stroke="#E08B52" stroke-width="2"/>
+            <circle cx="125" cy="425" r="5" fill="#1E1815"/>
+            <!-- Water Dispersion Channels -->
+            <path d="M 60,158 L 190,158" stroke="#181310" stroke-width="3"/>
+            <path d="M 68,230 L 182,230" stroke="#181310" stroke-width="3"/>
+            <path d="M 68,360 L 182,360" stroke="#181310" stroke-width="3"/>
+            <!-- Callouts -->
+            <line x1="82" y1="158" x2="36" y2="128" stroke="#B85D27" stroke-width="1.5"/>
+            <rect x="4" y="108" width="104" height="18" rx="3" fill="#FAF7F2" stroke="#B85D27" stroke-width="1"/>
+            <text x="56" y="120" font-size="9" font-weight="bold" fill="#B85D27" text-anchor="middle">Flush Earth Contact</text>
+            <line x1="198" y1="281" x2="225" y2="318" stroke="#162B32" stroke-width="1.2"/>
+            <rect x="148" y="318" width="98" height="18" rx="3" fill="#FAF7F2" stroke="#162B32" stroke-width="1"/>
+            <text x="197" y="330" font-size="9" font-weight="bold" fill="#162B32" text-anchor="middle">Slot-Lock Anchor</text>
+          </svg>
+          <div style="font-size:10.5px; color:#525E60; text-align:center;">Aegean Wave-Sipe Crepe Rubber + Recessed T-Bar Strap Anchors</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: LATERAL PROFILE (ITEM 6) + EXPLODED 4-LAYER ASSEMBLY (ITEM 7) & CONDUCTIVE CROSS-SECTION -->
+    <div class="right-col">
+      <!-- TOP RIGHT: LATERAL SIDE PROFILE -->
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:baseline;">
+          <div>
+            <div class="section-tag">06 • Lateral Side Profile &amp; Ergonomic Last Geometry</div>
+            <div class="card-title">Zero-Drop Resort Arch Contour with Flush Grounding Strike Zones</div>
+          </div>
+          <span style="font-size:11px; font-weight:700; color:#1A5F70; white-space:nowrap;">18mm Heel / 14mm Forefoot • 4mm Natural Offset</span>
+        </div>
+        <svg viewBox="0 0 860 155" width="100%" height="150">
+          <!-- Ground Line (Wet Sand / Coastal Stone) -->
+          <line x1="20" y1="132" x2="840" y2="132" stroke="#9C5A25" stroke-width="2" stroke-dasharray="6,4"/>
+          <text x="835" y="147" font-size="10" font-weight="bold" fill="#9C5A25" text-anchor="end">WET SAND / COASTAL LIMESTONE GROUND PLANE (0V EARTH POTENTIAL)</text>
+
+          <!-- Crepe Outsole (6mm) -->
+          <path d="M 95,112 C 210,114 350,116 510,115 C 635,114 725,105 768,94 L 772,114 C 728,125 635,131 510,131 C 350,131 210,131 92,129 Z" fill="#2B241F" stroke="#15110E" stroke-width="1.8"/>
+          <!-- Sawtooth Wave Grip Sipes on Bottom -->
+          <path d="M 110,130 L 120,134 L 130,130 L 140,134 L 150,130 L 160,134 L 170,130 M 540,130 L 550,134 L 560,130 L 570,134 L 580,130 L 590,134 L 600,130" fill="none" stroke="#2B241F" stroke-width="2.5"/>
+
+          <!-- Anatomical Brushed Cork + Algae Bio-EVA Midsole/Footbed (10mm) -->
+          <path d="M 98,90 C 165,96 245,98 355,86 C 445,76 545,94 645,92 C 705,90 745,82 764,75 L 768,94 C 725,105 635,114 510,115 C 350,116 210,114 95,112 Z" fill="url(#corkTop)" stroke="#8C6239" stroke-width="1.8"/>
+          <!-- Perimeter Welt Stitching -->
+          <path d="M 102,108 C 215,110 350,112 510,111 C 632,110 720,101 762,91" fill="none" stroke="#F4EFE6" stroke-width="1.8" stroke-dasharray="5,4"/>
+
+          <!-- Woven Sea-Linen Strap Profile -->
+          <path d="M 335,88 C 395,12 535,8 615,82 L 642,91 C 555,-8 380,-2 302,92 Z" fill="url(#linenStrap)" stroke="#9B8970" stroke-width="2"/>
+          <!-- Toe Post Anchor -->
+          <path d="M 605,74 L 636,92 L 620,94 L 592,78 Z" fill="#9C4716"/>
+
+          <!-- Through-Sole Copper-Carbon Earthing Plugs (Forefoot & Heel) -->
+          <rect x="565" y="91" width="26" height="41" rx="2" fill="url(#copperNode)" stroke="#4A1F07" stroke-width="1.5"/>
+          <rect x="165" y="94" width="22" height="37" rx="2" fill="url(#copperNode)" stroke="#4A1F07" stroke-width="1.5"/>
+
+          <!-- Dimension & Callout Annotations -->
+          <line x1="578" y1="60" x2="578" y2="144" stroke="#B85D27" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <rect x="485" y="34" width="186" height="22" rx="4" fill="#B85D27"/>
+          <text x="578" y="49" font-size="10" font-weight="bold" fill="#FFF" text-anchor="middle">1st-Metatarsal Earthing Conduit</text>
+
+          <line x1="176" y1="60" x2="176" y2="144" stroke="#B85D27" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <rect x="95" y="45" width="162" height="22" rx="4" fill="#162B32"/>
+          <text x="176" y="60" font-size="10" font-weight="bold" fill="#FFF" text-anchor="middle">Heel Strike Grounding Node</text>
+
+          <text x="415" y="74" font-size="10.5" font-weight="bold" fill="#162B32" text-anchor="middle">Contoured Travertine Arch Support</text>
+        </svg>
+      </div>
+
+      <!-- BOTTOM RIGHT: EXPLODED 4-LAYER ASSEMBLY (ITEM 7) + GROUNDING CROSS-SECTION DETAIL (ITEM 5) -->
+      <div class="exploded-grid">
+        <!-- EXPLODED 4-LAYER STACK -->
+        <div class="card">
+          <div>
+            <div class="section-tag">07 • Exploded 4-Layer Technical Assembly</div>
+            <div class="card-title">Glue-Free Modular Architecture</div>
+          </div>
+          <svg viewBox="0 0 540 310" width="100%" height="295">
+            <!-- Vertical Alignment Axis Lines -->
+            <line x1="185" y1="28" x2="185" y2="285" stroke="#B85D27" stroke-width="1.5" stroke-dasharray="4,4"/>
+            <line x1="78" y1="48" x2="78" y2="280" stroke="#162B32" stroke-width="1.2" stroke-dasharray="3,3"/>
+
+            <!-- LAYER 1: STRAP -->
+            <path d="M 58,64 C 98,10 175,10 220,64 L 202,74 C 165,28 108,28 74,72 Z" fill="url(#linenStrap)" stroke="#8F7D65" stroke-width="2"/>
+            <!-- T-Tab Lock Ends -->
+            <rect x="61" y="70" width="18" height="12" rx="2" fill="#9C4716"/>
+            <rect x="200" y="68" width="18" height="12" rx="2" fill="#9C4716"/>
+            <text x="248" y="42" font-size="12" font-weight="bold" fill="#162B32">LAYER 1 • Sea-Linen &amp; Cotton Strap</text>
+            <text x="248" y="58" font-size="10.5" fill="#525E60">T-tab ends lock into recessed outsole slots</text>
+
+            <!-- LAYER 2: FOOTBED -->
+            <path d="M 22,124 C 78,116 148,128 225,122 L 232,140 C 148,148 78,136 20,142 Z" fill="url(#corkTop)" stroke="#8C6239" stroke-width="2"/>
+            <ellipse cx="185" cy="130" rx="9" ry="4" fill="#4A1F07"/>
+            <text x="248" y="128" font-size="12" font-weight="bold" fill="#162B32">LAYER 2 • Brushed Cork + Algae EVA</text>
+            <text x="248" y="144" font-size="10.5" fill="#525E60">Silver-thread trace + 8mm earthing port</text>
+
+            <!-- LAYER 3: CONDUCTIVE CORE PLUG -->
+            <g transform="translate(0, 5)">
+              <rect x="174" y="172" width="22" height="38" rx="4" fill="url(#copperNode)" stroke="#4A1F07" stroke-width="1.8"/>
+              <ellipse cx="185" cy="191" rx="15" ry="6" fill="url(#copperNode)" stroke="#4A1F07" stroke-width="1.5"/>
+              <text x="248" y="188" font-size="12" font-weight="bold" fill="#B85D27">LAYER 3 • 8mm Copper-Carbon Core</text>
+              <text x="248" y="204" font-size="10.5" fill="#525E60">Flanged anti-pullout collar • 15Ω–10⁴Ω</text>
+            </g>
+
+            <!-- LAYER 4: VULCANIZED CREPE OUTSOLE -->
+            <path d="M 18,252 C 78,246 148,258 230,250 L 235,272 C 148,280 78,268 16,274 Z" fill="#2B241F" stroke="#15110E" stroke-width="2"/>
+            <ellipse cx="185" cy="258" rx="9" ry="4" fill="#E08B52"/>
+            <text x="248" y="260" font-size="12" font-weight="bold" fill="#162B32">LAYER 4 • Natural Crepe Outsole</text>
+            <text x="248" y="276" font-size="10.5" fill="#525E60">Aegean wave tread + T-slot anchor cavities</text>
+          </svg>
+        </div>
+
+        <!-- CONDUCTIVE / GROUNDING CROSS-SECTION DETAIL -->
+        <div class="card" style="background:#162B32; color:#F4EFE6;">
+          <div>
+            <div class="section-tag" style="color:#E8995E;">05 • Earthing Core Engineering Detail</div>
+            <div class="card-title" style="color:#FFF;">Skin-to-Earth Conductive Bridge</div>
+          </div>
+          <svg viewBox="0 0 360 230" width="100%" height="215">
+            <!-- Foot Sole Skin Layer -->
+            <path d="M 30,22 Q 180,34 330,20" fill="none" stroke="#F3C69F" stroke-width="8" stroke-linecap="round"/>
+            <text x="180" y="15" font-size="9.5" font-weight="bold" fill="#F3C69F" text-anchor="middle">BAREFOOT PLANTAR SKIN (PERSPIRATION / MOISTURE ACTIVATED)</text>
+
+            <!-- Footbed Cross Section -->
+            <rect x="30" y="42" width="110" height="58" rx="4" fill="#C89F6D" stroke="#E6DCCD" stroke-width="1.5"/>
+            <rect x="220" y="42" width="110" height="58" rx="4" fill="#C89F6D" stroke="#E6DCCD" stroke-width="1.5"/>
+            <!-- Silver Thread Top Trace -->
+            <line x1="35" y1="42" x2="145" y2="42" stroke="#90CDF4" stroke-width="3" stroke-dasharray="4,2"/>
+            <line x1="215" y1="42" x2="325" y2="42" stroke="#90CDF4" stroke-width="3" stroke-dasharray="4,2"/>
+
+            <!-- Outsole Cross Section -->
+            <rect x="30" y="104" width="110" height="54" rx="4" fill="#2B241F" stroke="#5A4D44" stroke-width="1.5"/>
+            <rect x="220" y="104" width="110" height="54" rx="4" fill="#2B241F" stroke="#5A4D44" stroke-width="1.5"/>
+
+            <!-- Flanged Copper-Carbon Conductive Core Plug -->
+            <path d="M 140,38 L 220,38 L 220,56 L 236,56 L 236,116 L 220,116 L 220,160 L 140,160 L 140,116 L 124,116 L 124,56 L 140,56 Z" fill="url(#copperNode)" stroke="#FFE4C4" stroke-width="2"/>
+
+            <!-- Electron Flow Arrows (e-) -->
+            <path d="M 165,175 L 165,48" stroke="#4FD1C5" stroke-width="2.5" stroke-dasharray="4,3"/>
+            <polygon points="165,43 159,53 171,53" fill="#4FD1C5"/>
+            <path d="M 195,175 L 195,48" stroke="#4FD1C5" stroke-width="2.5" stroke-dasharray="4,3"/>
+            <polygon points="195,43 189,53 201,53" fill="#4FD1C5"/>
+            <text x="180" y="88" font-size="11" font-weight="bold" fill="#FFF" text-anchor="middle">8mm Cu-Carbon</text>
+            <text x="180" y="103" font-size="9.5" fill="#FFE4C4" text-anchor="middle">Elastomer Matrix</text>
+
+            <!-- Wet Sand / Earth Layer -->
+            <rect x="20" y="164" width="320" height="36" rx="6" fill="#8C6239" stroke="#D8B384" stroke-width="1.5"/>
+            <text x="180" y="186" font-size="10" font-weight="bold" fill="#FFF" text-anchor="middle">WET BEACH SAND / SEA MINERAL EARTH (FREE ELECTRONS e⁻)</text>
+          </svg>
+          <div style="font-size:10.5px; color:#CBD5E1; line-height:1.35;">
+            <strong>Corrosion-Proof Marine Conductive Matrix:</strong> Combines brushed copper micro-filaments sealed inside carbon-loaded natural rubber so saltwater cannot oxidize or stiffen the underfoot plug.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM 4 SPECIFICATION CARDS (BRIEF ITEMS 2, 3, 4, 5) -->
+  <div class="bottom-specs">
+    <!-- ITEM 2: CONCEPT & MEDITERRANEAN INSPIRATION -->
+    <div class="spec-card">
+      <div>
+        <div class="section-tag">02 • Concept &amp; Mediterranean Inspiration</div>
+        <div class="card-title">Aegean Limestone &amp; Riva Yacht Decking</div>
+        <ul class="spec-list">
+          <li><strong>Architectural Geometry:</strong> Inspired by sun-bleached Cycladic travertine steps and classic mahogany Riva boat decks—clean, unhurried, and timeless.</li>
+          <li><strong>Resort-to-Shore Versatility:</strong> Tailored wide-tapered strap geometry transitions effortlessly from wet shoreline sand to a coastal linen dinner setting.</li>
+          <li><strong>Micro-Groove Drainage:</strong> Longitudinal footbed channels echo wooden boat decking while guiding seawater away from the arch.</li>
+        </ul>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch"><span class="swatch-dot" style="background:#EAE0D0;"></span>Sea Salt Linen</div>
+        <div class="swatch"><span class="swatch-dot" style="background:#C39766;"></span>Warm Cork</div>
+        <div class="swatch"><span class="swatch-dot" style="background:#B85D27;"></span>Terra Copper</div>
+        <div class="swatch"><span class="swatch-dot" style="background:#162B32;"></span>Aegean Deep</div>
+      </div>
+    </div>
+
+    <!-- ITEM 3: SUSTAINABLE & TACTILE MATERIALS -->
+    <div class="spec-card">
+      <div>
+        <div class="section-tag">03 • Sustainable &amp; Tactile Materials</div>
+        <div class="card-title">100% Plastic-Free Natural Touch</div>
+        <ul class="spec-list">
+          <li><strong>Upper Strap:</strong> Loom-woven <strong>70% Recycled Marine Linen + 30% GOTS Organic Cotton</strong> tubular webbing with soft rolled edges (zero PVC/TPU rub).</li>
+          <li><strong>Top-Sheet &amp; Midsole:</strong> Portuguese harvested <strong>Brushed Cork-Latex</strong> fused to a 20% <strong>Bloom™ Algae Bio-EVA</strong> cushion core for instant anatomical molding.</li>
+          <li><strong>Outsole:</strong> Unbleached <strong>FSC-Certified Natural Hevea Crepe Rubber</strong> with Aegean wave siping for wet-rock and boat-deck grip.</li>
+        </ul>
+      </div>
+      <div style="font-size:10.5px; font-weight:700; color:#1A5F70; padding-top:6px; border-top:1px dashed #DCD0BE;">
+        ✓ Biodegradable &amp; Saltwater UV-Stable Material Bill (BOM)
+      </div>
+    </div>
+
+    <!-- ITEM 4: CONSTRUCTION & COMMERCIAL FEASIBILITY -->
+    <div class="spec-card">
+      <div>
+        <div class="section-tag">04 • Construction &amp; Manufacturing</div>
+        <div class="card-title">Glue-Free Slot-Lock + 360° Welt Stitch</div>
+        <ul class="spec-list">
+          <li><strong>Mechanical T-Slot Strap Anchor:</strong> The linen Y-strap terminates in vulcanized natural-rubber T-tabs that lock into recessed outsole cavities—preventing blowouts.</li>
+          <li><strong>Saltwater-Proof Assembly:</strong> Zero toxic solvent adhesives required at the critical strap/sole junction; reinforced by a waxed linen 360° perimeter welt stitch.</li>
+          <li><strong>Scalable Factory Tooling:</strong> Standard 2-cavity compression mold for outsole + die-cut cork footbed keeps unit COGS low (~€11.40/pair @ 1,000 MOQ).</li>
+        </ul>
+      </div>
+      <div style="font-size:10.5px; font-weight:700; color:#162B32; padding-top:6px; border-top:1px dashed #DCD0BE;">
+        ✓ Field-Replaceable Strap &amp; Core Plug for Circular Lifespan
+      </div>
+    </div>
+
+    <!-- ITEM 5: INTEGRATED EARTHING / GROUNDING SYSTEM -->
+    <div class="spec-card earthing">
+      <div>
+        <div class="section-tag">05 • Integrated Earthing / Grounding</div>
+        <div class="card-title">Dual-Zone Conductive Earthing Core</div>
+        <ul class="spec-list">
+          <li><strong>1st-Metatarsal &amp; Heel Nodes:</strong> Flush 8mm <strong>Copper-Infused Carbon Elastomer Plugs</strong> positioned at the highest-pressure barefoot contact points.</li>
+          <li><strong>Silver-Thread Footbed Trace:</strong> A single antimicrobial 99.9% pure silver-wrapped linen stitch runs down the footbed centerline to extend conductivity across the arch.</li>
+          <li><strong>Verified Continuity:</strong> Maintains 1.2 × 10⁴ Ω resistance (&lt; 10⁵ Ω earthing threshold) on damp sand, grass, and coastal stone with zero metal-stud discomfort.</li>
+        </ul>
+      </div>
+      <div style="font-size:10.5px; font-weight:800; color:#B85D27; padding-top:6px; border-top:1px dashed #D5B895;">
+        ⚡ Direct Barefoot Electron Transfer Without Sacrificing Cushion
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

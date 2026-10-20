@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" width="900" height="400">
+  <rect width="900" height="400" fill="#0B111E" rx="18"/>
+  <!-- Option 01: Circular Mountain & Shield Crest (Refined Safety Basx Emblem) -->
+  <g transform="translate(155, 195)">
+    <circle cx="0" cy="0" r="115" fill="#0F172A" stroke="#F97316" stroke-width="4"/>
+    <circle cx="0" cy="0" r="96" fill="#1E3A8A" stroke="#FACC15" stroke-width="2"/>
+    <path d="M-85,12 L-42,-42 L-10,-8 L12,-58 L54,-5 L85,12 Z" fill="#FFFFFF"/>
+    <path d="M-42,-42 L-24,-8 L-10,-8 Z M12,-58 L28,-12 L54,-5 Z" fill="#93C5FD"/>
+    <rect x="-120" y="-12" width="240" height="38" rx="6" fill="#090D16" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="-5" y="13" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="900" font-size="21" fill="#FFFFFF" letter-spacing="1">SAFETY <tspan fill="#F97316">BASX</tspan></text>
+    <rect x="-74" y="34" width="148" height="16" rx="4" fill="#DC2626"/>
+    <text x="0" y="45" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="9" fill="#FFFFFF" letter-spacing="2">★ OWN IT • PROTECT IT ★</text>
+    <rect x="-58" y="54" width="116" height="16" rx="4" fill="#16A34A"/>
+    <text x="0" y="65" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="9" fill="#FFFFFF" letter-spacing="2">★ LIVE IT ★</text>
+    <text x="0" y="150" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="13" fill="#F97316" letter-spacing="2">OPTION 01 // APEX CREST</text>
+  </g>
+  <!-- Option 02: Tactical Hex-Shield & Peak Monogram -->
+  <g transform="translate(450, 195)">
+    <polygon points="0,-118 102,-64 102,48 0,118 -102,48 -102,-64" fill="#0F172A" stroke="#38BDF8" stroke-width="4"/>
+    <polygon points="0,-102 88,-54 88,40 0,100 -88,40 -88,-54" fill="#111C35" stroke="#F97316" stroke-width="2"/>
+    <path d="M-65,-8 L-25,-56 L0,-26 L28,-66 L68,-8 Z" fill="#38BDF8"/>
+    <path d="M-25,-56 L0,-26 L28,-66 L0,-10 Z" fill="#FFFFFF"/>
+    <rect x="-92" y="-8" width="184" height="36" rx="4" fill="#F97316"/>
+    <text x="0" y="16" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="900" font-size="20" fill="#090D16" letter-spacing="1.5">SAFETY BASX</text>
+    <text x="0" y="52" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="9.5" fill="#FACC15" letter-spacing="1.8">OWN IT • PROTECT IT • LIVE IT</text>
+    <text x="0" y="150" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="13" fill="#38BDF8" letter-spacing="2">OPTION 02 // SHIELD EMBLEM</text>
+  </g>
+  <!-- Option 03: Modern Minimalist Geometric Lockup -->
+  <g transform="translate(745, 195)">
+    <rect x="-115" y="-110" width="230" height="220" rx="22" fill="#0F172A" stroke="#22C55E" stroke-width="3.5"/>
+    <polygon points="0,-82 58,-18 -58,-18" fill="#F97316"/>
+    <polygon points="-24,-46 24,-46 42,-18 -42,-18" fill="#FFFFFF"/>
+    <path d="M-55,-8 L55,-8 L42,14 L-42,14 Z" fill="#DC2626"/>
+    <path d="M-40,20 L40,20 L28,40 L-28,40 Z" fill="#16A34A"/>
+    <text x="0" y="72" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="900" font-size="22" fill="#FFFFFF" letter-spacing="1.5">SAFETY<tspan fill="#F97316">BASX</tspan></text>
+    <text x="0" y="90" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="8.5" fill="#94A3B8" letter-spacing="2">SAFETY CULTURE SYSTEM</text>
+    <text x="0" y="150" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="13" fill="#22C55E" letter-spacing="2">OPTION 03 // MODERN VECTOR</text>
+  </g>
+</svg>

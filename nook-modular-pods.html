@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1600px; height: 1200px; overflow: hidden;
+    background: #0A0A0A; color: #FAFAFA;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex; flex-direction: column; padding: 32px 42px;
+  }
+  .top-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    border-bottom: 1px solid #262626; padding-bottom: 16px; margin-bottom: 22px;
+  }
+  .top-header h1 { font-size: 21px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
+  .top-header p { font-size: 12.5px; color: #A3A3A3; margin-top: 4px; }
+  .phase-tag {
+    border: 1px solid #FAFAFA; color: #FAFAFA; font-size: 11px; font-weight: 700;
+    padding: 7px 14px; letter-spacing: 2px; text-transform: uppercase;
+  }
+  /* 3 Logo Directions Row */
+  .concepts-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 20px;
+  }
+  .concept-card {
+    background: #121212; border: 1px solid #2A2A2A; padding: 20px 22px;
+    display: flex; flex-direction: column; justify-content: space-between; height: 290px;
+  }
+  .concept-card.light {
+    background: #FAFAFA; color: #0A0A0A; border: 1px solid #E5E5E5;
+  }
+  .c-head {
+    display: flex; justify-content: space-between; font-size: 10px; font-weight: 800;
+    letter-spacing: 1.8px; text-transform: uppercase; opacity: 0.65;
+  }
+  .c-logo-center {
+    display: flex; align-items: center; justify-content: center; gap: 20px; margin: auto 0;
+  }
+  .c-rationale {
+    font-size: 11.5px; line-height: 1.45; opacity: 0.8; border-top: 1px solid rgba(128,128,128,0.25);
+    padding-top: 10px;
+  }
+  /* Bottom Section: Style Guide + Collateral + Architectural Pod & Vehicle Mockups */
+  .bottom-grid {
+    display: grid; grid-template-columns: 0.95fr 1.15fr 1.1fr; gap: 20px; flex: 1;
+  }
+  .panel {
+    background: #121212; border: 1px solid #2A2A2A; padding: 20px 22px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .panel-title {
+    font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+    color: #A3A3A3; border-bottom: 1px solid #262626; padding-bottom: 10px; margin-bottom: 14px;
+    display: flex; justify-content: space-between;
+  }
+  .collateral-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px; flex: 1;
+  }
+  .col-item {
+    background: #191919; border: 1px solid #303030; padding: 14px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .col-item.white-paper {
+    background: #F5F5F4; color: #0A0A0A;
+  }
+  .swatches {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+  }
+  .sw {
+    padding: 10px 8px; font-size: 10px; font-weight: 700; border: 1px solid #333;
+  }
+</style>
+</head>
+<body>
+  <div class="top-header">
+    <div>
+      <h1>NOOK PODS — CORPORATE BRAND IDENTITY, MONOCHROME SYSTEM & PHASE 1 BROCHURE SUITE</h1>
+      <p>Tagline: "Modular Architectural Pods" • Passive-Inspired New Zealand Architectural Identity • Prepared for Joey (@SALTHomes)</p>
+    </div>
+    <div class="phase-tag">PHASE ONE MASTER BRAND + COLLATERAL SYSTEM</div>
+  </div>
+
+  <!-- 3 INITIAL LOGO & NAMING DIRECTIONS -->
+  <div class="concepts-row">
+    <!-- Concept 01 -->
+    <div class="concept-card">
+      <div class="c-head"><span>DIRECTION 01 // THE CANTILEVERED PASSIVE PORTAL</span><span>PRIMARY DARK MONOCHROME</span></div>
+      <div class="c-logo-center">
+        <svg width="78" height="78" viewBox="0 0 78 78" fill="none">
+          <!-- Architectural Modular Pod Frame forming 'N' and Passive Solar Overhang -->
+          <rect x="6" y="6" width="66" height="66" stroke="#FAFAFA" stroke-width="3.5"/>
+          <path d="M20 56 V22 L48 56 V22" stroke="#FAFAFA" stroke-width="4.5" stroke-linecap="square"/>
+          <line x1="48" y1="22" x2="62" y2="22" stroke="#FAFAFA" stroke-width="4.5"/>
+        </svg>
+        <div>
+          <div style="font-size:38px;font-weight:800;letter-spacing:7px;line-height:1;">NOOK</div>
+          <div style="font-size:10.5px;font-weight:600;letter-spacing:3.2px;color:#A3A3A3;margin-top:7px;">MODULAR ARCHITECTURAL PODS</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:#D4D4D4;margin-top:4px;">"Sanctuary, Engineered by Nature."</div>
+        </div>
+      </div>
+      <div class="c-rationale">
+        <strong>Rationale:</strong> Integrates the structural silhouette of a passive solar overhang with an architectural floor-plan 'N' monogram. Timeless gallery-grade monochrome precision.
+      </div>
+    </div>
+
+    <!-- Concept 02 (Reversed White Gallery Paper) -->
+    <div class="concept-card light">
+      <div class="c-head"><span>DIRECTION 02 // INTERLOCKING THERMAL ENVELOPE</span><span>DAYLIGHT ARCHITECTURAL PAPER</span></div>
+      <div class="c-logo-center">
+        <svg width="78" height="78" viewBox="0 0 78 78" fill="none">
+          <!-- Interlocking Double-Envelope Passive Insulation Geometry -->
+          <path d="M12 62 V16 H52 L66 30 V62 H46 V34 H32 V62 H12 Z" fill="#0A0A0A"/>
+          <rect x="36" y="42" width="18" height="20" fill="#FAFAFA" stroke="#0A0A0A" stroke-width="3"/>
+        </svg>
+        <div>
+          <div style="font-size:36px;font-weight:800;letter-spacing:5px;line-height:1;">NOOK<span style="font-weight:300;">PODS</span></div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:3px;color:#525252;margin-top:7px;">MODULAR ARCHITECTURAL PODS</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:#262626;margin-top:4px;">"Passive Comfort. Pure Form."</div>
+        </div>
+      </div>
+      <div class="c-rationale">
+        <strong>Rationale:</strong> Inspired by airtight passive-house thermal envelopes and indoor-outdoor threshold framing. Projects warmth, security, and contemporary NZ luxury (ages 25–80).
+      </div>
+    </div>
+
+    <!-- Concept 03 -->
+    <div class="concept-card">
+      <div class="c-head"><span>DIRECTION 03 // MINIMALIST HORIZON & LOUVRE MARK</span><span>ARCHITECTURAL STENCIL</span></div>
+      <div class="c-logo-center">
+        <svg width="78" height="78" viewBox="0 0 78 78" fill="none">
+          <!-- Solar Louvre Blades + Modular Cube -->
+          <path d="M12 20 H66 M12 32 H66 M12 44 H42 M12 56 H42" stroke="#FAFAFA" stroke-width="3.5"/>
+          <rect x="48" y="40" width="18" height="18" stroke="#FAFAFA" stroke-width="3.5"/>
+        </svg>
+        <div>
+          <div style="font-size:38px;font-weight:300;letter-spacing:9px;line-height:1;"><strong style="font-weight:800;">N</strong>OOK</div>
+          <div style="font-size:10px;font-weight:600;letter-spacing:3.2px;color:#A3A3A3;margin-top:7px;">MODULAR ARCHITECTURAL PODS</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:#D4D4D4;margin-top:4px;">"Designed to Breathe with the Land."</div>
+        </div>
+      </div>
+      <div class="c-rationale">
+        <strong>Rationale:</strong> References passive solar shading louvres and cross-ventilation airflow lines paired with a grounded modular sanctuary cube.
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM GRID: VISUAL SYSTEM + COLLATERAL + 3D POD & FLEET MOCKUPS -->
+  <div class="bottom-grid">
+    <!-- Panel 1: Brand Strategy & Monochrome Visual System -->
+    <div class="panel">
+      <div class="panel-title"><span>01 // STRATEGY & VISUAL STYLE GUIDE</span><span>PASSIVE ARCHITECTURE</span></div>
+      <div style="font-size:12px;line-height:1.55;color:#D4D4D4;margin-bottom:12px;">
+        <strong style="color:#FFF;">Positioning Roadmap:</strong> Positions <strong>NOOK Pods</strong> as New Zealand's premier architectural modular builder—bridging gallery-grade monochrome minimalism with certified passive-inspired thermal performance, acoustic serenity, and low-impact site integration.
+      </div>
+      <div style="font-size:11.5px;line-height:1.5;color:#A3A3A3;margin-bottom:12px;">
+        <strong style="color:#FFF;">Typography Hierarchy:</strong><br>
+        • Display & Wordmark: <em>Plus Jakarta Sans</em> (800 Bold / 300 Light)<br>
+        • Architectural Editorial Accent: <em>Cormorant Garamond Italic</em><br>
+        • Technical Specs & Floorplans: <em>Plus Jakarta Sans Medium</em>
+      </div>
+      <!-- 4 Passive Pillars Iconography -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px;text-align:center;">
+        <div style="border:1px solid #2A2A2A;padding:8px 4px;font-size:9.5px;letter-spacing:0.5px;">☀️ SOLAR<br>THERMAL</div>
+        <div style="border:1px solid #2A2A2A;padding:8px 4px;font-size:9.5px;letter-spacing:0.5px;">🌬️ FRESH AIR<br>ERV FLOW</div>
+        <div style="border:1px solid #2A2A2A;padding:8px 4px;font-size:9.5px;letter-spacing:0.5px;">🛡️ AIRTIGHT<br>ENVELOPE</div>
+        <div style="border:1px solid #2A2A2A;padding:8px 4px;font-size:9.5px;letter-spacing:0.5px;">🌿 ZERO-IMPACT<br>FOOTPRINT</div>
+      </div>
+      <div class="swatches">
+        <div class="sw" style="background:#0A0A0A;color:#FFF;">OBSIDIAN<br>#0A0A0A</div>
+        <div class="sw" style="background:#262626;color:#FFF;">BASALT<br>#262626</div>
+        <div class="sw" style="background:#E5E5E5;color:#0A0A0A;">LIMESTONE<br>#E5E5E5</div>
+        <div class="sw" style="background:#FAFAFA;color:#0A0A0A;">GALLERY<br>#FAFAFA</div>
+      </div>
+    </div>
+
+    <!-- Panel 2: Core Collateral Package (Business Card, Letterhead, 1-Page Mini Brochure) -->
+    <div class="panel">
+      <div class="panel-title"><span>02 // CORE COLLATERAL & 1-PAGE BROCHURE</span><span>PRINT-READY INDD / AI / PDF</span></div>
+      <div class="collateral-grid">
+        <!-- Business Cards (Front & Back) -->
+        <div class="col-item">
+          <div style="font-size:9.5px;letter-spacing:1.5px;color:#A3A3A3;">EXECUTIVE BUSINESS CARD (90×55mm)</div>
+          <div style="background:#050505;border:1px solid #3F3F46;padding:14px;margin:8px 0;">
+            <div style="font-size:16px;font-weight:800;letter-spacing:4px;">NOOK</div>
+            <div style="font-size:7.5px;letter-spacing:2px;color:#A3A3A3;">MODULAR ARCHITECTURAL PODS</div>
+          </div>
+          <div style="background:#FAFAFA;color:#0A0A0A;padding:12px;font-size:9.5px;line-height:1.45;">
+            <strong>JOEY // FOUNDER & DIRECTOR</strong><br>
+            NOOK Pods New Zealand<br>
+            info@nookpods.co.nz • www.nookpods.co.nz
+          </div>
+          <div style="font-size:9.5px;color:#A3A3A3;">600gsm Uncoated Cotton Black & White Duplex</div>
+        </div>
+
+        <!-- 1-Page Product Brochure ("NOOK I — The Mini Brochure") & Letterhead -->
+        <div class="col-item white-paper">
+          <div style="display:flex;justify-content:space-between;border-bottom:1.5px solid #0A0A0A;padding-bottom:6px;">
+            <span style="font-weight:800;font-size:12px;letter-spacing:2px;">NOOK I // THE MINI</span>
+            <span style="font-size:8.5px;font-weight:700;">SPEC SHEET 01/26</span>
+          </div>
+          <div style="background:#171717;color:#FAFAFA;padding:12px;margin:8px 0;">
+            <div style="font-size:9px;letter-spacing:1.5px;color:#A3A3A3;">URBAN DARK EDITION</div>
+            <div style="font-size:13px;font-weight:700;margin-top:2px;">Passive-Inspired Studio Pod</div>
+            <div style="font-size:9px;color:#D4D4D4;margin-top:4px;">R-6.8 Thermal Envelope • Triple-Glazed Low-E Joinery • Integrated Cedar & Matte Black Cladding</div>
+          </div>
+          <div style="font-size:9.5px;line-height:1.45;color:#262626;">
+            <strong>Includes:</strong> A4 Corporate Letterhead, Social Media Header Kit, and scalable Master Grid ready for all 26 upcoming Residential & Commercial Pod Brochures.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 3: Applied 3D Pod Exterior/Interior & Fleet Vehicle Mockups -->
+    <div class="panel">
+      <div class="panel-title"><span>03 // APPLIED ARCHITECTURAL POD & FLEET MOCKUPS</span><span>EXTERIOR + VEHICLE</span></div>
+      <!-- Pod Exterior Elevation Mockup -->
+      <div style="background:#18181B;border:1px solid #27272A;padding:14px;margin-bottom:12px;">
+        <div style="display:flex;justify-content:space-between;font-size:9.5px;color:#A3A3A3;margin-bottom:8px;">
+          <span>MODEL 02 // URBAN DARK EXTERIOR FASCIA SIGNAGE</span>
+          <span>MATTE BLACK ANODIZED ALUMINIUM</span>
+        </div>
+        <svg width="100%" height="125" viewBox="0 0 420 125" fill="none">
+          <!-- Architectural Pod 3D Elevation in Monochrome -->
+          <rect x="20" y="14" width="380" height="10" fill="#FAFAFA"/>
+          <rect x="32" y="24" width="356" height="86" fill="#09090B" stroke="#52525B" stroke-width="2"/>
+          <!-- Floor-to-ceiling glazing -->
+          <rect x="48" y="32" width="210" height="70" fill="#27272A" stroke="#FAFAFA" stroke-width="1.5"/>
+          <line x1="153" y1="32" x2="153" y2="102" stroke="#FAFAFA" stroke-width="1.5"/>
+          <!-- Interior warm architectural glow lines in monochrome -->
+          <line x1="65" y1="45" x2="135" y2="45" stroke="#A1A1AA" stroke-width="2"/>
+          <!-- Illuminated Fascia Brand Badge on Dark Cladding -->
+          <rect x="280" y="48" width="90" height="36" fill="#09090B" stroke="#FAFAFA" stroke-width="1.5"/>
+          <text x="325" y="67" text-anchor="middle" fill="#FAFAFA" font-family="Plus Jakarta Sans" font-weight="800" font-size="13" letter-spacing="3">NOOK</text>
+          <text x="325" y="77" text-anchor="middle" fill="#A1A1AA" font-family="Plus Jakarta Sans" font-weight="600" font-size="5.5" letter-spacing="1.5">ARCHITECTURAL PODS</text>
+          <line x1="10" y1="110" x2="410" y2="110" stroke="#52525B" stroke-width="2"/>
+        </svg>
+      </div>
+
+      <!-- Branded Company Fleet Vehicle Mockup -->
+      <div style="background:#FAFAFA;color:#0A0A0A;padding:14px;">
+        <div style="display:flex;justify-content:space-between;font-size:9.5px;font-weight:700;color:#525252;margin-bottom:6px;">
+          <span>ARCHITECTURAL SITE VEHICLE LIVERY (MATTE BLACK & WHITE)</span>
+          <span>FLEET DOOR & TAILGATE</span>
+        </div>
+        <svg width="100%" height="95" viewBox="0 0 420 95" fill="none">
+          <path d="M35 68 L52 30 H195 L225 46 H375 V72 H35 Z" fill="#0A0A0A"/>
+          <rect x="62" y="35" width="60" height="20" fill="#262626"/>
+          <rect x="130" y="35" width="58" height="20" fill="#262626"/>
+          <circle cx="95" cy="72" r="16" fill="#262626" stroke="#FAFAFA" stroke-width="3"/>
+          <circle cx="325" cy="72" r="16" fill="#262626" stroke="#FAFAFA" stroke-width="3"/>
+          <text x="205" y="60" fill="#FAFAFA" font-family="Plus Jakarta Sans" font-weight="800" font-size="15" letter-spacing="4">NOOK PODS</text>
+          <text x="205" y="69" fill="#A3A3A3" font-family="Plus Jakarta Sans" font-weight="600" font-size="6.5" letter-spacing="2">MODULAR ARCHITECTURAL PODS • NZ</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

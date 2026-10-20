@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Fraqshift — Icon Identity System</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1600px;height:1200px;overflow:hidden}
+  body{
+    background:#050714;
+    font-family:"Inter","SF Pro Display","Helvetica Neue",Arial,sans-serif;
+    color:#E6EDF7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .stage{width:1600px;height:1200px;display:flex;flex-direction:column}
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;height:310px;flex:0 0 310px;overflow:hidden;
+    background:
+      radial-gradient(1100px 420px at 78% 50%, rgba(79,172,254,.20), transparent 70%),
+      radial-gradient(700px 360px at 96% 20%, rgba(168,85,247,.20), transparent 70%),
+      radial-gradient(620px 300px at 8% 80%, rgba(0,242,254,.12), transparent 70%),
+      linear-gradient(135deg,#050714 0%,#070A1C 45%,#0B1026 100%);
+    border-bottom:1px solid rgba(79,172,254,.22);
+  }
+  .hero-svg{position:absolute;inset:0;width:1600px;height:310px}
+  .grid-overlay{
+    position:absolute;inset:0;
+    background-image:linear-gradient(rgba(79,172,254,.055) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(79,172,254,.055) 1px,transparent 1px);
+    background-size:40px 40px;
+    mask-image:linear-gradient(90deg,rgba(0,0,0,.9),transparent 65%);
+  }
+  .nav{
+    position:absolute;top:22px;right:34px;z-index:5;
+    display:flex;align-items:center;gap:0;
+    padding:8px 6px;border-radius:999px;
+    background:rgba(8,12,30,.62);border:1px solid rgba(79,172,254,.22);
+    backdrop-filter:blur(8px);
+    box-shadow:0 8px 28px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.05);
+  }
+  .nav a{
+    font-size:12.5px;letter-spacing:.06em;color:#A9BBD6;text-decoration:none;
+    padding:4px 14px;font-weight:500;
+  }
+  .nav .sep{width:1px;height:12px;background:rgba(124,151,190,.3)}
+  .nav .ver{color:#00F2FE;font-weight:700;font-variant-numeric:tabular-nums}
+  .nav .gh{
+    color:#0A0E1F;background:linear-gradient(135deg,#00F2FE,#4FACFE);
+    border-radius:999px;font-weight:700;margin-left:6px;padding:5px 15px;
+  }
+
+  .lockup{
+    position:absolute;left:214px;top:0;height:310px;z-index:4;
+    display:flex;align-items:center;gap:30px;
+  }
+  .hero-mark{
+    width:132px;height:132px;flex:0 0 132px;position:relative;
+    border-radius:28px;
+    background:linear-gradient(160deg,rgba(21,30,62,.95),rgba(9,13,32,.95));
+    border:1px solid rgba(0,242,254,.30);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,.04) inset,
+      0 22px 60px rgba(0,0,0,.6),
+      0 0 70px rgba(79,172,254,.38),
+      0 0 140px rgba(168,85,247,.20);
+    display:grid;place-items:center;
+  }
+  .hero-mark::after{
+    content:"";position:absolute;inset:0;border-radius:28px;
+    background:linear-gradient(170deg,rgba(255,255,255,.14),transparent 46%);
+    pointer-events:none;
+  }
+  .wordmark{
+    font-size:76px;line-height:.92;font-weight:800;font-style:italic;
+    letter-spacing:-.035em;
+    background:linear-gradient(100deg,#FFFFFF 10%,#CFE6FF 42%,#4FACFE 72%,#A855F7 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 6px 30px rgba(79,172,254,.42));
+  }
+  .tag-row{display:flex;align-items:center;gap:12px;margin-top:14px}
+  .tag-dot{width:7px;height:7px;border-radius:50%;background:#00F2FE;box-shadow:0 0 12px 3px rgba(0,242,254,.75)}
+  .subtitle{
+    font-size:16.5px;font-weight:500;letter-spacing:.012em;color:#00F2FE;
+    text-shadow:0 0 22px rgba(0,242,254,.5);
+  }
+  .subtitle b{color:#CDE9FF;font-weight:600}
+  .kicker{
+    margin-top:12px;display:flex;gap:9px;
+  }
+  .chip{
+    font-size:10.5px;letter-spacing:.16em;font-weight:700;color:#8FA8C9;
+    border:1px solid rgba(79,172,254,.26);border-radius:5px;padding:4px 10px;
+    background:rgba(79,172,254,.07);
+  }
+
+  /* ============ SHARED ============ */
+  .body-wrap{flex:1 1 auto;padding:18px 24px 0;display:flex;flex-direction:column;gap:16px}
+  .row{display:grid;gap:16px}
+  .r1{grid-template-columns:repeat(3,1fr);height:374px}
+  .r2{grid-template-columns:1fr 1.18fr 1fr;height:440px}
+  .panel{
+    position:relative;border-radius:16px;overflow:hidden;
+    background:linear-gradient(165deg,rgba(14,20,44,.96),rgba(7,10,26,.98));
+    border:1px solid rgba(79,172,254,.18);
+    box-shadow:0 16px 44px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.035);
+  }
+  .sect-head{
+    display:flex;align-items:baseline;gap:12px;padding:0 2px;
+  }
+  .sect-title{font-size:13px;font-weight:800;letter-spacing:.22em;color:#D7E6FA}
+  .sect-sub{font-size:11.5px;letter-spacing:.06em;color:#6F86A8}
+  .rule{flex:1;height:1px;background:linear-gradient(90deg,rgba(79,172,254,.35),transparent)}
+
+  /* ============ VARIATION CARDS ============ */
+  .vcard{display:flex;flex-direction:column;padding:16px 18px 14px}
+  .vtop{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+  .vbadge{
+    font-size:10px;font-weight:800;letter-spacing:.17em;padding:4px 9px;border-radius:5px;
+    color:#071021;background:linear-gradient(135deg,#00F2FE,#4FACFE);
+  }
+  .vcard.c2 .vbadge{background:linear-gradient(135deg,#4FACFE,#7CC4FF)}
+  .vcard.c3 .vbadge{background:linear-gradient(135deg,#4FACFE,#A855F7);color:#0B0618}
+  .vname{font-size:17.5px;font-weight:800;letter-spacing:-.01em;color:#F2F7FF;margin-top:9px}
+  .vmeta{font-size:11.5px;color:#7F96B8;margin-top:4px;letter-spacing:.03em}
+  .vconcept{
+    font-size:10px;font-weight:700;letter-spacing:.14em;color:#9FB6D6;text-align:right;
+    border:1px solid rgba(79,172,254,.22);border-radius:5px;padding:4px 8px;white-space:nowrap;
+    background:rgba(79,172,254,.06);
+  }
+
+  .pedestal{
+    position:relative;margin-top:13px;height:176px;border-radius:13px;
+    background:
+      radial-gradient(240px 120px at 50% 38%, rgba(79,172,254,.20), transparent 72%),
+      linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012) 40%,rgba(0,0,0,.28));
+    border:1px solid rgba(255,255,255,.07);
+    backdrop-filter:blur(6px);
+    display:grid;place-items:center;overflow:hidden;
+  }
+  .vcard.c3 .pedestal{background:
+      radial-gradient(240px 120px at 50% 38%, rgba(168,85,247,.22), transparent 72%),
+      linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012) 40%,rgba(0,0,0,.28));}
+  .pedestal{padding-right:128px}
+  .pedestal .ped-grid{
+    position:absolute;inset:0;
+    background-image:linear-gradient(rgba(140,180,230,.07) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(140,180,230,.07) 1px,transparent 1px);
+    background-size:22px 22px;
+  }
+  .pedestal .plinth{
+    position:absolute;left:34%;transform:translateX(-50%);bottom:12px;
+    width:180px;height:12px;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(0,242,254,.40),transparent);
+    filter:blur(5px);
+  }
+  .vcard.c3 .plinth{background:radial-gradient(closest-side,rgba(168,85,247,.45),transparent)}
+  .big-icon{position:relative;width:118px;height:118px;filter:drop-shadow(0 14px 26px rgba(0,0,0,.6))}
+
+  .geom{
+    margin-top:12px;display:flex;align-items:center;gap:10px;
+  }
+  .geom-svg{flex:0 0 74px}
+  .geom-txt{font-size:11px;line-height:1.5;color:#8EA5C6;letter-spacing:.015em}
+  .geom-txt b{color:#BFD7F3;font-weight:700}
+
+  .px-badge{
+    position:absolute;right:12px;bottom:12px;z-index:3;
+    display:flex;align-items:flex-end;gap:8px;
+    padding:8px 9px 7px;border-radius:10px;
+    background:rgba(4,7,20,.88);border:1px solid rgba(0,242,254,.26);
+    box-shadow:0 10px 24px rgba(0,0,0,.6);
+  }
+  .px-cell{display:flex;flex-direction:column;align-items:center;gap:5px}
+  .px-cell .lbl{font-size:8.5px;font-weight:800;letter-spacing:.09em;color:#6E87AA}
+  .px-box{position:relative;display:grid;place-items:center;background:#0A0F22;border:1px solid rgba(124,151,190,.3);border-radius:3px}
+  .px-16{width:16px;height:16px}
+  .px-32{width:32px;height:32px}
+  .px-mag{
+    position:relative;width:54px;height:54px;border-radius:4px;background:#0A0F22;
+    border:1px solid rgba(124,151,190,.3);overflow:hidden;
+  }
+  .px-mag .pg{
+    position:absolute;inset:0;
+    background-image:linear-gradient(rgba(124,151,190,.17) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(124,151,190,.17) 1px,transparent 1px);
+    background-size:4px 4px;
+  }
+  .ok-tick{font-size:8.5px;font-weight:800;letter-spacing:.06em;color:#00F2FE}
+
+  /* ============ CARDS MOCKUP ============ */
+  .mk-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 0}
+  .mk-title{font-size:12.5px;font-weight:800;letter-spacing:.15em;color:#CFE1F7}
+  .mk-sub{font-size:10.5px;color:#6E87AA;letter-spacing:.05em}
+  .card-scene{
+    position:relative;height:364px;margin-top:6px;
+    background:
+      radial-gradient(420px 200px at 55% 42%, rgba(79,172,254,.13), transparent 72%),
+      linear-gradient(180deg,#0A0E20,#06091A 70%,#04060F);
+    overflow:hidden;
+    perspective:1200px;
+  }
+  .surface{
+    position:absolute;left:-10%;right:-10%;bottom:-22px;height:190px;
+    background:linear-gradient(180deg,#121832,#0A0E20);
+    transform:rotateX(66deg);transform-origin:bottom;
+    box-shadow:0 -1px 0 rgba(140,180,230,.09) inset;
+  }
+  .biz{
+    position:absolute;width:296px;height:176px;border-radius:11px;
+    transform-style:preserve-3d;
+  }
+  .biz-dark{
+    left:66px;top:62px;
+    transform:rotateX(50deg) rotateZ(-23deg);
+    background:linear-gradient(145deg,#1B2033 0%,#0D1020 55%,#14182A 100%);
+    border:1px solid rgba(160,190,230,.14);
+    box-shadow:0 44px 60px -14px rgba(0,0,0,.85), 0 0 60px rgba(79,172,254,.12), inset 0 1px 0 rgba(255,255,255,.07);
+    z-index:2;
+  }
+  .biz-light{
+    left:168px;top:150px;
+    transform:rotateX(50deg) rotateZ(-23deg);
+    background:linear-gradient(145deg,#FBFCFE 0%,#E7ECF4 60%,#F4F7FB 100%);
+    border:1px solid rgba(0,0,0,.08);
+    box-shadow:0 42px 56px -14px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.9);
+    z-index:3;
+  }
+  .biz-inner{padding:17px 19px;height:100%;display:flex;flex-direction:column;justify-content:space-between}
+  .biz-row{display:flex;align-items:center;gap:11px}
+  .foil{
+    width:40px;height:40px;border-radius:9px;display:grid;place-items:center;flex:0 0 40px;
+    background:linear-gradient(140deg,#C8D7EA,#8FA6C4 40%,#F2F7FF 58%,#7E96B8);
+    box-shadow:0 2px 8px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.7);
+  }
+  .biz-dark .foil{background:linear-gradient(140deg,#DCE9FA,#8FA6C4 38%,#FFFFFF 55%,#6E86A8)}
+  .biz-wm{font-size:21px;font-weight:800;font-style:italic;letter-spacing:-.025em;color:#F4F8FF}
+  .biz-light .biz-wm{color:#101626}
+  .biz-wm span{font-size:9.5px;font-style:normal;font-weight:700;letter-spacing:.16em;display:block;color:#7FA5CF;margin-top:2px}
+  .biz-light .biz-wm span{color:#5A7CA6}
+  .biz-name{font-size:13.5px;font-weight:700;color:#EAF2FF;letter-spacing:-.005em}
+  .biz-light .biz-name{color:#121A2B}
+  .biz-role{font-size:10px;color:#8BA3C4;letter-spacing:.04em;margin-top:3px}
+  .biz-light .biz-role{color:#5C7391}
+  .biz-tag{font-size:9.5px;letter-spacing:.07em;color:#7E97B8;margin-top:8px}
+  .biz-light .biz-tag{color:#6B829E}
+  .pill{
+    position:absolute;right:26px;bottom:24px;z-index:6;
+    display:flex;align-items:center;gap:9px;padding:10px 18px;border-radius:999px;
+    font-size:12.5px;font-weight:700;letter-spacing:.02em;color:#061020;
+    background:linear-gradient(135deg,#00F2FE,#4FACFE 60%,#8FB8FF);
+    box-shadow:0 12px 30px rgba(0,242,254,.34), inset 0 1px 0 rgba(255,255,255,.55);
+  }
+  .swatches{position:absolute;left:24px;bottom:22px;z-index:6;display:flex;gap:7px;align-items:center}
+  .sw{width:19px;height:19px;border-radius:5px;border:1px solid rgba(255,255,255,.14)}
+  .sw-label{font-size:9px;letter-spacing:.12em;color:#67809F;font-weight:700;margin-right:3px}
+
+  /* ============ IDE ============ */
+  .ide{display:flex;flex-direction:column;background:#0A0E1A}
+  .ide-bar{
+    display:flex;align-items:center;gap:9px;height:36px;padding:0 14px;flex:0 0 36px;
+    background:linear-gradient(180deg,#2A2F3A,#23272F);border-bottom:1px solid #15181F;
+  }
+  .tl{display:flex;gap:7px;margin-right:8px}
+  .tl i{width:11px;height:11px;border-radius:50%;display:block}
+  .ide-title{font-size:11.5px;color:#C2C8D2;font-weight:600;letter-spacing:.02em}
+  .ide-tabs{display:flex;height:33px;flex:0 0 33px;background:#1B1E26;border-bottom:1px solid #12141A}
+  .tab{display:flex;align-items:center;gap:7px;padding:0 15px;font-size:11.5px;color:#7C8595;border-right:1px solid #12141A}
+  .tab.on{background:#1E2230;color:#E8EEF8;box-shadow:inset 0 -2px 0 #4FACFE}
+  .ide-body{display:flex;flex:1 1 auto;min-height:0}
+  .tree{
+    width:182px;flex:0 0 182px;background:#15181F;border-right:1px solid #0E1016;
+    padding:10px 0;font-size:11.5px;color:#9AA3B2;
+  }
+  .tree .grp{font-size:9.5px;letter-spacing:.16em;color:#616A78;padding:0 13px 8px;font-weight:700}
+  .tree .it{display:flex;align-items:center;gap:8px;padding:5px 13px}
+  .tree .it.on{background:#222733;color:#EAF1FB;box-shadow:inset 2px 0 0 #4FACFE}
+  .tree .it .nm{white-space:nowrap}
+  .tree .fold{color:#B7C0CE}
+  .code{flex:1 1 auto;padding:12px 0 0;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:11.5px;line-height:1.68;overflow:hidden}
+  .ln{display:flex;white-space:pre}
+  .ln .no{width:40px;flex:0 0 40px;text-align:right;padding-right:14px;color:#454C5A;user-select:none}
+  .kw{color:#C586C0}.ty{color:#4EC9B0}.fn{color:#DCDCAA}.st{color:#CE9178}.nu{color:#B5CEA8}
+  .cm{color:#6A9955;font-style:italic}.id{color:#9CDCFE}.op{color:#D4D4D4}.at{color:#569CD6}
+  .ide-status{
+    height:24px;flex:0 0 24px;display:flex;align-items:center;gap:16px;padding:0 13px;
+    background:linear-gradient(90deg,#4FACFE,#2F7FD6);font-size:10px;color:#04101F;font-weight:700;letter-spacing:.05em;
+  }
+
+  /* ============ DASHBOARD ============ */
+  .dash{display:flex;flex-direction:column;padding:14px 16px 14px}
+  .dh{display:flex;align-items:center;gap:10px}
+  .dh .t{font-size:13px;font-weight:800;letter-spacing:.03em;color:#EAF2FF}
+  .dh .s{font-size:10px;color:#6E87AA;letter-spacing:.06em}
+  .live{
+    margin-left:auto;display:flex;align-items:center;gap:6px;font-size:9.5px;font-weight:800;
+    letter-spacing:.14em;color:#00F2FE;border:1px solid rgba(0,242,254,.3);border-radius:999px;padding:3px 9px;
+    background:rgba(0,242,254,.08);
+  }
+  .live i{width:6px;height:6px;border-radius:50%;background:#00F2FE;box-shadow:0 0 9px 2px rgba(0,242,254,.8)}
+  .graph{
+    position:relative;margin-top:12px;height:196px;border-radius:12px;overflow:hidden;
+    background:linear-gradient(180deg,#070B1C,#05080F);border:1px solid rgba(79,172,254,.16);
+  }
+  .glabels{position:absolute;inset:0;pointer-events:none}
+  .glabels span{position:absolute;font-size:8.5px;color:#55688A;letter-spacing:.08em}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+  .stat{
+    border-radius:11px;padding:11px 12px;background:linear-gradient(160deg,rgba(23,32,62,.9),rgba(8,12,28,.95));
+    border:1px solid rgba(79,172,254,.17);
+  }
+  .stat .top{display:flex;align-items:center;gap:7px}
+  .stat .k{font-size:9.5px;letter-spacing:.1em;color:#7B92B4;font-weight:700}
+  .stat .v{font-size:21px;font-weight:800;letter-spacing:-.02em;color:#F3F8FF;margin-top:7px;font-variant-numeric:tabular-nums}
+  .stat .v small{font-size:11.5px;font-weight:700;color:#8AA3C5;margin-left:3px}
+  .stat .d{font-size:10.5px;font-weight:800;margin-top:4px;letter-spacing:.02em}
+  .up{color:#2BE8A5}.neu{color:#4FACFE}.vio{color:#C08BFF}
+  .spark{margin-top:7px;height:20px;width:100%;display:block}
+  .foot{
+    height:24px;flex:0 0 24px;display:flex;align-items:center;gap:18px;padding:0 26px;
+    font-size:9.5px;letter-spacing:.17em;color:#51688C;font-weight:700;
+  }
+  .foot .dot{width:4px;height:4px;border-radius:50%;background:#4FACFE;opacity:.7}
+</style>
+</head>
+<body>
+
+<!-- ===== shared defs: gradients + the three F symbols ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7FFBFF"/><stop offset="48%" stop-color="#00F2FE"/><stop offset="100%" stop-color="#4FACFE"/>
+    </linearGradient>
+    <linearGradient id="gB" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#2F8BE0"/><stop offset="45%" stop-color="#4FACFE"/><stop offset="100%" stop-color="#A5E8FF"/>
+    </linearGradient>
+    <linearGradient id="gC" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00F2FE"/><stop offset="52%" stop-color="#4FACFE"/><stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+    <linearGradient id="gHero" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9FFDFF"/><stop offset="42%" stop-color="#00F2FE"/>
+      <stop offset="78%" stop-color="#4FACFE"/><stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+    <linearGradient id="gFoil" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset="50%" stop-color="#5E7694"/><stop offset="100%" stop-color="#EDF4FF"/>
+    </linearGradient>
+    <linearGradient id="gWave1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00F2FE" stop-opacity="0"/><stop offset="22%" stop-color="#00F2FE" stop-opacity=".95"/>
+      <stop offset="64%" stop-color="#4FACFE" stop-opacity=".95"/><stop offset="100%" stop-color="#A855F7" stop-opacity=".2"/>
+    </linearGradient>
+    <linearGradient id="gWave2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4FACFE" stop-opacity="0"/><stop offset="35%" stop-color="#4FACFE" stop-opacity=".8"/>
+      <stop offset="100%" stop-color="#A855F7" stop-opacity=".85"/>
+    </linearGradient>
+    <linearGradient id="gWave3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#A855F7" stop-opacity="0"/><stop offset="50%" stop-color="#C08BFF" stop-opacity=".6"/>
+      <stop offset="100%" stop-color="#00F2FE" stop-opacity=".55"/>
+    </linearGradient>
+    <linearGradient id="gEq" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#00F2FE" stop-opacity=".18"/><stop offset="55%" stop-color="#00F2FE" stop-opacity=".85"/>
+      <stop offset="100%" stop-color="#A855F7" stop-opacity=".95"/>
+    </linearGradient>
+    <linearGradient id="gSpec" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00F2FE"/><stop offset="55%" stop-color="#4FACFE"/><stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+    <linearGradient id="gFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4FACFE" stop-opacity=".45"/><stop offset="100%" stop-color="#4FACFE" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <filter id="bevel" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="2.2" stdDeviation="0" flood-color="#0A1830" flood-opacity=".85"/>
+    </filter>
+
+    <!-- VARIATION A : SHIFTING CHEVRON F -->
+    <symbol id="iconA" viewBox="0 0 100 100">
+      <g fill="url(#gA)">
+        <polygon points="16,11 37,11 37,70 16,89"/>
+        <polygon points="37,11 73,11 90,26.5 73,42 37,42 54,26.5"/>
+        <polygon points="37,52 65,52 80,65.5 65,79 37,79 52,65.5"/>
+      </g>
+      <g fill="#FFFFFF" opacity=".30">
+        <polygon points="16,11 37,11 37,17 16,17"/>
+        <polygon points="37,11 73,11 77,14.5 41,14.5"/>
+      </g>
+    </symbol>
+
+    <!-- VARIATION B : RISING HARMONIC F -->
+    <symbol id="iconB" viewBox="0 0 100 100">
+      <g fill="url(#gB)">
+        <rect x="16" y="11" width="21" height="78" rx="1"/>
+        <rect x="38" y="11" width="16" height="20" rx="1"/>
+        <rect x="56" y="11" width="16" height="27" rx="1"/>
+        <rect x="74" y="11" width="18" height="34" rx="1"/>
+        <rect x="38" y="53" width="29" height="19" rx="1"/>
+      </g>
+      <g fill="#FFFFFF" opacity=".28">
+        <rect x="16" y="11" width="76" height="4.5"/>
+        <rect x="38" y="53" width="29" height="4"/>
+      </g>
+    </symbol>
+
+    <!-- VARIATION C : WAVEFORM PULSE F -->
+    <symbol id="iconC" viewBox="0 0 100 100">
+      <g fill="url(#gC)">
+        <rect x="16" y="11" width="21" height="78" rx="1"/>
+      </g>
+      <g fill="none" stroke="url(#gC)" stroke-linecap="butt">
+        <path d="M34 22 C46 12 54 32 66 22 S84 12 94 20" stroke-width="22"/>
+        <path d="M34 62 C44 54 50 70 60 62 S74 54 80 60" stroke-width="18"/>
+      </g>
+      <g fill="none" stroke="#FFFFFF" opacity=".26" stroke-linecap="round">
+        <path d="M36 14 C47 5 55 24 67 14 S84 5 93 12" stroke-width="3.2"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="stage">
+
+  <!-- ================= HERO ================= -->
+  <header class="hero">
+    <svg class="hero-svg" viewBox="0 0 1600 310" preserveAspectRatio="none">
+      <!-- left vertical equalizer bars -->
+      <g>
+        <rect x="26"  y="196" width="9" height="74"  rx="4.5" fill="url(#gEq)"/>
+        <rect x="44"  y="150" width="9" height="120" rx="4.5" fill="url(#gEq)"/>
+        <rect x="62"  y="104" width="9" height="166" rx="4.5" fill="url(#gEq)"/>
+        <rect x="80"  y="168" width="9" height="102" rx="4.5" fill="url(#gEq)"/>
+        <rect x="98"  y="62"  width="9" height="208" rx="4.5" fill="url(#gEq)"/>
+        <rect x="116" y="128" width="9" height="142" rx="4.5" fill="url(#gEq)"/>
+        <rect x="134" y="182" width="9" height="88"  rx="4.5" fill="url(#gEq)"/>
+        <rect x="152" y="92"  width="9" height="178" rx="4.5" fill="url(#gEq)"/>
+        <rect x="170" y="212" width="9" height="58"  rx="4.5" fill="url(#gEq)"/>
+        <rect x="26" y="276" width="162" height="2" fill="#4FACFE" opacity=".35"/>
+      </g>
+      <!-- right-hand multilayer harmonic waves -->
+      <g filter="url(#softglow)" opacity=".55">
+        <path d="M700 170 C770 60 760 300 840 180 S1000 40 1100 170 S1280 300 1380 170 S1520 60 1600 150"
+              fill="none" stroke="url(#gWave1)" stroke-width="16"/>
+      </g>
+      <path d="M700 170 C770 60 760 300 840 180 S1000 40 1100 170 S1280 300 1380 170 S1520 60 1600 150"
+            fill="none" stroke="url(#gWave1)" stroke-width="3.4" filter="url(#glow)"/>
+      <path d="M700 206 C760 140 700 262 760 200 S880 110 960 196 S1100 272 1180 196 S1320 116 1400 196 S1530 250 1600 206"
+            fill="none" stroke="url(#gWave2)" stroke-width="2.6" filter="url(#glow)"/>
+      <path d="M720 140 C790 48 780 236 850 140 S1020 28 1120 132 S1300 238 1400 132 S1540 46 1600 108"
+            fill="none" stroke="url(#gWave3)" stroke-width="2" opacity=".85"/>
+      <path d="M760 236 C800 200 780 266 830 234 S960 190 1040 232 S1180 272 1260 232 S1420 192 1600 236"
+            fill="none" stroke="#00F2FE" stroke-width="1.4" opacity=".4"/>
+      <!-- harmonic particles -->
+      <g fill="#8BF4FF">
+        <circle cx="812" cy="60"  r="2.6" opacity=".9"/><circle cx="906" cy="258" r="2.2" opacity=".75"/>
+        <circle cx="790" cy="150" r="3"   opacity=".95"/><circle cx="868" cy="78"  r="2"   opacity=".7"/>
+        <circle cx="952" cy="206" r="2.6" opacity=".8"/><circle cx="1044" cy="118" r="2.2" opacity=".8"/>
+        <circle cx="1132" cy="188" r="3.2" opacity=".9"/><circle cx="1218" cy="88"  r="2"   opacity=".65"/>
+        <circle cx="1306" cy="246" r="2.4" opacity=".8"/><circle cx="1390" cy="140" r="3"   opacity=".9"/>
+        <circle cx="1472" cy="74"  r="2.2" opacity=".7"/><circle cx="1552" cy="198" r="2.6" opacity=".8"/>
+      </g>
+      <g fill="#D7A9FF">
+        <circle cx="864" cy="40" r="2" opacity=".8"/><circle cx="906" cy="252" r="2.4" opacity=".7"/>
+        <circle cx="1180" cy="60" r="2.2" opacity=".75"/><circle cx="1440" cy="226" r="2.4" opacity=".7"/>
+      </g>
+      <!-- scan ticks -->
+      <g stroke="#4FACFE" opacity=".22">
+        <line x1="760" y1="282" x2="760" y2="296"/>
+        <line x1="900" y1="282" x2="900" y2="296"/><line x1="1040" y1="282" x2="1040" y2="296"/>
+        <line x1="1180" y1="282" x2="1180" y2="296"/><line x1="1320" y1="282" x2="1320" y2="296"/>
+        <line x1="1460" y1="282" x2="1460" y2="296"/>
+      </g>
+    </svg>
+    <div class="grid-overlay"></div>
+
+    <nav class="nav">
+      <a href="#">Docs</a><i class="sep"></i>
+      <a href="#">StdLib</a><i class="sep"></i>
+      <a href="#">DSP Engine</a><i class="sep"></i>
+      <a href="#" class="ver">v2.4.0</a>
+      <a href="#" class="gh">GitHub</a>
+    </nav>
+
+    <div class="lockup">
+      <div class="hero-mark">
+        <svg width="92" height="92" viewBox="0 0 100 100" filter="url(#bevel)">
+          <g fill="url(#gHero)">
+            <polygon points="16,11 37,11 37,70 16,89"/>
+            <polygon points="37,11 73,11 90,26.5 73,42 37,42 54,26.5"/>
+            <polygon points="37,52 65,52 80,65.5 65,79 37,79 52,65.5"/>
+          </g>
+          <g fill="#FFFFFF" opacity=".34">
+            <polygon points="16,11 37,11 37,17.5 16,17.5"/>
+            <polygon points="37,11 73,11 77,14.5 41,14.5"/>
+            <polygon points="37,52 65,52 68,55 40,55"/>
+          </g>
+        </svg>
+      </div>
+      <div>
+        <div class="wordmark">Fraqshift</div>
+        <div class="tag-row">
+          <i class="tag-dot"></i>
+          <div class="subtitle">Programming the Future of Signals — <b>High-Frequency DSP &amp; Quantum-Shift Language</b></div>
+        </div>
+        <div class="kicker">
+          <span class="chip">CONTEST #2795101</span>
+          <span class="chip">3 OFFICIAL &lsquo;F&rsquo; VARIATIONS</span>
+          <span class="chip">16PX LEGIBLE</span>
+          <span class="chip">SVG VECTOR</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="body-wrap">
+
+    <!-- ================= MIDDLE ROW : 3 VARIATIONS ================= -->
+    <div class="row r1">
+
+      <!-- CARD 1 -->
+      <section class="panel vcard c1">
+        <div class="vtop">
+          <div>
+            <span class="vbadge">VARIATION A</span>
+            <div class="vname">The Shifting Chevron F</div>
+            <div class="vmeta">Arrow &middot; Forward Shift</div>
+          </div>
+          <div class="vconcept">&gt;&gt; FORWARD<br>MOTION</div>
+        </div>
+        <div class="pedestal">
+          <div class="ped-grid"></div><div class="plinth"></div>
+          <svg class="big-icon" viewBox="0 0 100 100"><use href="#iconA"/></svg>
+          <div class="px-badge">
+            <div class="px-cell"><span class="lbl">16PX</span><div class="px-box px-16"><svg width="16" height="16" viewBox="0 0 100 100"><use href="#iconA"/></svg></div></div>
+            <div class="px-cell"><span class="lbl">32PX</span><div class="px-box px-32"><svg width="32" height="32" viewBox="0 0 100 100"><use href="#iconA"/></svg></div></div>
+            <div class="px-cell"><span class="lbl">GRID 16&times;16</span>
+              <div class="px-mag"><svg width="54" height="54" viewBox="0 0 100 100"><use href="#iconA"/></svg><div class="pg"></div></div>
+              <span class="ok-tick">&#10003; CRISP</span>
+            </div>
+          </div>
+        </div>
+        <div class="geom">
+          <svg class="geom-svg" width="74" height="60" viewBox="0 0 74 60">
+            <g stroke="#4FACFE" stroke-width=".8" opacity=".5" fill="none">
+              <rect x="4" y="4" width="66" height="52"/><line x1="4" y1="30" x2="70" y2="30"/><line x1="37" y1="4" x2="37" y2="56"/>
+            </g>
+            <path d="M14 48 L24 30" stroke="#00F2FE" stroke-width="1.4" fill="none"/>
+            <path d="M14 48 A 20 20 0 0 1 20 34" stroke="#A855F7" stroke-width="1.2" fill="none"/>
+            <text x="26" y="52" fill="#9FB6D6" font-size="8" font-family="monospace">60&#176;</text>
+            <path d="M40 14 L56 14 L62 22 L56 30 L40 30 L46 22 Z" fill="none" stroke="#00F2FE" stroke-width="1.1" stroke-dasharray="2.5 2"/>
+          </svg>
+          <div class="geom-txt"><b>Construction:</b> twin horizontal bars sculpted into forward chevron arrows (&gt;) stepping right; stem terminates on a <b>60&deg; kinetic cut</b>. Pure straight-edge vectors on an 8px grid.</div>
+        </div>
+      </section>
+
+      <!-- CARD 2 -->
+      <section class="panel vcard c2">
+        <div class="vtop">
+          <div>
+            <span class="vbadge">VARIATION B</span>
+            <div class="vname">The Rising Harmonic F</div>
+            <div class="vmeta">Growing Signal Bars</div>
+          </div>
+          <div class="vconcept">GAIN<br>ASCENDING</div>
+        </div>
+        <div class="pedestal">
+          <div class="ped-grid"></div><div class="plinth"></div>
+          <svg class="big-icon" viewBox="0 0 100 100"><use href="#iconB"/></svg>
+          <div class="px-badge">
+            <div class="px-cell"><span class="lbl">16PX</span><div class="px-box px-16"><svg width="16" height="16" viewBox="0 0 100 100"><use href="#iconB"/></svg></div></div>
+            <div class="px-cell"><span class="lbl">32PX</span><div class="px-box px-32"><svg width="32" height="32" viewBox="0 0 100 100"><use href="#iconB"/></svg></div></div>
+            <div class="px-cell"><span class="lbl">GRID 16&times;16</span>
+              <div class="px-mag"><svg width="54" height="54" viewBox="0 0 100 100"><use href="#iconB"/></svg><div class="pg"></div></div>
+              <span class="ok-tick">&#10003; CRISP</span>
+            </div>
+          </div>
+        </div>
+        <div class="geom">
+          <svg class="geom-svg" width="74" height="60" viewBox="0 0 74 60">
+            <g stroke="#4FACFE" stroke-width=".8" opacity=".5" fill="none">
+              <rect x="4" y="4" width="66" height="52"/><line x1="4" y1="30" x2="70" y2="30"/>
+            </g>
+            <g fill="none" stroke="#4FACFE" stroke-width="1.1" stroke-dasharray="2.5 2">
+              <rect x="24" y="34" width="10" height="14"/><rect x="38" y="26" width="10" height="22"/><rect x="52" y="16" width="10" height="32"/>
+            </g>
+            <path d="M24 32 L62 13" stroke="#00F2FE" stroke-width="1.2" fill="none"/>
+            <circle cx="62" cy="13" r="2" fill="#00F2FE"/>
+            <text x="8" y="16" fill="#9FB6D6" font-size="8" font-family="monospace">+dB</text>
+          </svg>
+          <div class="geom-txt"><b>Construction:</b> compact lower bar, longer and thicker upper bar split into <b>3 stepped frequency segments</b> &mdash; an unmistakable &ldquo;growing signal moving right&rdquo; silhouette.</div>
+        </div>
+      </section>
+
+      <!-- CARD 3 -->
+      <section class="panel vcard c3">
+        <div class="vtop">
+          <div>
+            <span class="vbadge">VARIATION C</span>
+            <div class="vname">The Waveform Pulse F</div>
+            <div class="vmeta">Wave &middot; Frequency Shift</div>
+          </div>
+          <div class="vconcept">&#8767; PHASE<br>SURGE</div>
+        </div>
+        <div class="pedestal">
+          <div class="ped-grid"></div><div class="plinth"></div>
+          <svg class="big-icon" viewBox="0 0 100 100"><use href="#iconC"/></svg>
+          <div class="px-badge">
+            <div class="px-cell"><span class="lbl">16PX</span><div class="px-box px-16"><svg width="16" height="16" viewBox="0 0 100 100"><use href="#iconC"/></svg></div></div>
+            <div class="px-cell"><span class="lbl">32PX</span><div class="px-box px-32"><svg width="32" height="32" viewBox="0 0 100 100"><use href="#iconC"/></svg></div></div>
+            <div class="px-cell"><span class="lbl">GRID 16&times;16</span>
+              <div class="px-mag"><svg width="54" height="54" viewBox="0 0 100 100"><use href="#iconC"/></svg><div class="pg"></div></div>
+              <span class="ok-tick">&#10003; CRISP</span>
+            </div>
+          </div>
+        </div>
+        <div class="geom">
+          <svg class="geom-svg" width="74" height="60" viewBox="0 0 74 60">
+            <g stroke="#A855F7" stroke-width=".8" opacity=".5" fill="none">
+              <rect x="4" y="4" width="66" height="52"/><line x1="4" y1="30" x2="70" y2="30"/>
+            </g>
+            <path d="M8 30 C18 8 28 52 38 30 S54 10 66 26" fill="none" stroke="#00F2FE" stroke-width="1.3"/>
+            <g stroke="#A855F7" stroke-width=".9" stroke-dasharray="2 2">
+              <line x1="8" y1="12" x2="66" y2="12"/><line x1="8" y1="48" x2="66" y2="48"/>
+            </g>
+            <text x="44" y="56" fill="#C08BFF" font-size="8" font-family="monospace">&#955;/2</text>
+          </svg>
+          <div class="geom-txt"><b>Construction:</b> both horizontal bars morph into smooth high-frequency sine/sawtooth crests surging rightward, in a <b>cyan&rarr;violet</b> gradient. Stem stays a solid anchor.</div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================= BOTTOM ROW : REAL-WORLD MOCKUPS ================= -->
+    <div class="row r2">
+
+      <!-- BOTTOM LEFT : BRAND CARDS -->
+      <section class="panel">
+        <div class="mk-head">
+          <span class="mk-title">BRAND IDENTITY</span>
+          <span class="mk-sub">Matte black + pearl white &middot; foil emblem</span>
+        </div>
+        <div class="card-scene">
+          <div class="surface"></div>
+
+          <div class="biz biz-dark">
+            <div class="biz-inner">
+              <div class="biz-row">
+                <div class="foil"><svg width="26" height="26" viewBox="0 0 100 100"><g fill="url(#gFoil)"><polygon points="16,11 37,11 37,70 16,89"/><polygon points="37,11 73,11 90,26.5 73,42 37,42 54,26.5"/><polygon points="37,52 65,52 80,65.5 65,79 37,79 52,65.5"/></g></svg></div>
+                <div class="biz-wm">Fraqshift<span>DSP LANGUAGE</span></div>
+              </div>
+              <div>
+                <div class="biz-name">Fraqshift Core Team</div>
+                <div class="biz-role">New Language, New Frequencies</div>
+                <div class="biz-tag">core@fraqshift.dev &nbsp;&middot;&nbsp; fraqshift.dev</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="biz biz-light">
+            <div class="biz-inner">
+              <div class="biz-row">
+                <div class="foil"><svg width="26" height="26" viewBox="0 0 100 100"><g fill="url(#gFoil)"><rect x="16" y="11" width="21" height="78"/><rect x="38" y="11" width="16" height="20"/><rect x="56" y="11" width="16" height="27"/><rect x="74" y="11" width="18" height="34"/><rect x="38" y="53" width="29" height="19"/></g></svg></div>
+                <div class="biz-wm">Fraqshift<span>CORE TEAM</span></div>
+              </div>
+              <div>
+                <div class="biz-name">Fraqshift Core Team</div>
+                <div class="biz-role">New Language, New Frequencies</div>
+                <div class="biz-tag">v2.4.0 &nbsp;&middot;&nbsp; github.com/fraqshift</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swatches">
+            <span class="sw-label">PALETTE</span>
+            <i class="sw" style="background:#00F2FE"></i>
+            <i class="sw" style="background:#4FACFE"></i>
+            <i class="sw" style="background:#A855F7"></i>
+            <i class="sw" style="background:#0B1026"></i>
+            <i class="sw" style="background:#F4F7FB"></i>
+          </div>
+          <div class="pill">
+            <svg width="15" height="15" viewBox="0 0 100 100"><g fill="#071021"><polygon points="16,11 37,11 37,70 16,89"/><polygon points="37,11 73,11 90,26.5 73,42 37,42 54,26.5"/><polygon points="37,52 65,52 80,65.5 65,79 37,79 52,65.5"/></g></svg>
+            + Follow @fraqshift
+          </div>
+        </div>
+      </section>
+
+      <!-- BOTTOM CENTER : IDE -->
+      <section class="panel ide">
+        <div class="ide-bar">
+          <span class="tl"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i></span>
+          <svg width="14" height="14" viewBox="0 0 100 100"><use href="#iconA"/></svg>
+          <span class="ide-title">fraqshift-dsp &mdash; main.fq</span>
+        </div>
+        <div class="ide-tabs">
+          <div class="tab on"><svg width="13" height="13" viewBox="0 0 100 100"><use href="#iconA"/></svg> main.fq</div>
+          <div class="tab"><svg width="13" height="13" viewBox="0 0 100 100"><use href="#iconA"/></svg> fft_shift.fq</div>
+          <div class="tab"><svg width="13" height="13" viewBox="0 0 100 100"><use href="#iconA"/></svg> oscillator.fq</div>
+        </div>
+        <div class="ide-body">
+          <div class="tree">
+            <div class="grp">EXPLORER</div>
+            <div class="it fold">&#9662;&nbsp;&nbsp;<span class="nm">FRAQSHIFT-DSP</span></div>
+            <div class="it on" style="padding-left:26px"><svg width="16" height="16" viewBox="0 0 100 100"><use href="#iconA"/></svg><span class="nm">main.fq</span></div>
+            <div class="it" style="padding-left:26px"><svg width="16" height="16" viewBox="0 0 100 100"><use href="#iconA"/></svg><span class="nm">fft_shift.fq</span></div>
+            <div class="it" style="padding-left:26px"><svg width="16" height="16" viewBox="0 0 100 100"><use href="#iconA"/></svg><span class="nm">oscillator.fq</span></div>
+            <div class="it" style="padding-left:26px"><svg width="16" height="16" viewBox="0 0 100 100"><use href="#iconA"/></svg><span class="nm">config.fq</span></div>
+            <div class="it" style="padding-left:26px"><span style="width:16px;text-align:center;color:#6A9955">&#9679;</span><span class="nm">README.md</span></div>
+            <div class="grp" style="padding-top:12px">FILE ICON THEME</div>
+            <div class="it" style="padding-left:13px"><svg width="16" height="16" viewBox="0 0 100 100"><use href="#iconA"/></svg><span class="nm">.fq &rarr; Fraqshift</span></div>
+          </div>
+          <div class="code">
+            <div class="ln"><span class="no">1</span><span class="cm">// Fraqshift v2.4.0 — quantum-shift DSP pipeline</span></div>
+            <div class="ln"><span class="no">2</span><span class="kw">import</span><span class="op"> </span><span class="ty">dsp</span><span class="op">::{</span><span class="id">fft</span><span class="op">, </span><span class="id">window</span><span class="op">, </span><span class="id">phase</span><span class="op">}</span></div>
+            <div class="ln"><span class="no">3</span></div>
+            <div class="ln"><span class="no">4</span><span class="at">@realtime</span><span class="op">(</span><span class="id">latency</span><span class="op">: </span><span class="nu">2</span><span class="id">ms</span><span class="op">)</span></div>
+            <div class="ln"><span class="no">5</span><span class="kw">shift</span><span class="op"> </span><span class="fn">oscillator</span><span class="op">(</span><span class="id">sig</span><span class="op">: </span><span class="ty">Signal</span><span class="op">) -&gt; </span><span class="ty">Spectrum</span><span class="op"> {</span></div>
+            <div class="ln"><span class="no">6</span><span class="op">  </span><span class="kw">let</span><span class="op"> </span><span class="id">band</span><span class="op"> = </span><span class="fn">fft</span><span class="op">::</span><span class="fn">window</span><span class="op">(</span><span class="id">sig</span><span class="op">, </span><span class="nu">2048</span><span class="op">)</span></div>
+            <div class="ln"><span class="no">7</span><span class="op">  </span><span class="kw">let</span><span class="op"> </span><span class="id">carrier</span><span class="op"> = </span><span class="ty">Wave</span><span class="op">::</span><span class="fn">sine</span><span class="op">(</span><span class="nu">480.0</span><span class="op">, </span><span class="st">"Hz"</span><span class="op">)</span></div>
+            <div class="ln"><span class="no">8</span></div>
+            <div class="ln"><span class="no">9</span><span class="op">  </span><span class="id">band</span><span class="op"> </span><span class="kw">|&gt;</span><span class="op"> </span><span class="fn">harmonic</span><span class="op">(</span><span class="nu">3</span><span class="op">)</span></div>
+            <div class="ln"><span class="no">10</span><span class="op">       </span><span class="kw">|&gt;</span><span class="op"> </span><span class="fn">fraq_shift</span><span class="op">(</span><span class="id">carrier</span><span class="op">, </span><span class="id">coherence</span><span class="op">: </span><span class="nu">0.9998</span><span class="op">)</span></div>
+            <div class="ln"><span class="no">11</span><span class="op">       </span><span class="kw">~&gt;</span><span class="op"> </span><span class="fn">emit</span><span class="op">(</span><span class="ty">Out</span><span class="op">::</span><span class="id">Stereo</span><span class="op">)</span></div>
+            <div class="ln"><span class="no">12</span><span class="op">}</span></div>
+            <div class="ln"><span class="no">13</span></div>
+            <div class="ln"><span class="no">14</span><span class="cm">// phase-locked loop, 120 BPM pulse</span></div>
+            <div class="ln"><span class="no">15</span><span class="kw">pulse</span><span class="op"> </span><span class="fn">main</span><span class="op">() { </span><span class="fn">oscillator</span><span class="op">(</span><span class="fn">input</span><span class="op">()).</span><span class="fn">lock</span><span class="op">(</span><span class="nu">120</span><span class="op">) }</span></div>
+          </div>
+        </div>
+        <div class="ide-status">
+          <span>&#9873; main</span><span>FRAQSHIFT 2.4.0</span><span>Ln 11, Col 34</span><span>DSP ENGINE: READY</span><span>&#9733; 0 PROBLEMS</span>
+        </div>
+      </section>
+
+      <!-- BOTTOM RIGHT : DASHBOARD -->
+      <section class="panel dash">
+        <div class="dh">
+          <svg width="22" height="22" viewBox="0 0 100 100"><use href="#iconC"/></svg>
+          <div>
+            <div class="t">Fraqshift Signal Analysis</div>
+            <div class="s">&amp; TELEMETRY &middot; NODE-07</div>
+          </div>
+          <span class="live"><i></i>LIVE</span>
+        </div>
+
+        <div class="graph">
+          <svg width="100%" height="196" viewBox="0 0 420 196" preserveAspectRatio="none">
+            <g stroke="#1B2742" stroke-width="1">
+              <line x1="0" y1="39" x2="420" y2="39"/><line x1="0" y1="78" x2="420" y2="78"/>
+              <line x1="0" y1="117" x2="420" y2="117"/><line x1="0" y1="156" x2="420" y2="156"/>
+              <line x1="84" y1="0" x2="84" y2="196"/><line x1="168" y1="0" x2="168" y2="196"/>
+              <line x1="252" y1="0" x2="252" y2="196"/><line x1="336" y1="0" x2="336" y2="196"/>
+            </g>
+            <path d="M0 196 L0 120 C30 60 54 170 84 112 S126 52 168 104 S210 160 252 96 S294 44 336 102 S384 150 420 88 L420 196 Z" fill="url(#gFill)" opacity=".7"/>
+            <g filter="url(#softglow)" opacity=".6">
+              <path d="M0 120 C30 60 54 170 84 112 S126 52 168 104 S210 160 252 96 S294 44 336 102 S384 150 420 88" fill="none" stroke="url(#gSpec)" stroke-width="9"/>
+            </g>
+            <path d="M0 120 C30 60 54 170 84 112 S126 52 168 104 S210 160 252 96 S294 44 336 102 S384 150 420 88"
+                  fill="none" stroke="url(#gSpec)" stroke-width="2.6"/>
+            <path d="M0 150 C34 112 58 176 92 142 S140 100 180 148 S228 178 268 132 S320 96 360 144 S400 168 420 140"
+                  fill="none" stroke="#00F2FE" stroke-width="1.6" opacity=".65"/>
+            <path d="M0 76 C40 30 70 118 110 66 S160 20 200 72 S250 112 290 58 S350 24 420 62"
+                  fill="none" stroke="#A855F7" stroke-width="1.5" opacity=".7"/>
+            <g fill="#00F2FE">
+              <circle cx="84" cy="112" r="3"/><circle cx="252" cy="96" r="3"/><circle cx="336" cy="102" r="3"/>
+            </g>
+            <line x1="336" y1="0" x2="336" y2="196" stroke="#00F2FE" stroke-width="1" opacity=".55" stroke-dasharray="3 3"/>
+          </svg>
+          <div class="glabels">
+            <span style="left:10px;top:8px">dB +12</span>
+            <span style="left:10px;bottom:7px">0 Hz</span>
+            <span style="left:34%;bottom:7px">1k</span>
+            <span style="left:60%;bottom:7px">4k</span>
+            <span style="right:10px;bottom:7px">16k</span>
+            <span style="right:10px;top:8px;color:#00F2FE">FFT 2048 &middot; HANN</span>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="top"><svg width="13" height="13" viewBox="0 0 100 100"><use href="#iconB"/></svg><span class="k">FREQ SHIFT</span></div>
+            <div class="v">480 <small>Hz</small></div>
+            <div class="d up">&#9650; +9.1%</div>
+            <svg class="spark" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0 16 L14 12 L28 14 L42 8 L56 10 L70 5 L84 7 L100 2" fill="none" stroke="#2BE8A5" stroke-width="1.6"/></svg>
+          </div>
+          <div class="stat">
+            <div class="top"><svg width="13" height="13" viewBox="0 0 100 100"><use href="#iconC"/></svg><span class="k">PULSE RATE</span></div>
+            <div class="v">120 <small>BPM</small></div>
+            <div class="d neu">&#9644; LOCKED</div>
+            <svg class="spark" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0 14 L10 14 L13 4 L16 14 L34 14 L37 4 L40 14 L58 14 L61 4 L64 14 L82 14 L85 4 L88 14 L100 14" fill="none" stroke="#4FACFE" stroke-width="1.6"/></svg>
+          </div>
+          <div class="stat">
+            <div class="top"><svg width="13" height="13" viewBox="0 0 100 100"><use href="#iconA"/></svg><span class="k">PHASE COHER.</span></div>
+            <div class="v">99.98<small>%</small></div>
+            <div class="d vio">&#9650; NOMINAL</div>
+            <svg class="spark" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0 6 C12 2 20 12 32 7 S52 2 64 8 S84 12 100 4" fill="none" stroke="#C08BFF" stroke-width="1.6"/></svg>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>FRAQSHIFT ICON IDENTITY SYSTEM</span><i class="dot"></i>
+    <span>3 REQUESTED &lsquo;F&rsquo; VARIATIONS: CHEVRON / HARMONIC / WAVEFORM</span><i class="dot"></i>
+    <span>FAVICON &middot; FILE-TREE &middot; APP ICON &middot; PRINT FOIL</span><i class="dot"></i>
+    <span>DELIVERED AS LAYERED SVG + ICO + PNG @16/32/64/128/512</span>
+  </div>
+</div>
+</body>
+</html>

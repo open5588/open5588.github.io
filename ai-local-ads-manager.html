@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AdPulse GeoAI — Meta Advantage+ &amp; Local Geo-Expansion Command Center (#2790130)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap');
+
+    :root {
+      --bg-950: #070b14;
+      --bg-900: #0f172a;
+      --bg-800: #1e293b;
+      --bg-700: #334155;
+      --meta-blue: #0668E1;
+      --meta-cyan: #38bdf8;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --rose: #f43f5e;
+      --violet: #8b5cf6;
+      --text-100: #f8fafc;
+      --text-300: #cbd5e1;
+      --text-400: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-950);
+      color: var(--text-100);
+      padding: 14px 18px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .command-center {
+      max-width: 1564px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* Top Header Bar */
+    .top-header {
+      background: linear-gradient(90deg, #0f172a 0%, #172554 55%, #0f172a 100%);
+      border: 1px solid #3b82f6;
+      border-radius: 14px;
+      padding: 14px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 12px 32px rgba(6, 104, 225, 0.2);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .meta-badge-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #0668E1 0%, #8b5cf6 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 20px;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(6, 104, 225, 0.45);
+    }
+
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #60a5fa;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .header-title {
+      font-size: 21px;
+      font-weight: 900;
+      letter-spacing: -0.4px;
+      color: #ffffff;
+    }
+
+    .header-sub {
+      font-size: 12px;
+      color: var(--text-300);
+      margin-top: 2px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .status-pill {
+      background: rgba(16, 185, 129, 0.16);
+      border: 1px solid #10b981;
+      color: #6ee7b7;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+    }
+
+    .btn-export {
+      background: linear-gradient(135deg, #0668E1 0%, #2563eb 100%);
+      color: #ffffff;
+      border: 1px solid #60a5fa;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* Executive KPI Strip */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .kpi-card {
+      background: var(--bg-900);
+      border: 1px solid var(--bg-700);
+      border-radius: 12px;
+      padding: 12px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kpi-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--meta-blue);
+    }
+
+    .kpi-card.emerald::before { background: var(--emerald); }
+    .kpi-card.violet::before { background: var(--violet); }
+    .kpi-card.amber::before { background: var(--amber); }
+
+    .kpi-lbl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      color: var(--text-400);
+      text-transform: uppercase;
+    }
+
+    .kpi-val {
+      font-size: 23px;
+      font-weight: 900;
+      color: #ffffff;
+      margin: 4px 0 2px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .kpi-delta {
+      font-size: 11px;
+      font-weight: 700;
+      color: #34d399;
+    }
+
+    /* Main 2-Column Command Grid */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 14px;
+    }
+
+    .col-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .panel {
+      background: var(--bg-900);
+      border: 1px solid var(--bg-700);
+      border-radius: 14px;
+      padding: 16px 18px;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--bg-800);
+    }
+
+    .panel-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-badge {
+      background: #1d4ed8;
+      color: #ffffff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    /* 1. 3-PHASE GEO-SCALING FUNNEL */
+    .geo-funnel-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .radar-box {
+      background: #070b14;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .phase-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .phase-card {
+      background: #131c31;
+      border: 1px solid #2dd4bf40;
+      border-left: 4px solid #38bdf8;
+      border-radius: 9px;
+      padding: 10px 14px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .phase-card.p2 { border-left-color: #8b5cf6; }
+    .phase-card.p3 { border-left-color: #10b981; }
+
+    .phase-name {
+      font-size: 13px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .phase-desc {
+      font-size: 11.2px;
+      color: var(--text-300);
+      margin-top: 2px;
+    }
+
+    .phase-metrics {
+      text-align: right;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .roas-pill {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid #10b981;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      display: inline-block;
+    }
+
+    /* 2. 30-DAY AI CONTENT & AD CALENDAR (META BUSINESS SUITE SYNC) */
+    .creative-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .ad-card {
+      background: #131c31;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 11px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .ad-format-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .ad-visual-mock {
+      height: 66px;
+      border-radius: 7px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #ffffff;
+      text-align: center;
+      padding: 6px;
+    }
+
+    .ad-copy {
+      font-size: 11px;
+      color: var(--text-300);
+      line-height: 1.38;
+      margin-bottom: 8px;
+    }
+
+    .ad-kpi-bar {
+      border-top: 1px solid #1e293b;
+      padding-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #38bdf8;
+      font-weight: 700;
+    }
+
+    .calendar-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .cal-week {
+      background: #0b111e;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 10.5px;
+    }
+
+    .cal-week-hdr {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: #60a5fa;
+      margin-bottom: 3px;
+    }
+
+    /* 3. AUTOMATED SPEND REALLOCATION & WEEKLY EXECUTIVE REPORT */
+    .reallocator-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11.2px;
+      margin-bottom: 12px;
+    }
+
+    .reallocator-table th, .reallocator-table td {
+      padding: 8px 9px;
+      border-bottom: 1px solid #1e293b;
+      text-align: left;
+    }
+
+    .reallocator-table th {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--text-400);
+      text-transform: uppercase;
+      background: #0b111e;
+    }
+
+    .cpa-bad {
+      color: #fb7185;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+    }
+
+    .cpa-good {
+      color: #34d399;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+    }
+
+    .action-tag-kill {
+      background: rgba(244, 63, 94, 0.18);
+      color: #fda4af;
+      border: 1px solid #f43f5e;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .action-tag-scale {
+      background: rgba(16, 185, 129, 0.18);
+      color: #6ee7b7;
+      border: 1px solid #10b981;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .optimizer-controls {
+      background: #131c31;
+      border: 1px solid #3b82f6;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+    }
+
+    .exec-report-box {
+      background: #0b111e;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .report-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .report-stat {
+      background: #131c31;
+      border: 1px solid #1e293b;
+      border-radius: 7px;
+      padding: 8px 10px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="command-center">
+    <!-- Top Command Header -->
+    <header class="top-header">
+      <div class="brand-group">
+        <div class="meta-badge-icon">∞</div>
+        <div>
+          <div class="eyebrow">Contest #2790130 • AI-Powered Local Ads Manager (Meta Advantage+ &amp; Geo-Expansion Engine)</div>
+          <h1 class="header-title">AdPulse GeoAI — Autonomous Facebook &amp; Instagram Local-to-National Campaign Center</h1>
+          <div class="header-sub">ChatGPT-4o Ad Copy Engine + Midjourney/Canva Creative Matrix + Automated CPA Guardrail Reallocator + Meta Business Suite Sync</div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="status-pill">● META GRAPH API v21.0 CONNECTED</span>
+        <button class="btn-export" onclick="exportReport()">⬇ EXPORT WEEKLY CSV / PDF REPORT</button>
+      </div>
+    </header>
+
+    <!-- Top 5 KPI Strip -->
+    <section class="kpi-row">
+      <div class="kpi-card">
+        <div class="kpi-lbl">30-Day Managed Ad Spend</div>
+        <div class="kpi-val">$14,850</div>
+        <div class="kpi-delta">↑ 100% Auto-Paced across 3 Geo Rings</div>
+      </div>
+      <div class="kpi-card emerald">
+        <div class="kpi-lbl">Blended Campaign ROAS</div>
+        <div class="kpi-val" id="blendedRoasVal">4.28x</div>
+        <div class="kpi-delta">↑ +1.42x vs Manual Baseline (2.86x)</div>
+      </div>
+      <div class="kpi-card emerald">
+        <div class="kpi-lbl">Winning Ad Set CPA</div>
+        <div class="kpi-val" id="winningCpaVal">$6.40</div>
+        <div class="kpi-delta">↓ -56% vs $14.00 Guardrail Cap</div>
+      </div>
+      <div class="kpi-card violet">
+        <div class="kpi-lbl">AI Creative Variants Tested</div>
+        <div class="kpi-val">36 Ads</div>
+        <div class="kpi-delta">12 Image • 12 Reels • 12 Carousels</div>
+      </div>
+      <div class="kpi-card amber">
+        <div class="kpi-lbl">Attributed Store &amp; Web Leads</div>
+        <div class="kpi-val">2,320</div>
+        <div class="kpi-delta">↑ +68% Local Radius Foot Traffic</div>
+      </div>
+    </section>
+
+    <!-- Main 2-Column Command Grid -->
+    <div class="main-grid">
+      <!-- LEFT COLUMN: 1. 3-PHASE GEO-SCALING FUNNEL + 2. 30-DAY AI CONTENT & AD CALENDAR -->
+      <div class="col-stack">
+        <!-- MODULE 1: 3-Phase Geo-Scaling Funnel -->
+        <section class="panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <span class="step-badge">PHASE 1 → 3</span>
+              3-Phase Geo-Scaling Funnel (Local City Radius → Regional Metro → Nationwide Advantage+)
+            </div>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#38bdf8;">AUTO-PROMOTION GATE: ROAS &gt; 3.5x</span>
+          </div>
+
+          <div class="geo-funnel-grid">
+            <!-- SVG Concentric Geo-Expansion Radar -->
+            <div class="radar-box">
+              <svg viewBox="0 0 200 185" width="100%" height="168" fill="none">
+                <!-- Outer Ring: Nationwide -->
+                <circle cx="100" cy="92" r="82" fill="#10b98112" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <!-- Middle Ring: 15-75 mi Regional Metro -->
+                <circle cx="100" cy="92" r="54" fill="#8b5cf618" stroke="#8b5cf6" stroke-width="1.5"/>
+                <!-- Inner Core: 0-15 mi Hyper-Local -->
+                <circle cx="100" cy="92" r="27" fill="#38bdf830" stroke="#38bdf8" stroke-width="2"/>
+                <circle cx="100" cy="92" r="5" fill="#ffffff"/>
+
+                <!-- Crosshairs -->
+                <line x1="12" y1="92" x2="188" y2="92" stroke="#334155" stroke-width="0.8"/>
+                <line x1="100" y1="8" x2="100" y2="176" stroke="#334155" stroke-width="0.8"/>
+
+                <!-- Ring Labels -->
+                <text x="100" y="74" text-anchor="middle" fill="#38bdf8" font-family="JetBrains Mono" font-size="8.5" font-weight="700">0–15 MI (4.8x)</text>
+                <text x="100" y="48" text-anchor="middle" fill="#c4b5fd" font-family="JetBrains Mono" font-size="8.5" font-weight="700">15–75 MI (4.1x)</text>
+                <text x="100" y="21" text-anchor="middle" fill="#6ee7b7" font-family="JetBrains Mono" font-size="8.5" font-weight="700">NATIONWIDE (3.7x)</text>
+              </svg>
+            </div>
+
+            <div class="phase-cards">
+              <div class="phase-card">
+                <div>
+                  <div class="phase-name">Phase 1: Local City Radius (0–15 mi Hyper-Local Awareness &amp; Offer Validation)</div>
+                  <div class="phase-desc">Pin-drop geo-fencing + neighborhood callouts ("Austin 15-Min Local Offer") + Meta Lead Forms &amp; IG DM automation.</div>
+                </div>
+                <div class="phase-metrics">
+                  <span class="roas-pill">ROAS 4.8x</span>
+                  <div style="font-size:10px; color:#94a3b8; margin-top:3px;">CPA $6.40 • CTR 3.9%</div>
+                </div>
+              </div>
+
+              <div class="phase-card p2">
+                <div>
+                  <div class="phase-name">Phase 2: Regional Metro Ring (15–75 mi Lookalike 1% Expansion)</div>
+                  <div class="phase-desc">Seeds 1% Purchase &amp; Engaged-Lead Lookalike audiences from Phase 1 pixel conversions across surrounding commuter counties.</div>
+                </div>
+                <div class="phase-metrics">
+                  <span class="roas-pill" style="border-color:#8b5cf6; color:#c4b5fd; background:rgba(139,92,246,0.2);">ROAS 4.1x</span>
+                  <div style="font-size:10px; color:#94a3b8; margin-top:3px;">CPA $8.15 • CTR 3.2%</div>
+                </div>
+              </div>
+
+              <div class="phase-card p3">
+                <div>
+                  <div class="phase-name">Phase 3: Nationwide Advantage+ Scaling (Broad AI + Dynamic Catalog)</div>
+                  <div class="phase-desc">Unlocks top-2 winning Reels &amp; Carousels into Nationwide Advantage+ Shopping/Leads with CAPI server-side value optimization.</div>
+                </div>
+                <div class="phase-metrics">
+                  <span class="roas-pill">ROAS 3.7x</span>
+                  <div style="font-size:10px; color:#94a3b8; margin-top:3px;">CPA $9.80 • CTR 2.8%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- MODULE 2: 30-Day AI Content & Ad Calendar (Meta Business Suite Sync) -->
+        <section class="panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <span class="step-badge">30-DAY ENGINE</span>
+              AI Content &amp; Ad Creative Matrix (Synced with Meta Business Suite)
+            </div>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#34d399;">✓ 30-DAY SCHEDULE AUTO-QUEUED</span>
+          </div>
+
+          <!-- 3 Ad Format Preview Cards -->
+          <div class="creative-cards-grid">
+            <div class="ad-card">
+              <div>
+                <span class="ad-format-tag" style="background:#1e3a8a; color:#93c5fd;">FORMAT 01 // SINGLE IMAGE AD</span>
+                <div class="ad-visual-mock" style="background:linear-gradient(135deg,#0f172a,#1d4ed8);">
+                  [Midjourney v6.1 + Canva Spec]<br/>Local Storefront + "48h Neighborhood VIP Voucher"
+                </div>
+                <div class="ad-copy">
+                  <strong>ChatGPT Hook:</strong> "Hey [City] neighbors — skip the wait this week. Claim your local $25 first-visit credit in 15 seconds..."
+                </div>
+              </div>
+              <div class="ad-kpi-bar">
+                <span>CPA: $6.85</span>
+                <span>CTR: 3.65%</span>
+                <span>ROAS: 4.5x</span>
+              </div>
+            </div>
+
+            <div class="ad-card">
+              <div>
+                <span class="ad-format-tag" style="background:#3b0764; color:#d8b4fe;">FORMAT 02 // IG &amp; FB REEL (9:16)</span>
+                <div class="ad-visual-mock" style="background:linear-gradient(135deg,#4c1d95,#0668E1);">
+                  [15s AI UGC Hook + Captions]<br/>0–3s Pattern Interrupt + Local Social Proof
+                </div>
+                <div class="ad-copy">
+                  <strong>ChatGPT Script:</strong> "3 reasons 1,400+ [City] homeowners switched to our local team this month (watch till 0:09)..."
+                </div>
+              </div>
+              <div class="ad-kpi-bar">
+                <span>CPA: $6.40 ★</span>
+                <span>CTR: 4.20%</span>
+                <span>ROAS: 4.8x</span>
+              </div>
+            </div>
+
+            <div class="ad-card">
+              <div>
+                <span class="ad-format-tag" style="background:#064e3b; color:#6ee7b7;">FORMAT 03 // 5-CARD CAROUSEL</span>
+                <div class="ad-visual-mock" style="background:linear-gradient(135deg,#065f46,#0284c7);">
+                  [Dynamic Retargeting Cards]<br/>Before/After • 4.9★ Reviews • Instant Quote
+                </div>
+                <div class="ad-copy">
+                  <strong>ChatGPT Copy:</strong> "Still comparing options? Swipe through real neighborhood results &amp; lock in your bundle rate..."
+                </div>
+              </div>
+              <div class="ad-kpi-bar">
+                <span>CPA: $7.20</span>
+                <span>CTR: 3.85%</span>
+                <span>ROAS: 4.4x</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4-Week 30-Day Content Calendar Strip -->
+          <div class="calendar-strip">
+            <div class="cal-week">
+              <div class="cal-week-hdr">WEEK 1 (DAYS 1–7)</div>
+              <div><strong>Local Seed (0–15 mi):</strong> 3 Geo-Hook Images + 3 Reels launched via Meta Business Suite API.</div>
+            </div>
+            <div class="cal-week">
+              <div class="cal-week-hdr">WEEK 2 (DAYS 8–14)</div>
+              <div><strong>CPA Prune &amp; Refresh:</strong> Pause CPA &gt; $14 sets; auto-generate 4 new ChatGPT hooks on winning Reel.</div>
+            </div>
+            <div class="cal-week">
+              <div class="cal-week-hdr">WEEK 3 (DAYS 15–21)</div>
+              <div><strong>Metro Ring (15–75 mi):</strong> Launch 1% Lookalike Carousel + Dynamic Retargeting stack.</div>
+            </div>
+            <div class="cal-week">
+              <div class="cal-week-hdr">WEEK 4 (DAYS 22–30)</div>
+              <div><strong>Advantage+ Scale:</strong> Promote top 10% creatives to Nationwide Advantage+ budget pool.</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- RIGHT COLUMN: 3. AUTOMATED SPEND REALLOCATION & WEEKLY EXECUTIVE REPORT -->
+      <div class="col-stack">
+        <section class="panel" style="flex:1; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div class="panel-header">
+              <div class="panel-title">
+                <span class="step-badge">AUTO-OPTIMIZER</span>
+                Automated Spend Reallocation &amp; Weekly Executive Report
+              </div>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#fbbf24;">RULE: SHIFT SPEND IF CPA &gt; $14.00</span>
+            </div>
+
+            <!-- Interactive CPA Guardrail Slider -->
+            <div class="optimizer-controls">
+              <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:800; margin-bottom:6px;">
+                <span>Interactive AI Reallocation Threshold (Max Allowed CPA):</span>
+                <span id="cpaThresholdLbl" style="font-family:'JetBrains Mono',monospace; color:#38bdf8;">$14.00 CPA Cap → $340/day Reallocated</span>
+              </div>
+              <input type="range" id="cpaSlider" min="10" max="18" step="1" value="14" style="width:100%; accent-color:#38bdf8; cursor:pointer;" oninput="updateOptimizer(this.value)" />
+            </div>
+
+            <!-- Live Ad Set Reallocation Table -->
+            <table class="reallocator-table">
+              <thead>
+                <tr>
+                  <th>Ad Set / Geo Ring</th>
+                  <th>7d CPA</th>
+                  <th>ROAS</th>
+                  <th>Daily Spend Shift</th>
+                  <th>AI Rule Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>AS-01 // 9:16 Local Reel (0–15 mi)</strong></td>
+                  <td class="cpa-good">$6.40</td>
+                  <td><strong>4.8x</strong></td>
+                  <td style="color:#34d399; font-family:'JetBrains Mono',monospace; font-weight:700;">$150 → $360/d (+140%)</td>
+                  <td><span class="action-tag-scale">★ SCALE WINNER</span></td>
+                </tr>
+                <tr>
+                  <td><strong>AS-02 // 5-Card Review Carousel</strong></td>
+                  <td class="cpa-good">$7.20</td>
+                  <td><strong>4.4x</strong></td>
+                  <td style="color:#34d399; font-family:'JetBrains Mono',monospace; font-weight:700;">$120 → $250/d (+108%)</td>
+                  <td><span class="action-tag-scale">★ SCALE WINNER</span></td>
+                </tr>
+                <tr>
+                  <td><strong>AS-03 // Metro 1% LAL (15–75 mi)</strong></td>
+                  <td class="cpa-good">$8.15</td>
+                  <td><strong>4.1x</strong></td>
+                  <td style="color:#93c5fd; font-family:'JetBrains Mono',monospace; font-weight:700;">$180 → $180/d (HOLD)</td>
+                  <td><span class="action-tag-scale" style="border-color:#3b82f6; color:#93c5fd;">MAINTAIN PACE</span></td>
+                </tr>
+                <tr>
+                  <td><strong>AS-04 // Generic Stock Image B</strong></td>
+                  <td class="cpa-bad">$15.80</td>
+                  <td>1.6x</td>
+                  <td style="color:#fb7185; font-family:'JetBrains Mono',monospace; font-weight:700;">$190 → $0/d (-100%)</td>
+                  <td><span class="action-tag-kill">✕ AUTO-PAUSED (CPA &gt; $14)</span></td>
+                </tr>
+                <tr>
+                  <td><strong>AS-05 // Broad Cold No-Geo Copy</strong></td>
+                  <td class="cpa-bad">$17.40</td>
+                  <td>1.3x</td>
+                  <td style="color:#fb7185; font-family:'JetBrains Mono',monospace; font-weight:700;">$150 → $0/d (-100%)</td>
+                  <td><span class="action-tag-kill">✕ AUTO-PAUSED (CPA &gt; $14)</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Weekly Executive Report Preview -->
+          <div class="exec-report-box">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:12px; font-weight:800; color:#ffffff;">WEEKLY EXECUTIVE REPORT SNAPSHOT (AUTO-GENERATED EVERY MONDAY 08:00)</span>
+              <span id="exportToast" style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#34d399; font-weight:700;">READY FOR CSV/PDF EXPORT</span>
+            </div>
+            <div class="report-grid">
+              <div class="report-stat">
+                <div style="font-size:9.5px; color:#94a3b8;">WASTED SPEND SAVED</div>
+                <div style="font-size:15px; font-weight:800; color:#34d399; margin-top:2px;">$2,380 / wk</div>
+              </div>
+              <div class="report-stat">
+                <div style="font-size:9.5px; color:#94a3b8;">NET ROAS LIFT</div>
+                <div style="font-size:15px; font-weight:800; color:#38bdf8; margin-top:2px;">+49.6% (+1.42x)</div>
+              </div>
+              <div class="report-stat">
+                <div style="font-size:9.5px; color:#94a3b8;">NEXT AI ACTION</div>
+                <div style="font-size:11px; font-weight:700; color:#f8fafc; margin-top:3px;">Clone AS-01 Reel to 3 new ZIPs</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updateOptimizer(val) {
+      const shifted = (20 - parseInt(val, 10)) * 55 + 10;
+      document.getElementById('cpaThresholdLbl').textContent =
+        '$' + val + '.00 CPA Cap → $' + shifted + '/day Reallocated to CPA $6.40 Winner';
+    }
+    function exportReport() {
+      const el = document.getElementById('exportToast');
+      el.textContent = '✓ EXPORTED: AdPulse_Weekly_Exec_Report_W42.csv & .pdf';
+      el.style.color = '#fbbf24';
+    }
+  </script>
+</body>
+</html>

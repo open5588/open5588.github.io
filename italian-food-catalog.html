@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Casa Bellini — Catalogo Eccellenze Gastronomiche Italiane (IT / EN)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #faf8f5;
+      color: #1c1917;
+    }
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e7e5e4;
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: #14532d;
+      letter-spacing: 0.02em;
+    }
+    .lang-switch {
+      display: flex;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .lang-pill {
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid #d6d3d1;
+      background: #fff;
+      cursor: pointer;
+    }
+    .lang-pill.active {
+      background: #14532d;
+      color: #fff;
+      border-color: #14532d;
+    }
+    .hero {
+      background: linear-gradient(90deg, rgba(20,45,28,0.82) 0%, rgba(28,25,23,0.58) 100%),
+                  url('/assets/img/italian-hero-table.jpg') center/cover;
+      color: #fff;
+      padding: 54px 40px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      margin-bottom: 8px;
+    }
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+      background: #fff;
+      border-bottom: 1px solid #e7e5e4;
+    }
+    .filter-btn {
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid #d6d3d1;
+      background: #faf8f5;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .filter-btn.active {
+      background: #991b1b;
+      color: #fff;
+      border-color: #991b1b;
+    }
+    .catalog-grid {
+      max-width: 1320px;
+      margin: 28px auto;
+      padding: 0 28px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .prod-card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #e7e5e4;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+    }
+    .prod-img {
+      height: 215px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .region-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(20, 83, 45, 0.92);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .prod-body {
+      padding: 18px;
+    }
+    .prod-cat {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #991b1b;
+      font-weight: 700;
+    }
+    .prod-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin: 4px 0 8px 0;
+    }
+    .prod-desc {
+      font-size: 13px;
+      color: #57534e;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .prod-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: #14532d;
+      border-top: 1px solid #f5f5f4;
+      padding-top: 10px;
+    }
+    [hidden] { display: none !important; }
+    button, input { font-family: inherit; }
+    .filter-bar { flex-wrap: wrap; }
+    .catalog-search { max-width: 600px; margin: 24px auto 0; padding: 0 28px; }
+    .catalog-search label { display: block; margin-bottom: 8px; font-size: 13px; font-weight: 600; }
+    .catalog-search input { width: 100%; padding: 12px 16px; border: 1px solid #d6d3d1; border-radius: 10px; font-size: 14px; }
+    .results-status { text-align: center; margin: 16px 28px; color: #57534e; font-size: 13px; }
+    .empty-state { grid-column: 1 / -1; padding: 32px; text-align: center; color: #57534e; }
+    :focus-visible { outline: 3px solid #b45309; outline-offset: 3px; }
+    @media (max-width: 800px) {
+      header { flex-wrap: wrap; gap: 16px; padding: 16px 24px; }
+      .catalog-grid { grid-template-columns: 1fr; }
+      .hero { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand-title">CASA BELLINI • ITALIA</div>
+    <div style="font-size:13px;color:#57534e;font-weight:600;">Catalogo Digitale B2B & Retail • Zero-Plugin Custom WordPress CPT Architecture</div>
+    <div class="lang-switch">
+      <button type="button" class="lang-pill active" data-lang="it" aria-pressed="true" lang="it">🇮🇹 Italiano</button>
+      <button type="button" class="lang-pill" data-lang="en" aria-pressed="false" lang="en">🇬🇧 English</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Autentica Tradizione Gastronomica Italiana</h1>
+    <p style="font-size:15px;opacity:0.94;">Selezione artigianale di Formaggi DOP, Pasta di Gragnano IGP, Oli EVO al Tartufo d'Alba, Pomodoro San Marzano e Salumi Storici.</p>
+  </section>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-category="all" aria-pressed="true">Tutti i Prodotti (6)</button>
+    <button class="filter-btn" data-category="pasta" aria-pressed="false">Pasta Artigianale</button>
+    <button class="filter-btn" data-category="oil" aria-pressed="false">Oli & Tartufi</button>
+    <button class="filter-btn" data-category="sauces" aria-pressed="false">Conserve & Sughi</button>
+    <button class="filter-btn" data-category="sweets" aria-pressed="false">Formaggi & Salumi DOP</button>
+    <button class="filter-btn" data-category="vinegar" aria-pressed="false">Aceti & Condimenti</button>
+  </div>
+
+  <div class="catalog-search">
+    <label for="product-search">Cerca prodotti</label>
+    <input id="product-search" type="search" placeholder="Cerca per nome, regione o ingrediente…" aria-controls="products" />
+  </div>
+  <p class="results-status" role="status" aria-live="polite"></p>
+  <div class="catalog-grid" id="products">
+    <div class="prod-card" data-category="sweets">
+      <div class="prod-img" style="background-image:url('/assets/img/prod-parmigiano.jpg');">
+        <span class="region-badge">📍 Emilia-Romagna • Parma DOP</span>
+      </div>
+      <div class="prod-body">
+        <div class="prod-cat">Formaggi & Salumi DOP</div>
+        <div class="prod-title">Parmigiano Reggiano DOP 36 Mesi</div>
+        <div class="prod-desc">Stagionatura 36 mesi su assi di abete. Pasta friabile con cristalli di tirosina e aromi complessi di frutta secca.</div>
+        <div class="prod-meta"><span>Trancio sottovuoto: 1 kg</span><span>Scheda Tecnica & Galleria →</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-category="pasta">
+      <div class="prod-img" style="background-image:url('/assets/img/prod-pasta.jpg');">
+        <span class="region-badge">📍 Campania • Gragnano IGP</span>
+      </div>
+      <div class="prod-body">
+        <div class="prod-cat">Pasta Artigianale</div>
+        <div class="prod-title">Paccheri & Tagliatelle di Gragnano IGP</div>
+        <div class="prod-desc">Trafilati al bronzo con grano duro 100% italiano ed essiccazione lenta su telai in legno per 48 ore.</div>
+        <div class="prod-meta"><span>Confezione: 500g</span><span>Scheda Tecnica & Galleria →</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-category="oil">
+      <div class="prod-img" style="background-image:url('/assets/img/prod-truffle-oil.jpg');">
+        <span class="region-badge">📍 Umbria & Piemonte • Alba DOP</span>
+      </div>
+      <div class="prod-body">
+        <div class="prod-cat">Oli & Tartufi</div>
+        <div class="prod-title">Olio EVO Umbro & Tartufo Bianco d'Alba</div>
+        <div class="prod-desc">Olio Extra Vergine franto a freddo infuso con scaglie di Tuber Magnatum Pico. Bottiglia farmaceutica anti-UV.</div>
+        <div class="prod-meta"><span>Bottiglia: 250ml / 500ml</span><span>Scheda Tecnica & Galleria →</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-category="sauces">
+      <div class="prod-img" style="background-image:url('/assets/img/prod-san-marzano.jpg');">
+        <span class="region-badge">📍 Campania • Agro Sarnese-Nocerino DOP</span>
+      </div>
+      <div class="prod-body">
+        <div class="prod-cat">Conserve & Sughi</div>
+        <div class="prod-title">Pomodoro San Marzano dell'Agro Sarnese DOP</div>
+        <div class="prod-desc">Raccolto a mano alle pendici del Vesuvio. Polpa carnosa, dolcezza equilibrata e bassa acidità per alta ristorazione.</div>
+        <div class="prod-meta"><span>Latta Litografata: 800g / 2.5kg</span><span>Scheda Tecnica & Galleria →</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-category="sweets">
+      <div class="prod-img" style="background-image:url('/assets/img/prod-prosciutto.jpg');">
+        <span class="prod-badge region-badge">📍 Emilia & Toscana • Parma DOP</span>
+      </div>
+      <div class="prod-body">
+        <div class="prod-cat">Formaggi & Salumi DOP</div>
+        <div class="prod-title">Prosciutto di Parma DOP 24M & Salame Toscano</div>
+        <div class="prod-desc">Lavorazione artigianale senza conservanti né nitriti. Dolcezza naturale garantita dalle brezze dell'Appennino.</div>
+        <div class="prod-meta"><span>Intero disossato / Affettato Horeca</span><span>Scheda Tecnica & Galleria →</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-category="vinegar">
+      <div class="prod-img" style="background-image:url('/assets/img/prod-balsamico.jpg');">
+        <span class="region-badge">📍 Emilia-Romagna • Modena DOP</span>
+      </div>
+      <div class="prod-body">
+        <div class="prod-cat">Aceti & Condimenti</div>
+        <div class="prod-title">Aceto Balsamico Tradizionale di Modena DOP Extravecchio</div>
+        <div class="prod-desc">Invecchiato oltre 25 anni in batterie di rovere, castagno, ciliegio e ginepro. Ampolla ufficiale Giugiaro 100ml.</div>
+        <div class="prod-meta"><span>Ampolla DOP: 100ml</span><span>Scheda Tecnica & Galleria →</span></div>
+      </div>
+    </div>
+    <p class="empty-state" hidden></p>
+  </div>
+  <script>
+    (() => {
+      const cards = [...document.querySelectorAll('.prod-card')];
+      const filters = [...document.querySelectorAll('.filter-btn')];
+      const languageButtons = [...document.querySelectorAll('[data-lang]')];
+      const search = document.querySelector('#product-search');
+      const empty = document.querySelector('.empty-state');
+      const copy = {
+        it: {
+          title: 'Casa Bellini — Catalogo Eccellenze Gastronomiche Italiane',
+          header: 'Catalogo Digitale B2B & Retail • Zero-Plugin Custom WordPress CPT Architecture',
+          heading: 'Autentica Tradizione Gastronomica Italiana',
+          intro: 'Selezione artigianale di Formaggi DOP, Pasta di Gragnano IGP, Oli EVO al Tartufo d\'Alba, Pomodoro San Marzano e Salumi Storici.',
+          categories: { all: 'Tutti i Prodotti', pasta: 'Pasta Artigianale', oil: 'Oli & Tartufi', sauces: 'Conserve & Sughi', sweets: 'Formaggi & Salumi DOP', vinegar: 'Aceti & Condimenti' },
+          search: 'Cerca prodotti', placeholder: 'Cerca per nome, regione o ingrediente…',
+          empty: 'Nessun prodotto trovato. Prova un’altra categoria o ricerca.',
+          results: (count) => `${count} di ${cards.length} prodotti`,
+          details: 'Scheda Tecnica & Galleria →'
+        },
+        en: {
+          title: 'Casa Bellini — Italian Gourmet Food Catalog',
+          header: 'B2B & Retail Digital Catalog • Zero-Plugin Custom WordPress CPT Architecture',
+          heading: 'Authentic Italian Culinary Tradition',
+          intro: 'Artisanal selection of PDO Cheeses, Gragnano PGI Pasta, Alba Truffle EVOO, San Marzano Tomatoes and Heritage Cured Meats.',
+          categories: { all: 'All Products', pasta: 'Artisan Pasta', oil: 'Oils & Truffles', sauces: 'Preserves & Sauces', sweets: 'PDO Cheeses & Charcuterie', vinegar: 'Vinegars & Condiments' },
+          search: 'Search products', placeholder: 'Search by name, region or ingredient…',
+          empty: 'No products found. Try another category or search.',
+          results: (count) => `${count} of ${cards.length} products`,
+          details: 'Product Details & Gallery →'
+        }
+      };
+      const englishProducts = [
+        ['36-Month Aged Parmigiano Reggiano PDO', 'Aged 36 months on spruce boards. Crumbly texture with visible tyrosine crystals and roasted nutty notes.', 'Vacuum Wedge: 1 kg', '📍 Emilia-Romagna • Parma PDO'],
+        ['Gragnano PGI Paccheri & Tagliatelle Nests', 'Bronze-drawn with 100% Italian durum wheat, slow-dried on wooden frames for 48 hours.', 'Pack: 500g', '📍 Campania • Gragnano PGI'],
+        ['Umbrian EVOO & Alba White Truffle Infusion', 'Cold-pressed Extra Virgin Olive Oil infused with real Tuber Magnatum Pico slices in UV-protective glass.', 'Bottle: 250ml / 500ml', '📍 Umbria & Piedmont • Alba PDO'],
+        ['San Marzano dell\'Agro Sarnese-Nocerino PDO Tomatoes', 'Hand-harvested on the volcanic slopes of Mount Vesuvius. Rich flesh and balanced sweetness for fine dining.', 'Lithographed Tin: 800g / 2.5kg', '📍 Campania • Agro Sarnese PDO'],
+        ['24-Month Prosciutto di Parma PDO & Salame Toscano', 'Artisanal curing without nitrites or preservatives. Natural sweetness from Apennine mountain breezes.', 'Boneless Whole / HoReCa Sliced', '📍 Emilia & Tuscany • Parma PDO'],
+        ['25-Year Extravecchio Traditional Balsamic Vinegar PDO', 'Aged over 25 years in oak, chestnut, cherry and juniper casks. Official 100ml Giugiaro bottle.', 'PDO Bulb Bottle: 100ml', '📍 Emilia-Romagna • Modena PDO']
+      ];
+      const fields = ['.prod-title', '.prod-desc', '.prod-meta span:first-child', '.region-badge'];
+      const products = cards.map((card, index) => ({
+        it: fields.map((selector) => card.querySelector(selector).textContent),
+        en: englishProducts[index]
+      }));
+      const normalize = (value) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase().trim();
+      let language = 'it';
+      let category = 'all';
+
+      function filterProducts() {
+        const query = normalize(search.value);
+        let count = 0;
+        cards.forEach((card, index) => {
+          // Index both languages so a language change preserves search results.
+          const text = normalize([...products[index].it, ...products[index].en,
+            copy.it.categories[card.dataset.category], copy.en.categories[card.dataset.category]].join(' '));
+          card.hidden = !((category === 'all' || card.dataset.category === category) && text.includes(query));
+          if (!card.hidden) count++;
+        });
+        empty.hidden = count !== 0;
+        document.querySelector('.results-status').textContent = copy[language].results(count);
+      }
+
+      function setLanguage(nextLanguage) {
+        language = nextLanguage;
+        const labels = copy[language];
+        document.documentElement.lang = language;
+        document.title = labels.title;
+        document.querySelector('header > div:nth-child(2)').textContent = labels.header;
+        document.querySelector('.hero h1').textContent = labels.heading;
+        document.querySelector('.hero p').textContent = labels.intro;
+        document.querySelector('label[for="product-search"]').textContent = labels.search;
+        search.placeholder = labels.placeholder;
+        empty.textContent = labels.empty;
+        filters.forEach((button) => {
+          button.textContent = labels.categories[button.dataset.category] + (button.dataset.category === 'all' ? ` (${cards.length})` : '');
+        });
+        cards.forEach((card, index) => {
+          fields.forEach((selector, field) => { card.querySelector(selector).textContent = products[index][language][field]; });
+          card.querySelector('.prod-cat').textContent = labels.categories[card.dataset.category];
+          card.querySelector('.prod-meta span:last-child').textContent = labels.details;
+        });
+        languageButtons.forEach((button) => {
+          button.classList.toggle('active', button.dataset.lang === language);
+          button.setAttribute('aria-pressed', String(button.dataset.lang === language));
+        });
+        filterProducts();
+      }
+
+      filters.forEach((button) => button.addEventListener('click', () => {
+        category = button.dataset.category;
+        filters.forEach((filter) => {
+          filter.classList.toggle('active', filter === button);
+          filter.setAttribute('aria-pressed', String(filter === button));
+        });
+        filterProducts();
+      }));
+      languageButtons.forEach((button) => button.addEventListener('click', () => setLanguage(button.dataset.lang)));
+      search.addEventListener('input', filterProducts);
+      setLanguage(language);
+    })();
+  </script>
+</body>
+</html>
